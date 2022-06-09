@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/</link>
+    <description>Recent content in Tags on 暐宗&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Mon, 06 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Game</title>
+      <link>https://weizongchen.github.io/tags/game/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>https://weizongchen.github.io/tags/html/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/html/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>New</title>
+      <link>https://weizongchen.github.io/tags/new/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/new/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Photos</title>
+      <link>https://weizongchen.github.io/tags/photos/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/photos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://weizongchen.github.io/tags/python/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
