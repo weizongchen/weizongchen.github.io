@@ -6,7 +6,26 @@
     <description>Recent content in Blogs on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 06 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MA35D1 M4 使用設定</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_rtp/</link>
+      <pubDate>Tue, 07 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_rtp/</guid>
+      <description>Description Enable the Remoteproc device driver in the Linux kernel.</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 Yocto 安裝說明</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_install_method/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_install_method/</guid>
+      <description>MA35D16A887C (BGA312) MCP package with DDR3L (256 MB)
+7-inch TFT LCD (1024x600) with touch daughter board</description>
+    </item>
+    
     <item>
       <title>文章的Markdwon 說明</title>
       <link>https://weizongchen.github.io/blog/test/</link>
@@ -17,15 +36,6 @@
 我是暐宗
 一級標題 二級標題 五級標題 六級標題 我是暐宗，這裡是測試文章
 暐宗 有序序列 內縮 第三繩得有序序列內縮開頭 Hello test Hello printf(); World Hello 引用 通常放到文章最前面 https://github.</description>
-    </item>
-    
-    <item>
-      <title>How To Use Checklists To Improve Your UX</title>
-      <link>https://weizongchen.github.io/blog/post-13/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
-      
-      <guid>https://weizongchen.github.io/blog/post-13/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
     </item>
     
   </channel>
