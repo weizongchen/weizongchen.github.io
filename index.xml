@@ -26,5 +26,14 @@
 7-inch TFT LCD (1024x600) with touch daughter board</description>
     </item>
     
+    <item>
+      <title>OpenCV 環境安裝</title>
+      <link>https://weizongchen.github.io/blog/opencv_env/</link>
+      <pubDate>Wed, 29 Jan 2020 10:07:47 +0600</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/opencv_env/</guid>
+      <description>系統環境 Windows 10 VS 2019 OpenCV 4.5.5 選擇 Windows 版本的OpenCV download下來 解壓縮到指定資料夾 可以在C 根目錄建一個 OpenCV 資料夾，在OpenCV資料夾下再建一個OpenCV4.</description>
+    </item>
+    
   </channel>
 </rss>
