@@ -161,8 +161,8 @@
 <h3 id="建立一個空的c專案-1">建立一個空的C++專案</h3>
 <p>在這裡應該有solution 和 project 的分別，我們要在solution的位置新增一個專案
 <img src="/images/opencv10.jpg" alt="blog圖片的連結">
-<img src="/images/opencv11.jpg" alt="blog圖片的連結">
-<img src="/images/opencv12.jpg" alt="blog圖片的連結"></p>
+<img src="/images/opencv11.JPG" alt="blog圖片的連結">
+<img src="/images/opencv12.JPG" alt="blog圖片的連結"></p>
 <h3 id="建立屬性管理員-property-manager">建立屬性管理員 Property Manager</h3>
 <p>方便每次專案可以套用同一個屬性，比如哪天出了opencv新的版本，可以直接套用新的版本的opencv或使用更舊版本的opencv
 <img src="/images/opencv13.JPG" alt="blog圖片的連結">
@@ -185,10 +185,32 @@
 <img src="/images/opencv25.JPG" alt="blog圖片的連結"></p>
 <p>記得因為我們是使用 Release x64 版本的屬性所以上面要改一下</p>
 <p><img src="/images/opencv26.JPG" alt="blog圖片的連結"></p>
-<p>基本上打到第2層，就會有提示字出現之後，就表示設定成功了</p>
+<p>基本上打到第2層，就會有提示字出現之後，就表示設定成功了，設定一下起始專案。</p>
 <p><img src="/images/opencv27.JPG" alt="blog圖片的連結"></p>
 <h3 id="寫一個簡單的程式測試一下-opencv-的設定">寫一個簡單的程式測試一下 opencv 的設定</h3>
-<p><img src="/images/opencv28.JPG" alt="blog圖片的連結"></p>
+<pre tabindex="0"><code>// loadimg.cpp : 此檔案包含 &#39;main&#39; 函式。程式會於該處開始執行及結束執行。
+//
+
+#include &lt;iostream&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+
+
+using namespace std;
+using namespace cv;
+
+int main()
+{
+    Mat img;
+    img = imread(&#34;C:\\Users\\b51ak\\Pictures\\promotion.png&#34;);
+    namedWindow(&#34;figure 1&#34;, WINDOW_AUTOSIZE);
+    imshow(&#34;figure 1&#34;, img);
+    std::cout &lt;&lt; &#34;Hello World!\n&#34;;
+    waitKey(0);
+
+    return 0;
+}
+</code></pre><p><img src="/images/opencv28.JPG" alt="blog圖片的連結"></p>
 
         </div>
 
