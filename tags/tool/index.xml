@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/tool/</link>
+    <description>Recent content in Tool on 暐宗&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ICP 使用說明</title>
+      <link>https://weizongchen.github.io/about/icp_introduce/</link>
+      <pubDate>Sat, 11 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/about/icp_introduce/</guid>
+      <description>可以直接來這邊下載 https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/
+ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階段。基於靈活的設定與直觀的操作，使用者可全面掌握量產流程。
+選擇你的series
+如果你電腦插著很多個NuLnk 可以選，點選Radio Button時，那個被指定的NuLnk會閃閃閃閃閃~</description>
+    </item>
+    
+  </channel>
+</rss>

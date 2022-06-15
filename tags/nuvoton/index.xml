@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>About Me on 暐宗&#39;s Blog</title>
-    <link>https://weizongchen.github.io/about/</link>
-    <description>Recent content in About Me on 暐宗&#39;s Blog</description>
+    <title>nuvoTon on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/nuvoton/</link>
+    <description>Recent content in nuvoTon on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 29 Oct 2019 13:49:23 +0600</lastBuildDate><atom:link href="https://weizongchen.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/nuvoton/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ICP 使用說明</title>
       <link>https://weizongchen.github.io/about/icp_introduce/</link>
@@ -25,8 +25,7 @@ ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階�
       <pubDate>Fri, 10 Jun 2022 23:24:00 +0800</pubDate>
       
       <guid>https://weizongchen.github.io/about/gpio_introduce/</guid>
-      <description>User Manual https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf
-通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
+      <description>通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
     </item>
     
   </channel>
