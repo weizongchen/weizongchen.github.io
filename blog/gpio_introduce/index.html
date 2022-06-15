@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GPIO 說明文件">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.100.1" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
+        
+        <h2>GPIO 說明</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>10 June 2022</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="img-fluid w-100 mb-4" alt="GPIO 說明">
+        
+        <div class="content mb-5">
+          <blockquote>
+<p>User Manual   <a href="https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf">https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf</a></p>
+</blockquote>
+<h3 id="通用-io-gpio-概述">通用 I/O (GPIO) 概述</h3>
+<p>M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</p>
+<h4 id="1-設定發電廠-clock">1. 設定發電廠 (clock)</h4>
+<p><img src="/images/GPIO5.JPG" alt="blog圖片的連結"></p>
+<h4 id="2-設定-led-的腳位">2. 設定 LED 的腳位</h4>
+<p><img src="/images/GPIO2.JPG" alt="blog圖片的連結"></p>
+<p>General Port 0~7 為 Low byte, 8~15 為 High byte 所以是Port H 的 0 1 2 是L，如下面黃色的標記</p>
+<p><img src="/images/GPIO4.JPG" alt="blog圖片的連結"></p>
+<p>設定 Port H 0 1 2 腳位為 output</p>
+<p><img src="/images/GPIO3.JPG" alt="blog圖片的連結"></p>
+<h4 id="3-設定-button-的腳位">3. 設定 Button 的腳位</h4>
+<p><img src="/images/GPIO7.JPG" alt="blog圖片的連結"></p>
+<p>General Port 0~7 為 Low byte, 8~15 為 High byte 所以是Port B 的 15 是H , Port F 的 11 是H，如下面黃色的標記</p>
+<p>設定 Port B 15 和 Port F 11 腳位為 input</p>
+<p><img src="/images/GPIO8.JPG" alt="blog圖片的連結"></p>
+<h4 id="4-設定-uart0-的腳位">4. 設定 UART0 的腳位</h4>
+<p><img src="/images/GPIO9.JPG" alt="blog圖片的連結"></p>
+<p>新唐大部分的M4 UART0 腳位是 PB12 RXD / PB13 TXD</p>
+<p><img src="/images/GPIO10.JPG" alt="blog圖片的連結"></p>
+<h4 id="5-設定中斷">5. 設定中斷</h4>
+<p>這邊中斷就是用UART0 打印東西，和 toggle LED 的亮滅</p>
+<p><img src="/images/GPIO11.JPG" alt="blog圖片的連結"></p>
+<h1 id="完整程式參考">完整程式參考</h1>
+<pre tabindex="0"><code>/**************************************************************************//**
+ * @file     main.c
+ * @version  V3.00
+ * @brief    GPIO function for level1 training course
+ *
+ ******************************************************************************/
+ 
+#include &lt;stdio.h&gt;
+#include &#34;NuMicro.h&#34;
+
+#define LED_R	PH0
+#define LED_G	PH1
+#define LED_B	PH2
+
+#define LED_ON		0
+#define LED_OFF		1
+
+volatile uint32_t sw1_int_cnt = 0;
+volatile uint32_t sw2_int_cnt = 0;
+
+void SYS_Init(void)
+{
+    /* Enable HXT clock (external XTAL 12MHz) */
+    CLK_EnableXtalRC(CLK_PWRCTL_HXTEN_Msk);
+
+    /* Wait for HXT clock ready */
+    CLK_WaitClockReady(CLK_STATUS_HXTSTB_Msk);
+
+	  /* Enable LIRC clock */
+    CLK_EnableXtalRC(CLK_PWRCTL_LIRCEN_Msk);
+
+    /* Wait for LIRC clock ready */
+    CLK_WaitClockReady(CLK_STATUS_LIRCSTB_Msk);
+	
+    /* Set core clock as PLL_CLOCK from PLL */
+    CLK_SetCoreClock(FREQ_192MHZ);
+
+    /* Set PCLK0/PCLK1 to HCLK/2 */
+  	CLK-&gt;PCLKDIV = (CLK_PCLKDIV_PCLK0DIV2 | CLK_PCLKDIV_PCLK1DIV2);
+
+    /* Enable module clock */
+    CLK_EnableModuleClock(UART0_MODULE);
+
+    /* Set module clock */
+    CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_HXT, CLK_CLKDIV0_UART0(1));
+}
+
+void UART0_Init()
+{
+    /* Set GPB multi-function pins to UART0 RXD and TXD */
+    SYS-&gt;GPB_MFPH = (SYS-&gt;GPB_MFPH &amp; ~(SYS_GPB_MFPH_PB12MFP_Msk | SYS_GPB_MFPH_PB13MFP_Msk)) |
+                    (SYS_GPB_MFPH_PB12MFP_UART0_RXD | SYS_GPB_MFPH_PB13MFP_UART0_TXD);
+	
+    /* Configure UART0 and set UART0 baud rate */
+    UART_Open(UART0, 115200);
+}
+
+void LED_Init(void)
+{
+	/* Set PH.0 ~ PH.2 to GPIO */
+    SYS-&gt;GPH_MFPL = (SYS-&gt;GPH_MFPL &amp; ~(SYS_GPH_MFPL_PH0MFP_Msk | SYS_GPH_MFPL_PH1MFP_Msk | SYS_GPH_MFPL_PH2MFP_Msk)) |
+                    (SYS_GPH_MFPL_PH0MFP_GPIO | SYS_GPH_MFPL_PH1MFP_GPIO | SYS_GPH_MFPL_PH2MFP_GPIO);
+
+	/* Set PC.9 ~ PC.11 to GPIO output */
+    GPIO_SetMode(PH, (BIT0 | BIT1 | BIT2), GPIO_MODE_OUTPUT);
+
+	/* Let LED off after initialize */
+	LED_R = LED_OFF;
+	LED_G = LED_OFF;
+	LED_B = LED_OFF;
+	
+}
+
+void BTN_Init(void)
+{
+	/**************  SW2 ***************/
+	/* Set PB.15 to GPIO */
+	SYS-&gt;GPG_MFPH = (SYS-&gt;GPG_MFPH &amp; ~(SYS_GPG_MFPH_PG15MFP_Msk)) | (SYS_GPG_MFPH_PG15MFP_GPIO);
+	/* Set PB.15 to GPIO intput */
+    GPIO_SetMode(PG, BIT15, GPIO_MODE_INPUT);
+    GPIO_EnableInt(PG, 15, GPIO_INT_FALLING);
+    NVIC_EnableIRQ(GPG_IRQn);
+	
+	/**************  SW3 ***************/
+	/* Set PF.11 to GPIO */
+    SYS-&gt;GPF_MFPH = (SYS-&gt;GPF_MFPH &amp; ~(SYS_GPF_MFPH_PF11MFP_Msk)) | (SYS_GPF_MFPH_PF11MFP_GPIO);
+	/* Set PF.11 to GPIO intput */
+    GPIO_SetMode(PF, BIT11, GPIO_MODE_INPUT);
+    GPIO_EnableInt(PF, 11, GPIO_INT_FALLING);
+	NVIC_EnableIRQ(GPF_IRQn);
+	
+	/* Set de-bounce function */
+	GPIO_SET_DEBOUNCE_TIME(GPIO_DBCTL_DBCLKSRC_LIRC, GPIO_DBCTL_DBCLKSEL_512);
+	GPIO_ENABLE_DEBOUNCE(PG, BIT15);
+	GPIO_ENABLE_DEBOUNCE(PF, BIT11);
+}
+
+int main(void)
+{
+	uint32_t sw1_cnt = 0, sw2_cnt = 0;
+	
+    /* Unlock protected registers */
+    SYS_UnlockReg();
+
+    /* Init System, peripheral clock and multi-function I/O */
+    SYS_Init();
+
+    /* Lock protected registers */
+    SYS_LockReg();
+
+    /* Init UART0 for printf */
+    UART0_Init();
+
+    printf(&#34;+---------------------------------------+\n&#34;);
+    printf(&#34;|    Level1 GPIO control Sample Code    |\n&#34;);
+    printf(&#34;+---------------------------------------+\n\n&#34;);
+
+	/* Init LED */
+	LED_Init();
+	
+	/* Init BTN */
+	BTN_Init();
+	
+    while(1) {
+		/* Check if the SW1 is pressed */
+		if (sw1_int_cnt != sw1_cnt) {
+			sw1_cnt = sw1_int_cnt;
+			printf(&#34;SW1 interrupt count: %d\n&#34;, sw1_cnt);
+		}
+		/* Check if the SW2 is pressed */
+		if (sw2_int_cnt != sw2_cnt) {
+			sw2_cnt = sw2_int_cnt;
+			printf(&#34;SW2 interrupt count: %d\n&#34;, sw2_cnt);
+		}
+	}
+}
+
+//PG15
+void GPG_IRQHandler(void)
+{
+	
+	printf(&#34;+---------------------------------------+\n&#34;);
+	printf(&#34;+------------Detect PG---------------+\n&#34;);
+	printf(&#34;+---------------------------------------+\n&#34;);
+	
+	/* Check if PG.15 the interrupt occurred */
+	if(GPIO_GET_INT_FLAG(PG, BIT15)) {
+		LED_R ^= 1;
+		sw1_int_cnt++;
+		/* Clear PG.15 interrupt flag */
+        GPIO_CLR_INT_FLAG(PG, BIT15);
+    }else {
+        /* Un-expected interrupt. Just clear all PB interrupts */
+        PG-&gt;INTSRC = PG-&gt;INTSRC;
+        printf(&#34;Un-expected interrupts.\n&#34;);
+    }
+	
+}
+//PF11
+void GPF_IRQHandler(void)
+{
+	printf(&#34;+---------------------------------------+\n&#34;);
+	printf(&#34;+------------Detect PF---------------+\n&#34;);
+	printf(&#34;+---------------------------------------+\n&#34;);
+	/* Check if PF.11 the interrupt occurred */
+    if(GPIO_GET_INT_FLAG(PF, BIT11)) {
+		LED_G ^= 1;
+		sw2_int_cnt++;
+		/* Clear PF.11 interrupt flag */
+        GPIO_CLR_INT_FLAG(PF, BIT11);
+    } else {
+        /* Un-expected interrupt. Just clear all PB interrupts */
+        PF-&gt;INTSRC = PF-&gt;INTSRC;
+        printf(&#34;Un-expected interrupts.\n&#34;);
+    }
+}
+</code></pre>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-5770066"><i
+                class="ti-mobile mr-3 text-primary"></i>03-5770066</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

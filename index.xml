@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ICP 使用說明</title>
-      <link>https://weizongchen.github.io/about/icp_introduce/</link>
+      <link>https://weizongchen.github.io/blog/icp_introduce/</link>
       <pubDate>Sat, 11 Jun 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/about/icp_introduce/</guid>
+      <guid>https://weizongchen.github.io/blog/icp_introduce/</guid>
       <description>可以直接來這邊下載 https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/
 ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階段。基於靈活的設定與直觀的操作，使用者可全面掌握量產流程。
 選擇你的series
@@ -21,10 +21,10 @@ ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階�
     
     <item>
       <title>GPIO 說明</title>
-      <link>https://weizongchen.github.io/about/gpio_introduce/</link>
+      <link>https://weizongchen.github.io/blog/gpio_introduce/</link>
       <pubDate>Fri, 10 Jun 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/about/gpio_introduce/</guid>
+      <guid>https://weizongchen.github.io/blog/gpio_introduce/</guid>
       <description>User Manual https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf
 通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
     </item>

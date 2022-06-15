@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 10 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GPIO 說明</title>
-      <link>https://weizongchen.github.io/about/gpio_introduce/</link>
+      <link>https://weizongchen.github.io/blog/gpio_introduce/</link>
       <pubDate>Fri, 10 Jun 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/about/gpio_introduce/</guid>
+      <guid>https://weizongchen.github.io/blog/gpio_introduce/</guid>
       <description>User Manual https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf
 通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
     </item>

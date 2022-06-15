@@ -2,10 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://weizongchen.github.io/blog/</loc>
+    <lastmod>2022-06-11T23:24:00+08:00</lastmod>
+  </url><url>
     <loc>https://weizongchen.github.io/categories/</loc>
     <lastmod>2022-06-11T23:24:00+08:00</lastmod>
   </url><url>
-    <loc>https://weizongchen.github.io/about/icp_introduce/</loc>
+    <loc>https://weizongchen.github.io/blog/icp_introduce/</loc>
     <lastmod>2022-06-11T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/</loc>
@@ -23,11 +26,8 @@
     <loc>https://weizongchen.github.io/tags/cortex-m4/</loc>
     <lastmod>2022-06-10T23:24:00+08:00</lastmod>
   </url><url>
-    <loc>https://weizongchen.github.io/about/gpio_introduce/</loc>
+    <loc>https://weizongchen.github.io/blog/gpio_introduce/</loc>
     <lastmod>2022-06-10T23:24:00+08:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/blog/</loc>
-    <lastmod>2021-05-03T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/blog/question/</loc>
     <lastmod>2021-05-03T23:24:00+08:00</lastmod>

@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="暐宗經驗分享">
+  <meta name="description" content="安裝 MA35D1 完整Linux 的詳細安裝步驟">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -116,109 +116,137 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
-
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://weizongchen.github.io/images/myauthor.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Embedded Linux System
-Andoird App and MySQL Server
-Deep Learning</p>
-      <a href="https://weizongchen.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-        </li>
-        <li><a
-            href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-m4/">Cortex m4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/opencv/">Opencv</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/tool/">Tool</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
+      <div class="col-lg-10 mx-auto">
         
-        <li class="list-inline-item"><a href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a></li>
+        <a href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6"
+          class="text-primary">安裝步驟文件</a>
         
-        <li class="list-inline-item"><a href="https://github.com/weizongchen"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-      
-
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="card-img-top" alt="GPIO 說明">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="h5 d-block my-3">GPIO 說明</a>
+        <h2>MA35D1 Yocto 安裝說明</h2>
         <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-10</span>
-            
-        </div>
-        <p class="card-text">GPIO 說明文件</p>
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>06 June 2022</span>
           
         </div>
-      </div>
-
-
-      
-      <div class="col-12 mt-5">
         
+        <img src="https://weizongchen.github.io/images/post/MA35D1_V1.jpg" class="img-fluid w-100 mb-4" alt="MA35D1 Yocto 安裝說明">
+        
+        <div class="content mb-5">
+          <p>MA35D16A887C (BGA312) MCP package with DDR3L (256 MB)</p>
+<p>7-inch TFT LCD (1024x600) with touch daughter board</p>
+<p>eMMC memory device daughter board</p>
+<p>SPI-NAND flash W25N02JWZEIF (256MB)</p>
+<p>NAND flash W29N01HVS1NA (128MB)</p>
+<p>2 x Giga Ethernet</p>
+<p>2 x High Speed USB</p>
+<p>2 x Camera Capture (CMOS sensor) header connectors</p>
+<p>1 x SIM Card slot</p>
+<p>2 x UART, 2 x RS485, 2 x CAN-FD, 8 x EADC channels</p>
+<h2 id="基本安裝設定">基本安裝設定</h2>
+<p>Yocto 項目至少需要 150G 存儲</p>
+<p>在使用 Yocto 項目之前必須安裝必要的包</p>
+<pre tabindex="0"><code>$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
+   build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
+     xz-utils debianutils iputils-ping libsdl1.2-dev xterm curl
+</code></pre><p>Update existing list of packages</p>
+<pre tabindex="0"><code>$ sudo apt-get update
+</code></pre><p>Install a few prerequisite packages which let apt use packages over HTTPS</p>
+<pre tabindex="0"><code>$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+</code></pre><p>Add Docker’s official GPG key for the official Docker repository to your system</p>
+<pre tabindex="0"><code>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+</code></pre><p>Set up the stable repository, add the Docker repository to APT sources</p>
+<pre tabindex="0"><code>$ sudo add-apt-repository &#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable&#34;
+</code></pre><p>Update the package database with the Docker packages from the newly added repo</p>
+<pre tabindex="0"><code>$ sudo apt-get update
+</code></pre><p>Install Docker</p>
+<pre tabindex="0"><code>$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre><p>Download the Docker Script for MA35D1</p>
+<pre tabindex="0"><code>$ git clone https://github.com/OpenNuvoton/MA35D1_Docker_Script.git
+</code></pre><p><img src="/images/ma35d1_1.jpg" alt="Build and Join Docker files"></p>
+<p>Enter docker-yocto folder, setup docker image, and select folder to be share</p>
+<pre tabindex="0"><code>$ ./build.sh                             It may take one hour to get 710 files.
+Please enter absolute path for shared folders(eg:/home/&lt;user name&gt;) :
+</code></pre><p>Enter docker image, and your command line head will be like nuvoton@a24d9e06abe3:~$</p>
+<pre tabindex="0"><code>$ ./join.sh
+nua3500_nuvoton
+nuvoton@a24d9e06abe3:~$
+</code></pre><p>Create a folder name yocto under /share</p>
+<pre tabindex="0"><code>nuvoton@a24d9e06abe3:~/share$ mkdir yocto
+</code></pre><p>The first time you use repo, you need to set up the GIT environment</p>
+<pre tabindex="0"><code>nuvoton@a24d9e06abe3:~/share/yocto$  git config --global user.email &#34;test@test.test.test&#34;
+nuvoton@a24d9e06abe3:~/share/yocto$  git config --global user.name &#34;test“
+nuvoton@a24d9e06abe3:~/share/yocto$  git config --global http.sslverify false
+</code></pre><p>Go to /share/yocto to setup repo path</p>
+<pre tabindex="0"><code>nuvoton@a24d9e06abe3:~/share/yocto$ repo init -u https://github.com/OpenNuvoton/MA35D1_Yocto-v3.1.3.git -m meta-ma35d1/base/ma35d1.xml
+</code></pre><p>Download the yocto project</p>
+<pre tabindex="0"><code>nuvoton@a24d9e06abe3:~/share/yocto$ repo sync
+</code></pre><p><img src="/images/ma35d1_2.jpg" alt="Build and Join Docker files"></p>
+<h2 id="build-image-by-yocto">Build Image by Yocto</h2>
+<p>Setup building configuration. The DISTRO option we usually use nvt-ma35d1-directfb</p>
+<p>EVB :</p>
+<pre tabindex="0"><code>~/yocto$ DISTRO=nvt-ma35d1-directfb MACHINE=ma35d1-evb source  sources/init-build-env build
+</code></pre><p>SOM :</p>
+<pre tabindex="0"><code>~/yocto$ DISTRO=nvt-ma35d1-directfb MACHINE=ma35d1-som source  sources/init-build-env build
+</code></pre><p>test chip SOM :</p>
+<pre tabindex="0"><code>~/yocto$ DISTRO=nvt-ma35d1-directfb MACHINE=ma35d1-tc-som source  sources/init-build-env build
+</code></pre><p>Choose what Image you want to build</p>
+<p>Image 包含Qt的版本 (建議)</p>
+<pre tabindex="0"><code>bitbake nvt-image-qt5
+</code></pre><p>小 Image 版本</p>
+<pre tabindex="0"><code>bitbake core-image-minimal
+</code></pre><h2 id="copy-the-image-to-sd">Copy the image to SD</h2>
+<pre tabindex="0"><code>$ sudo dd if=nvt-image-qt5-evb-ma35d1-xxxxx.rootfs.sdcard of=/dev/sdb
+</code></pre><p><img src="/images/ma35d1_3.jpg" alt="Build and Join Docker files"></p>
+<h2 id="fast-application-development">Fast Application Development</h2>
+<p>Make a toolchain installer</p>
+<pre tabindex="0"><code>$ bitbake nvt-image-qt5 -c populate_sdk
+(This may take about 1 hour )
+</code></pre><p>Go to the following path and execute the shell file</p>
+<pre tabindex="0"><code>~build/tmp-glibc/deploy/sdk $  ./oecore-x86_x64-aarch64-toolcahin-5.5-dunfell.sh
+</code></pre><p><img src="/images/ma35d1_4.jpg" alt="Build and Join Docker files"></p>
+<p>Add  toolchain to environment variables</p>
+<pre tabindex="0"><code>$ source /usr/local/oecore-x86_64/environment-setup-aarch64-poky-linux
+</code></pre><p>Create the source code file for this example:  helloworld.c</p>
+<pre tabindex="0"><code>#include &lt;stdio.h&gt;
+int main() {
+    // printf() displays the string inside console
+    printf(“Hello, World!\n”);
+    return 0;
+}
+</code></pre><p>Compile it</p>
+<pre tabindex="0"><code>$ $CC helloworld.c -o helloworld
+</code></pre>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 
@@ -262,9 +290,6 @@ Deep Learning</p>
         <ul class="list-unstyled">
           <li class="mb-3"><a class="text-dark"
               href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
           </li>
         </ul>
       </div>

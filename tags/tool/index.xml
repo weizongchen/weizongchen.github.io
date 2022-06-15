@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ICP 使用說明</title>
-      <link>https://weizongchen.github.io/about/icp_introduce/</link>
+      <link>https://weizongchen.github.io/blog/icp_introduce/</link>
       <pubDate>Sat, 11 Jun 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/about/icp_introduce/</guid>
+      <guid>https://weizongchen.github.io/blog/icp_introduce/</guid>
       <description>可以直接來這邊下載 https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/
 ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階段。基於靈活的設定與直觀的操作，使用者可全面掌握量產流程。
 選擇你的series
