@@ -6,7 +6,16 @@
     <description>Recent content in Tags on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cortex M4</title>
+      <link>https://weizongchen.github.io/tags/cortex-m4/</link>
+      <pubDate>Sun, 19 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/cortex-m4/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Tool</title>
       <link>https://weizongchen.github.io/tags/tool/</link>
@@ -17,11 +26,11 @@
     </item>
     
     <item>
-      <title>Cortex M4</title>
-      <link>https://weizongchen.github.io/tags/cortex-m4/</link>
-      <pubDate>Fri, 10 Jun 2022 23:24:00 +0800</pubDate>
+      <title>MA35D1</title>
+      <link>https://weizongchen.github.io/tags/ma35d1/</link>
+      <pubDate>Tue, 07 Jun 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/tags/cortex-m4/</guid>
+      <guid>https://weizongchen.github.io/tags/ma35d1/</guid>
       <description></description>
     </item>
     

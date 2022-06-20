@@ -6,7 +6,40 @@
     <description>Recent content in Blogs on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 11 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Keil IDE Debug Mode Memory window data not update?</title>
+      <link>https://weizongchen.github.io/blog/keil_debug_memoryupdate/</link>
+      <pubDate>Sun, 19 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_debug_memoryupdate/</guid>
+      <description>在Keil IDE 的 Debug Mode 時 Memory window data 突然不實時更新了?</description>
+    </item>
+    
+    <item>
+      <title>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</title>
+      <link>https://weizongchen.github.io/blog/keil_import_pack/</link>
+      <pubDate>Fri, 17 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_import_pack/</guid>
+      <description>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack
+下圖看到時趕緊關掉，不然他會一直download 不是新唐的東西。
+這邊選&amp;quot;是&amp;quot; 跳過這裡</description>
+    </item>
+    
+    <item>
+      <title>Keil IDE 16K Code size 限制?</title>
+      <link>https://weizongchen.github.io/blog/keil_ide_licence/</link>
+      <pubDate>Thu, 16 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_ide_licence/</guid>
+      <description>如果你不是商業使用 !
+如果你不是商業使用 !
+如果你不是商業使用 !
+很重要所以說三次! 所以如果你是個人評估使用
+ARM 對這個 MDK-Community 說明</description>
+    </item>
+    
     <item>
       <title>ICP 使用說明</title>
       <link>https://weizongchen.github.io/blog/icp_introduce/</link>
@@ -27,6 +60,25 @@ ICP Tool 新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階�
       <guid>https://weizongchen.github.io/blog/gpio_introduce/</guid>
       <description>User Manual https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf
 通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 M4 使用設定</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_rtp/</link>
+      <pubDate>Tue, 07 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_rtp/</guid>
+      <description>Description Enable the Remoteproc device driver in the Linux kernel.</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 Yocto 安裝說明</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_install_method/</link>
+      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_install_method/</guid>
+      <description>MA35D16A887C (BGA312) MCP package with DDR3L (256 MB)
+7-inch TFT LCD (1024x600) with touch daughter board</description>
     </item>
     
     <item>

@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果需要使用MA35D1上面的M4，設定的方法">
+  <meta name="description" content="Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -121,74 +121,51 @@
     <div class="row">
       <div class="col-lg-10 mx-auto">
         
-        <a href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6"
-          class="text-primary">安裝步驟文件</a>
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
         
-        <h2>MA35D1 M4 使用設定</h2>
+        <h2>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</h2>
         <div class="mb-3 post-meta">
           <span>By 暐宗</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>07 June 2022</span>
+          <span>17 June 2022</span>
           
         </div>
         
-        <img src="https://weizongchen.github.io/images/post/m487sidae.jpg" class="img-fluid w-100 mb-4" alt="MA35D1 M4 使用設定">
+        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="img-fluid w-100 mb-4" alt="Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack">
         
         <div class="content mb-5">
-          <p>Description
-Enable the Remoteproc device driver in the Linux kernel.</p>
-<pre tabindex="0"><code>$ bitbake linux-ma35d1 -c menuconfig
-</code></pre><pre tabindex="0"><code>Device Drivers  ---&gt;
-  Remoteproc drivers  ---&gt;
-       [*] Support for Remote Processor subsystem
-       &lt;*&gt;   MA35D1 remoteproc support
-</code></pre><pre tabindex="0"><code>&lt;Save&gt; and &lt;Exit&gt;
-</code></pre><p>Description
-Modify the device tree node setting of remoteproc in the Linux kernel.</p>
-<pre tabindex="0"><code>LINUX_KERENL_PATH/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-</code></pre><p><img src="/images/MA35D1_RTP_1.JPG" alt="Build and Join Docker files"></p>
-<p>Description
-Compile the Linux kernel.</p>
-<pre tabindex="0"><code>$ bitbake linux-ma35d1 -C compile
-</code></pre><p>Description
-Modify the device tree node setting of SSPCC in the TF-A.
-<img src="/images/MA35D1_RTP_2.JPG" alt="Build and Join Docker files"></p>
-<p>怎麼知道是I2S0_SUBM的?</p>
-<p><img src="/images/MA35D1_RTP_3.JPG" alt="Build and Join Docker files"></p>
-<p>Description
-Modify the device tree node setting of SSPCC in the TF-A.
-<img src="/images/MA35D1_RTP_4.JPG" alt="Build and Join Docker files"></p>
-<p>怎麼知道是這4根pin角的?</p>
-<p><img src="/images/MA35D1_RTP_5.JPG" alt="Build and Join Docker files"></p>
-<p>Description
-Compile the TF-A.</p>
-<pre tabindex="0"><code>$ bitbake tf-a-ma35d1 -C compile
-</code></pre><p>Description
-Build-up Image.
-Qt 版本:</p>
-<pre tabindex="0"><code>bitbake nvt-image-qt5 -c cleanall &amp;&amp; bitbake nvt-image-qt5
-</code></pre><p>Minimal 版本:</p>
-<pre tabindex="0"><code>$ bitbake core-image-minimal –c cleanall &amp;&amp; bitbake core-image-minimal 
-</code></pre><p>Description
-Burn-in Image into SD card.
-燒入SD卡</p>
-<pre tabindex="0"><code>$ sudo dd if=nvt-image-qt5-evb-ma35d1-xxxxx.rootfs.sdcard of=/dev/sdb
-</code></pre><pre tabindex="0"><code>延展SD的size
-sudo ./ma35d1_resize.sh /dev/sdb 1 apply
-</code></pre><p>把 M4 的.axf 放到SD卡的 /lib/firmware 中</p>
-<p>Note: The following step copy all of RTP (M4) sample codes in the M4_BSP into Filesystem. You can chose the sample code you want to use or replace with the firmware you developed. 
-<img src="/images/MA35D1_RTP_6.JPG" alt="Build and Join Docker files"></p>
-<p>執行 M4 axf 的指令</p>
-<pre tabindex="0"><code>echo -n /lib/firmware &gt; /sys/module/firmware_class/parameters/path
-echo -n I2S_Codec_PDMA.elf &gt; /sys/class/remoteproc/remoteproc0/firmware
-echo start &gt; /sys/class/remoteproc/remoteproc0/state
-echo stop &gt; /sys/class/remoteproc/remoteproc0/state
-</code></pre><p>Remoteproc
-- Keil IDE 設定</p>
-<p>Nu-link 的DAP 要設定1</p>
-<p>PS:原本我們開發板的NuLink 是 0 ，MA35D1的要改1
-<img src="/images/MA35D1_RTP_7.JPG" alt="Build and Join Docker files"></p>
+          <p>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</p>
+<p>下圖看到時趕緊關掉，不然他會一直download 不是新唐的東西。</p>
+<p><img src="/images/IDE1.JPG" alt="Build and Join Docker files"></p>
+<p><img src="/images/IDE2.JPG" alt="Build and Join Docker files"></p>
+<p>這邊選&quot;是&quot; 跳過這裡</p>
+<p><img src="/images/IDE3.JPG" alt="Build and Join Docker files"></p>
+<p>這個時候，Keil會跟你說沒有這個M460的 pack 包，你如果不安裝 ，compile 也會過，但是每次打開Keil 會就跳出來，滿煩的。</p>
+<p><img src="/images/IDE4.JPG" alt="Build and Join Docker files"></p>
+<p>去新唐的官網，下載Driver 就可以解決這個問題了。</p>
+<p><a href="https://www.nuvoton.com/tool-and-software/ide-and-compiler/">新唐Driver 位置</a></p>
+<p>Nu-Link_Keil_Driver_V3.09.7380r</p>
+<p><img src="/images/IDE5.JPG" alt="Build and Join Docker files"></p>
+<p>準備安裝</p>
+<p><img src="/images/IDE6.JPG" alt="Build and Join Docker files">
+<img src="/images/IDE7.JPG" alt="Build and Join Docker files"></p>
+<p>這裡如果你不懂，就按照指示預設安裝路徑。</p>
+<p><img src="/images/IDE8.JPG" alt="Build and Join Docker files"></p>
+<p>這裡會出現這個視窗，是因為我原本就已經安裝過這個Driver，裡面有M480 NUC505 &hellip; 一堆 但是不包含M460的部分，所以按&quot;是&quot;，就會更新成有包含460的</p>
+<p><img src="/images/IDE9.JPG" alt="Build and Join Docker files"></p>
+<p>這裡步驟就是安裝pack(Nuvoton device family pack)了 一路按&quot;是&quot; 就可以了</p>
+<p><img src="/images/IDE10.JPG" alt="Build and Join Docker files"></p>
+<p>他會把Nuvoton的pack都安裝</p>
+<p><img src="/images/IDE11.JPG" alt="Build and Join Docker files"></p>
+<p>因為我使用新唐的開發版，上面有Nu-Link2-Me 的燒錄器，所以當然也安裝一下它的driver，你如果是 J-Link 、U-Link 、巴拉巴拉Link&hellip;，要自己安裝他們的Driver喔。</p>
+<p><img src="/images/IDE12.JPG" alt="Build and Join Docker files"></p>
+<p>安裝</p>
+<p><img src="/images/IDE13.JPG" alt="Build and Join Docker files"></p>
+<p>再次打開Project 就不會有那些警告視窗拉~</p>
+<p><img src="/images/IDE14.JPG" alt="Build and Join Docker files"></p>
+<p><img src="/images/IDE15.JPG" alt="Build and Join Docker files"></p>
 
         </div>
 
@@ -260,6 +237,9 @@ echo stop &gt; /sys/class/remoteproc/remoteproc0/state
         <ul class="list-unstyled">
           <li class="mb-3"><a class="text-dark"
               href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
           </li>
         </ul>
       </div>

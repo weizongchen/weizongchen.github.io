@@ -6,7 +6,40 @@
     <description>Recent content in Cortex M4 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 10 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Keil IDE Debug Mode Memory window data not update?</title>
+      <link>https://weizongchen.github.io/blog/keil_debug_memoryupdate/</link>
+      <pubDate>Sun, 19 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_debug_memoryupdate/</guid>
+      <description>在Keil IDE 的 Debug Mode 時 Memory window data 突然不實時更新了?</description>
+    </item>
+    
+    <item>
+      <title>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</title>
+      <link>https://weizongchen.github.io/blog/keil_import_pack/</link>
+      <pubDate>Fri, 17 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_import_pack/</guid>
+      <description>Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack
+下圖看到時趕緊關掉，不然他會一直download 不是新唐的東西。
+這邊選&amp;quot;是&amp;quot; 跳過這裡</description>
+    </item>
+    
+    <item>
+      <title>Keil IDE 16K Code size 限制?</title>
+      <link>https://weizongchen.github.io/blog/keil_ide_licence/</link>
+      <pubDate>Thu, 16 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_ide_licence/</guid>
+      <description>如果你不是商業使用 !
+如果你不是商業使用 !
+如果你不是商業使用 !
+很重要所以說三次! 所以如果你是個人評估使用
+ARM 對這個 MDK-Community 說明</description>
+    </item>
+    
     <item>
       <title>GPIO 說明</title>
       <link>https://weizongchen.github.io/blog/gpio_introduce/</link>
