@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="暐宗經驗分享">
+  <meta name="description" content="如果需要使用MA35D1上面的M4，設定的方法">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -116,231 +116,107 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6"
+          class="text-primary">安裝步驟文件</a>
+        
+        <h2>MA35D1 M4 使用設定</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>07 June 2022</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/m487sidae.jpg" class="img-fluid w-100 mb-4" alt="MA35D1 M4 使用設定">
+        
+        <div class="content mb-5">
+          <p>Description
+Enable the Remoteproc device driver in the Linux kernel.</p>
+<pre tabindex="0"><code>$ bitbake linux-ma35d1 -c menuconfig
+</code></pre><pre tabindex="0"><code>Device Drivers  ---&gt;
+  Remoteproc drivers  ---&gt;
+       [*] Support for Remote Processor subsystem
+       &lt;*&gt;   MA35D1 remoteproc support
+</code></pre><pre tabindex="0"><code>&lt;Save&gt; and &lt;Exit&gt;
+</code></pre><p>Description
+Modify the device tree node setting of remoteproc in the Linux kernel.</p>
+<pre tabindex="0"><code>LINUX_KERENL_PATH/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+</code></pre><p><img src="/images/MA35D1_RTP_1.JPG" alt="Build and Join Docker files"></p>
+<p>Description
+Compile the Linux kernel.</p>
+<pre tabindex="0"><code>$ bitbake linux-ma35d1 -C compile
+</code></pre><p>Description
+Modify the device tree node setting of SSPCC in the TF-A.
+<img src="/images/MA35D1_RTP_2.JPG" alt="Build and Join Docker files"></p>
+<p>怎麼知道是I2S0_SUBM的?</p>
+<p><img src="/images/MA35D1_RTP_3.JPG" alt="Build and Join Docker files"></p>
+<p>Description
+Modify the device tree node setting of SSPCC in the TF-A.
+<img src="/images/MA35D1_RTP_4.JPG" alt="Build and Join Docker files"></p>
+<p>怎麼知道是這4根pin角的?</p>
+<p><img src="/images/MA35D1_RTP_5.JPG" alt="Build and Join Docker files"></p>
+<p>Description
+Compile the TF-A.</p>
+<pre tabindex="0"><code>$ bitbake tf-a-ma35d1 -C compile
+</code></pre><p>Description
+Build-up Image.
+Qt 版本:</p>
+<pre tabindex="0"><code>bitbake nvt-image-qt5 -c cleanall &amp;&amp; bitbake nvt-image-qt5
+</code></pre><p>Minimal 版本:</p>
+<pre tabindex="0"><code>$ bitbake core-image-minimal –c cleanall &amp;&amp; bitbake core-image-minimal 
+</code></pre><p>Description
+Burn-in Image into SD card.
+燒入SD卡</p>
+<pre tabindex="0"><code>$ sudo dd if=nvt-image-qt5-evb-ma35d1-xxxxx.rootfs.sdcard of=/dev/sdb
+</code></pre><pre tabindex="0"><code>延展SD的size
+sudo ./ma35d1_resize.sh /dev/sdb 1 apply
+</code></pre><p>把 M4 的.axf 放到SD卡的 /lib/firmware 中</p>
+<p>Note: The following step copy all of RTP (M4) sample codes in the M4_BSP into Filesystem. You can chose the sample code you want to use or replace with the firmware you developed. 
+<img src="/images/MA35D1_RTP_6.JPG" alt="Build and Join Docker files"></p>
+<p>執行 M4 axf 的指令</p>
+<pre tabindex="0"><code>echo -n /lib/firmware &gt; /sys/module/firmware_class/parameters/path
+echo -n I2S_Codec_PDMA.elf &gt; /sys/class/remoteproc/remoteproc0/firmware
+echo start &gt; /sys/class/remoteproc/remoteproc0/state
+echo stop &gt; /sys/class/remoteproc/remoteproc0/state
+</code></pre><p>Remoteproc
+- Keil IDE 設定</p>
+<p>Nu-link 的DAP 要設定1</p>
+<p>PS:原本我們開發板的NuLink 是 0 ，MA35D1的要改1
+<img src="/images/MA35D1_RTP_7.JPG" alt="Build and Join Docker files"></p>
 
-      
-      <div class="col-lg-4">
-  <div class="widgets">
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
     
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://weizongchen.github.io/images/myauthor.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Embedded Linux System
-Andoird App and MySQL Server
-Deep Learning</p>
-      <a href="https://weizongchen.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
     
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-        </li>
-        <li><a
-            href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
-        </li>
-      </ul>
-    </div>
     
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-m4/">Cortex m4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/ma35d1/">Ma35d1</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/opencv/">Opencv</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/tool/">Tool</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://github.com/weizongchen"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-      
-
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Keil IDE Debug Mode Memory window data not update?">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/keil_debug_memoryupdate/" class="h5 d-block my-3">Keil IDE Debug Mode Memory window data not update?</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-19</span>
-            
-        </div>
-        <p class="card-text">在Keil IDE 的 Debug Mode 時 Memory window data 突然不實時更新了?</p>
-        <a href="https://weizongchen.github.io/blog/keil_debug_memoryupdate/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/keil_import_pack/" class="h5 d-block my-3">Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-17</span>
-            
-        </div>
-        <p class="card-text">Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack </p>
-        <a href="https://weizongchen.github.io/blog/keil_import_pack/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Keil IDE 16K Code size 限制?">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/keil_ide_licence/" class="h5 d-block my-3">Keil IDE 16K Code size 限制?</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-16</span>
-            
-        </div>
-        <p class="card-text">Keil IDE 16K Code size 限制</p>
-        <a href="https://weizongchen.github.io/blog/keil_ide_licence/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ICP.JPG" class="card-img-top" alt="ICP 使用說明">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/icp_introduce/" class="h5 d-block my-3">ICP 使用說明</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-11</span>
-            
-        </div>
-        <p class="card-text">ICP 說明文件</p>
-        <a href="https://weizongchen.github.io/blog/icp_introduce/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="card-img-top" alt="GPIO 說明">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="h5 d-block my-3">GPIO 說明</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-10</span>
-            
-        </div>
-        <p class="card-text">GPIO 說明文件</p>
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/question.jpg" class="card-img-top" alt="自己的問題筆記">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/question/" class="h5 d-block my-3">自己的問題筆記</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2021-05-03</span>
-            
-        </div>
-        <p class="card-text">自己的問題筆記 整理一下</p>
-        <a href="https://weizongchen.github.io/blog/question/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-        </div>
-      </div>
-
-
-      
-      <div class="col-12 mt-5">
-        
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 
