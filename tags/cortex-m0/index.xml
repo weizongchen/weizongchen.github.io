@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cortex M0 on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/cortex-m0/</link>
+    <description>Recent content in Cortex M0 on 暐宗&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Tue, 21 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPIO 直接控制記憶體位置</title>
+      <link>https://weizongchen.github.io/blog/gpio_led_direct_control/</link>
+      <pubDate>Tue, 21 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/gpio_led_direct_control/</guid>
+      <description>我要點亮LED，所以我先去看電路圖
+發現腳位是 PB14
+根據上圖 TRM
+設定 portB pin14 的腳位 Mode 為 output</description>
+    </item>
+    
+  </channel>
+</rss>

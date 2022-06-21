@@ -6,7 +6,19 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 19 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GPIO 直接控制記憶體位置</title>
+      <link>https://weizongchen.github.io/blog/gpio_led_direct_control/</link>
+      <pubDate>Tue, 21 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/gpio_led_direct_control/</guid>
+      <description>我要點亮LED，所以我先去看電路圖
+發現腳位是 PB14
+根據上圖 TRM
+設定 portB pin14 的腳位 Mode 為 output</description>
+    </item>
+    
     <item>
       <title>Keil IDE Debug Mode Memory window data not update?</title>
       <link>https://weizongchen.github.io/blog/keil_debug_memoryupdate/</link>
