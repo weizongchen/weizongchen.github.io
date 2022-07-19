@@ -6,17 +6,14 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 21 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 10 Jul 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GPIO 直接控制記憶體位置</title>
-      <link>https://weizongchen.github.io/blog/gpio_led_direct_control/</link>
-      <pubDate>Tue, 21 Jun 2022 23:24:00 +0800</pubDate>
+      <title>Timer Delay 說明 (by M460)</title>
+      <link>https://weizongchen.github.io/blog/timer_delay/</link>
+      <pubDate>Sun, 10 Jul 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/blog/gpio_led_direct_control/</guid>
-      <description>我要點亮LED，所以我先去看電路圖
-發現腳位是 PB14
-根據上圖 TRM
-設定 portB pin14 的腳位 Mode 為 output</description>
+      <guid>https://weizongchen.github.io/blog/timer_delay/</guid>
+      <description>加入Timer的Driver 在 SYS_Init() 時 ，加入TMR0 的 clock source /*---------------------------------------------------------------------------------------------------------*//* Initialization for sample code *//*---------------------------------------------------------------------------------------------------------*//* Enable TIMER module clock */CLK_EnableModuleClock(TMR0_MODULE);/* Select TIMER clock source */CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HIRC, 0); 在 SYS_Init() 時 ，加入TMR0 的 clock source while(1) {PH4 = 1;TIMER_Delay(TIMER0, 1000000);PH4 = 0;TIMER_Delay(TIMER0, 1000000);} 邏輯分析儀量測 LED 訊號 用 Timer0 控制 LED 1秒亮 1秒滅 /**************************************************************************//*** @file main.</description>
     </item>
     
     <item>

@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="GPIO 說明文件">
+  <meta name="description" content="使用 M467 開發版 來說明 Timer Delay 的使用方法">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -124,345 +124,73 @@
         <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
           class="text-primary">說明文件</a>
         
-        <h2>GPIO 說明</h2>
+        <h2>Timer Delay 說明 (by M460)</h2>
         <div class="mb-3 post-meta">
           <span>By 暐宗</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>10 June 2022</span>
+          <span>10 July 2022</span>
           
         </div>
         
-        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="img-fluid w-100 mb-4" alt="GPIO 說明">
+        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="img-fluid w-100 mb-4" alt="Timer Delay 說明 (by M460)">
         
         <div class="content mb-5">
-          <blockquote>
-<p>User Manual   <a href="https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf">https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf</a></p>
-</blockquote>
-<h3 id="通用-io-gpio-概述">通用 I/O (GPIO) 概述</h3>
-<p>M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</p>
-<h4 id="1-設定發電廠-clock">1. 設定發電廠 (clock)</h4>
-<p><img src="/images/GPIO5.JPG" alt="blog圖片的連結"></p>
-<h4 id="2-設定-led-的腳位">2. 設定 LED 的腳位</h4>
-<p><img src="/images/GPIO2.JPG" alt="blog圖片的連結"></p>
-<p>General Port 0~7 為 Low byte, 8~15 為 High byte 所以是Port H 的 0 1 2 是L，如下面黃色的標記</p>
-<p><img src="/images/GPIO4.JPG" alt="blog圖片的連結"></p>
-<p>設定 Port H 0 1 2 腳位為 output</p>
-<p><img src="/images/GPIO3.JPG" alt="blog圖片的連結"></p>
-<h4 id="3-設定-button-的腳位">3. 設定 Button 的腳位</h4>
-<p><img src="/images/GPIO7.JPG" alt="blog圖片的連結"></p>
-<p>General Port 0~7 為 Low byte, 8~15 為 High byte 所以是Port B 的 15 是H , Port F 的 11 是H，如下面黃色的標記</p>
-<p>設定 Port B 15 和 Port F 11 腳位為 input</p>
-<p><img src="/images/GPIO8.JPG" alt="blog圖片的連結"></p>
-<h4 id="4-設定-uart0-的腳位">4. 設定 UART0 的腳位</h4>
-<p><img src="/images/GPIO9.JPG" alt="blog圖片的連結"></p>
-<p>新唐大部分的M4 UART0 腳位是 PB12 RXD / PB13 TXD</p>
-<p><img src="/images/GPIO10.JPG" alt="blog圖片的連結"></p>
-<h4 id="5-設定中斷">5. 設定中斷</h4>
-<p>這邊中斷就是用UART0 打印東西，和 toggle LED 的亮滅</p>
-<p><img src="/images/GPIO11.JPG" alt="blog圖片的連結"></p>
-<h1 id="完整程式參考">完整程式參考</h1>
+          <h2 id="加入timer的driver">加入Timer的Driver</h2>
+<p><img src="/images/timer_1.JPG" alt="blog圖片的連結"></p>
+<h2 id="在-sys_init-時-加入tmr0-的-clock-source">在 SYS_Init() 時 ，加入TMR0 的 clock source</h2>
+<pre tabindex="0"><code>    /*---------------------------------------------------------------------------------------------------------*/
+    /* Initialization for sample code                                                                          */
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Enable TIMER module clock */
+    CLK_EnableModuleClock(TMR0_MODULE);
+
+    /* Select TIMER clock source */
+    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HIRC, 0);
+</code></pre><h2 id="在-sys_init-時-加入tmr0-的-clock-source-1">在 SYS_Init() 時 ，加入TMR0 的 clock source</h2>
+<pre tabindex="0"><code>    while(1) {
+        PH4 = 1;
+        TIMER_Delay(TIMER0, 1000000);
+        PH4 = 0;
+        TIMER_Delay(TIMER0, 1000000);
+    }
+</code></pre><h2 id="邏輯分析儀量測-led-訊號">邏輯分析儀量測 LED 訊號</h2>
+<p><img src="/images/timer_2.JPG" alt="blog圖片的連結"></p>
+<h2 id="用-timer0-控制-led-1秒亮-1秒滅">用 Timer0 控制 LED 1秒亮 1秒滅</h2>
 <pre tabindex="0"><code>/**************************************************************************//**
  * @file     main.c
  * @version  V3.00
- * @brief    GPIO function for level1 training course
- *
- ******************************************************************************/
- 
-#include &lt;stdio.h&gt;
-#include &#34;NuMicro.h&#34;
-
-#define LED_R	PH0
-#define LED_G	PH1
-#define LED_B	PH2
-
-#define LED_ON		0
-#define LED_OFF		1
-
-volatile uint32_t sw1_int_cnt = 0;
-volatile uint32_t sw2_int_cnt = 0;
-
-void SYS_Init(void)
-{
-    /* Enable HXT clock (external XTAL 12MHz) */
-    CLK_EnableXtalRC(CLK_PWRCTL_HXTEN_Msk);
-
-    /* Wait for HXT clock ready */
-    CLK_WaitClockReady(CLK_STATUS_HXTSTB_Msk);
-
-	  /* Enable LIRC clock */
-    CLK_EnableXtalRC(CLK_PWRCTL_LIRCEN_Msk);
-
-    /* Wait for LIRC clock ready */
-    CLK_WaitClockReady(CLK_STATUS_LIRCSTB_Msk);
-	
-    /* Set core clock as PLL_CLOCK from PLL */
-    CLK_SetCoreClock(FREQ_192MHZ);
-
-    /* Set PCLK0/PCLK1 to HCLK/2 */
-  	CLK-&gt;PCLKDIV = (CLK_PCLKDIV_PCLK0DIV2 | CLK_PCLKDIV_PCLK1DIV2);
-
-    /* Enable module clock */
-    CLK_EnableModuleClock(UART0_MODULE);
-
-    /* Set module clock */
-    CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_HXT, CLK_CLKDIV0_UART0(1));
-}
-
-void UART0_Init()
-{
-    /* Set GPB multi-function pins to UART0 RXD and TXD */
-    SYS-&gt;GPB_MFPH = (SYS-&gt;GPB_MFPH &amp; ~(SYS_GPB_MFPH_PB12MFP_Msk | SYS_GPB_MFPH_PB13MFP_Msk)) |
-                    (SYS_GPB_MFPH_PB12MFP_UART0_RXD | SYS_GPB_MFPH_PB13MFP_UART0_TXD);
-	
-    /* Configure UART0 and set UART0 baud rate */
-    UART_Open(UART0, 115200);
-}
-
-void LED_Init(void)
-{
-	/* Set PH.0 ~ PH.2 to GPIO */
-    SYS-&gt;GPH_MFPL = (SYS-&gt;GPH_MFPL &amp; ~(SYS_GPH_MFPL_PH0MFP_Msk | SYS_GPH_MFPL_PH1MFP_Msk | SYS_GPH_MFPL_PH2MFP_Msk)) |
-                    (SYS_GPH_MFPL_PH0MFP_GPIO | SYS_GPH_MFPL_PH1MFP_GPIO | SYS_GPH_MFPL_PH2MFP_GPIO);
-
-	/* Set PC.9 ~ PC.11 to GPIO output */
-    GPIO_SetMode(PH, (BIT0 | BIT1 | BIT2), GPIO_MODE_OUTPUT);
-
-	/* Let LED off after initialize */
-	LED_R = LED_OFF;
-	LED_G = LED_OFF;
-	LED_B = LED_OFF;
-	
-}
-
-void BTN_Init(void)
-{
-	/**************  SW2 ***************/
-	/* Set PB.15 to GPIO */
-	SYS-&gt;GPG_MFPH = (SYS-&gt;GPG_MFPH &amp; ~(SYS_GPG_MFPH_PG15MFP_Msk)) | (SYS_GPG_MFPH_PG15MFP_GPIO);
-	/* Set PB.15 to GPIO intput */
-    GPIO_SetMode(PG, BIT15, GPIO_MODE_INPUT);
-    GPIO_EnableInt(PG, 15, GPIO_INT_FALLING);
-    NVIC_EnableIRQ(GPG_IRQn);
-	
-	/**************  SW3 ***************/
-	/* Set PF.11 to GPIO */
-    SYS-&gt;GPF_MFPH = (SYS-&gt;GPF_MFPH &amp; ~(SYS_GPF_MFPH_PF11MFP_Msk)) | (SYS_GPF_MFPH_PF11MFP_GPIO);
-	/* Set PF.11 to GPIO intput */
-    GPIO_SetMode(PF, BIT11, GPIO_MODE_INPUT);
-    GPIO_EnableInt(PF, 11, GPIO_INT_FALLING);
-	NVIC_EnableIRQ(GPF_IRQn);
-	
-	/* Set de-bounce function */
-	GPIO_SET_DEBOUNCE_TIME(GPIO_DBCTL_DBCLKSRC_LIRC, GPIO_DBCTL_DBCLKSEL_512);
-	GPIO_ENABLE_DEBOUNCE(PG, BIT15);
-	GPIO_ENABLE_DEBOUNCE(PF, BIT11);
-}
-
-int main(void)
-{
-	uint32_t sw1_cnt = 0, sw2_cnt = 0;
-	
-    /* Unlock protected registers */
-    SYS_UnlockReg();
-
-    /* Init System, peripheral clock and multi-function I/O */
-    SYS_Init();
-
-    /* Lock protected registers */
-    SYS_LockReg();
-
-    /* Init UART0 for printf */
-    UART0_Init();
-
-    printf(&#34;+---------------------------------------+\n&#34;);
-    printf(&#34;|    Level1 GPIO control Sample Code    |\n&#34;);
-    printf(&#34;+---------------------------------------+\n\n&#34;);
-
-	/* Init LED */
-	LED_Init();
-	
-	/* Init BTN */
-	BTN_Init();
-	
-    while(1) {
-		/* Check if the SW1 is pressed */
-		if (sw1_int_cnt != sw1_cnt) {
-			sw1_cnt = sw1_int_cnt;
-			printf(&#34;SW1 interrupt count: %d\n&#34;, sw1_cnt);
-		}
-		/* Check if the SW2 is pressed */
-		if (sw2_int_cnt != sw2_cnt) {
-			sw2_cnt = sw2_int_cnt;
-			printf(&#34;SW2 interrupt count: %d\n&#34;, sw2_cnt);
-		}
-	}
-}
-
-//PG15
-void GPG_IRQHandler(void)
-{
-	
-	printf(&#34;+---------------------------------------+\n&#34;);
-	printf(&#34;+------------Detect PG---------------+\n&#34;);
-	printf(&#34;+---------------------------------------+\n&#34;);
-	
-	/* Check if PG.15 the interrupt occurred */
-	if(GPIO_GET_INT_FLAG(PG, BIT15)) {
-		LED_R ^= 1;
-		sw1_int_cnt++;
-		/* Clear PG.15 interrupt flag */
-        GPIO_CLR_INT_FLAG(PG, BIT15);
-    }else {
-        /* Un-expected interrupt. Just clear all PB interrupts */
-        PG-&gt;INTSRC = PG-&gt;INTSRC;
-        printf(&#34;Un-expected interrupts.\n&#34;);
-    }
-	
-}
-//PF11
-void GPF_IRQHandler(void)
-{
-	printf(&#34;+---------------------------------------+\n&#34;);
-	printf(&#34;+------------Detect PF---------------+\n&#34;);
-	printf(&#34;+---------------------------------------+\n&#34;);
-	/* Check if PF.11 the interrupt occurred */
-    if(GPIO_GET_INT_FLAG(PF, BIT11)) {
-		LED_G ^= 1;
-		sw2_int_cnt++;
-		/* Clear PF.11 interrupt flag */
-        GPIO_CLR_INT_FLAG(PF, BIT11);
-    } else {
-        /* Un-expected interrupt. Just clear all PB interrupts */
-        PF-&gt;INTSRC = PF-&gt;INTSRC;
-        printf(&#34;Un-expected interrupts.\n&#34;);
-    }
-}
-</code></pre><h3 id="m460-的控制led範例">M460 的控制LED範例</h3>
-<p><img src="/images/GPIO14.JPG" alt="blog圖片的連結">
-<img src="/images/GPIO12.JPG" alt="blog圖片的連結"></p>
-<pre tabindex="0"><code>/*---------------------------------------------------------------------------------------------------------*/
-/*  Main Function                                                                                          */
-/*---------------------------------------------------------------------------------------------------------*/
-int32_t main(void)
-{
-    //Mode
-    *(volatile unsigned int *)(0x400041C0) = 0x00001500;
-    //value
-    *(volatile unsigned int *)(0x400041C8) = 0x0000FF8F;
-
-    while(1) {
-        int i;
-        for(i = 0; i &lt; 50000000; i++) {} //等1下
-        *(volatile unsigned int *)(0x400041C8) = 0x00000000;
-		for(i = 0; i &lt; 50000000; i++) {} //等1下
-		*(volatile unsigned int *)(0x400041C8) = 0x00000070;
-					
-    }
-
-}
-</code></pre><p>*(volatile unsigned int *)(0x400041C0) = 0x00001500;</p>
-<p>Register 位置</p>
-<p>0x40004000 + 0x1C0</p>
-<p>Register的值</p>
-<p>0x 0000      1500</p>
-<p>000&hellip;0   1500 如下圖</p>
-<p><img src="/images/GPIO15.JPG" alt="blog圖片的連結"></p>
-<p>*(volatile unsigned int *)(0x400041C8) = 0x00000070;</p>
-<p>0x1C8 是 PH_DOUT (port H out) 的控制</p>
-<p>70 如下圖所示  (0x00000070 全滅  0x00000000 全亮)</p>
-<p><img src="/images/GPIO16.JPG" alt="blog圖片的連結"></p>
-<pre tabindex="0"><code>
-int32_t main(void)
-{
-
-
-
-    //Mode
-    *(volatile unsigned int *)(0x400041C0) = 0x00001500;
-	GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);
-    //value
-    *(volatile unsigned int *)(0x400041C8) = 0x00000000;
-    GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);
-		PH4 = 0;
-		PH5 = 0;
-		PH6 = 0;
-		
-		
-			
-    while(1) {
-        int i;
-        for(i = 0; i &lt; 50000000; i++) {} //等1百萬下
-		// 全滅
-        //*(volatile unsigned int *)(0x400041C8) = 0x00000000;
-		PH4 = 1;
-		PH5 = 1;
-		PH6 = 1;
-		for(i = 0; i &lt; 50000000; i++) {} //等1百萬下
-		// 全亮
-		PH4 = 0;
-		PH5 = 0;
-		PH6 = 0;
-    }
-
-}
-</code></pre>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/SDQCUHeRjlQ" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<h3 id="m460-的控制button範例">M460 的控制Button範例</h3>
-<pre tabindex="0"><code class="language-pytho" data-lang="pytho">/**************************************************************************//**
- * @file     main.c
- * @version  V3.00
- * @brief    Show the usage of GPIO interrupt function.
+ * @brief    Transmit and receive data from PC terminal through RS232 interface.
  *
  * @copyright SPDX-License-Identifier: Apache-2.0
  * @copyright Copyright (C) 2021 Nuvoton Technology Corp. All rights reserved.
  ******************************************************************************/
-
 #include &lt;stdio.h&gt;
 #include &#34;NuMicro.h&#34;
 
 
+#define RXBUFSIZE   1024
 
-void GPH_IRQHandler(void);
+/*---------------------------------------------------------------------------------------------------------*/
+/* Global variables                                                                                        */
+/*---------------------------------------------------------------------------------------------------------*/
+static uint8_t g_u8RecData[RXBUFSIZE]  = {0};
+
+static volatile uint32_t g_u32comRbytes = 0;
+static volatile uint32_t g_u32comRhead  = 0;
+static volatile uint32_t g_u32comRtail  = 0;
+static volatile int32_t g_i32Wait       = TRUE;
+
+/*---------------------------------------------------------------------------------------------------------*/
+/* Define functions prototype                                                                              */
+/*---------------------------------------------------------------------------------------------------------*/
+int32_t main(void);
+void UART_TEST_HANDLE(void);
+void UART_FunctionTest(void);
+
 void SYS_Init(void);
 void UART0_Init(void);
-
-/**
- * @brief       GPIO PH IRQ
- *
- * @param       None
- *
- * @return      None
- *
- * @details     The PH default IRQ, declared in startup_m460.s.
- */
-void GPH_IRQHandler(void)
-{
-    volatile uint32_t u32temp;
-
-    /* To check if PH.0 interrupt occurred */
-    if(GPIO_GET_INT_FLAG(PH, BIT0))
-    {
-        GPIO_CLR_INT_FLAG(PH, BIT0);
-        printf(&#34;PH.0 INT occurred.\n&#34;);
-    }
-		else if(GPIO_GET_INT_FLAG(PH, BIT1))
-    {
-        GPIO_CLR_INT_FLAG(PH, BIT1);
-        printf(&#34;PH.1 INT occurred.\n&#34;);
-    }
-    else
-    {
-        /* Un-expected interrupt. Just clear all PH interrupts */
-        u32temp = PH-&gt;INTSRC;
-        PH-&gt;INTSRC = u32temp;
-        printf(&#34;Un-expected interrupts.\n&#34;);
-    }
-}
-
+void UART0_IRQHandler(void);
 
 
 void SYS_Init(void)
@@ -483,11 +211,13 @@ void SYS_Init(void)
                     CLK_AHBCLK0_GPECKEN_Msk | CLK_AHBCLK0_GPFCKEN_Msk | CLK_AHBCLK0_GPGCKEN_Msk | CLK_AHBCLK0_GPHCKEN_Msk;
     CLK-&gt;AHBCLK1 |= CLK_AHBCLK1_GPICKEN_Msk | CLK_AHBCLK1_GPJCKEN_Msk;
 
-    /* Enable UART0 module clock */
+    /* Enable UART module clock */
     CLK_EnableModuleClock(UART0_MODULE);
+    CLK_EnableModuleClock(UART1_MODULE);
 
-    /* Select UART0 module clock source as HIRC and UART0 module clock divider as 1 */
+    /* Select UART module clock source and UART module clock divider */
     CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_HIRC, CLK_CLKDIV0_UART0(1));
+    CLK_SetModuleClock(UART1_MODULE, CLK_CLKSEL1_UART1SEL_HIRC, CLK_CLKDIV0_UART1(1));
 
     /*---------------------------------------------------------------------------------------------------------*/
     /* Init I/O Multi-function                                                                                 */
@@ -496,6 +226,18 @@ void SYS_Init(void)
     /* Set multi-function pins for UART0 RXD and TXD */
     SET_UART0_RXD_PB12();
     SET_UART0_TXD_PB13();
+
+
+
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Initialization for sample code                                                                          */
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Enable TIMER module clock */
+    CLK_EnableModuleClock(TMR0_MODULE);
+
+    /* Select TIMER clock source */
+    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HIRC, 0);
+
 }
 
 
@@ -511,52 +253,138 @@ void UART0_Init(void)
     UART_Open(UART0, 115200);
 }
 
+
+
 /*---------------------------------------------------------------------------------------------------------*/
 /*  Main Function                                                                                          */
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {
-
     /* Unlock protected registers */
     SYS_UnlockReg();
-
     /* Init System, peripheral clock and multi-function I/O */
     SYS_Init();
-
     /* Lock protected registers */
     SYS_LockReg();
-
     /* Init UART0 for printf */
     UART0_Init();
 
-    printf(&#34;\n\nCPU @ %d Hz\n&#34;, SystemCoreClock);
-    printf(&#34;+------------------------------------------------+\n&#34;);
-    printf(&#34;|    GPIO PH.0 and PH.1 Interrupt Sample Code    |\n&#34;);
-    printf(&#34;+------------------------------------------------+\n\n&#34;);
 
-    /*-----------------------------------------------------------------------------------------------------*/
-    /* GPIO Interrupt Function Test                                                                        */
-    /*-----------------------------------------------------------------------------------------------------*/
-    printf(&#34;PH.0 and PH.1 are used to test interrupt ......\n&#34;);
 
-    /* Configure PH.0 as Input mode and enable interrupt by rising edge trigger */
-    GPIO_SetMode(PH, BIT0, GPIO_MODE_INPUT);
-    GPIO_EnableInt(PH, 0, GPIO_INT_RISING);
-    NVIC_EnableIRQ(GPH_IRQn);
+    GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);
 
-    /* Configure PH.1 as Quasi-bidirection mode and enable interrupt by falling edge trigger */
-    GPIO_SetMode(PH, BIT1, GPIO_MODE_QUASI);
-    GPIO_EnableInt(PH, 1, GPIO_INT_FALLING);
-    NVIC_EnableIRQ(GPH_IRQn);
 
-    /* Enable interrupt de-bounce function and select de-bounce sampling cycle time is 1024 clocks of LIRC clock */
-    GPIO_SET_DEBOUNCE_TIME(PH, GPIO_DBCTL_DBCLKSRC_LIRC, GPIO_DBCTL_DBCLKSEL_1024);
-    GPIO_SET_DEBOUNCE_TIME(PH, GPIO_DBCTL_DBCLKSRC_LIRC, GPIO_DBCTL_DBCLKSEL_1024);
-    GPIO_ENABLE_DEBOUNCE(PH, BIT0);
-    GPIO_ENABLE_DEBOUNCE(PH, BIT1);
+    printf(&#34;test \n&#34;);
 
-    /* Waiting for interrupts */
-    while(1);
+
+    while(1) {
+        PH4 = 1;
+        TIMER_Delay(TIMER0, 1000000);
+        PH4 = 0;
+        TIMER_Delay(TIMER0, 1000000);
+    }
+
+}
+
+/*---------------------------------------------------------------------------------------------------------*/
+/* ISR to handle UART Channel 0 interrupt event                                                            */
+/*---------------------------------------------------------------------------------------------------------*/
+void UART0_IRQHandler(void)
+{
+    UART_TEST_HANDLE();
+}
+
+/*---------------------------------------------------------------------------------------------------------*/
+/* UART Callback function                                                                                  */
+/*---------------------------------------------------------------------------------------------------------*/
+void UART_TEST_HANDLE(void)
+{
+    uint8_t u8InChar = 0xFF;
+    uint32_t u32IntSts = UART0-&gt;INTSTS;
+
+    if(u32IntSts &amp; UART_INTSTS_RDAINT_Msk)
+    {
+        printf(&#34;\nInput:&#34;);
+
+        /* Get all the input characters */
+        while(UART_IS_RX_READY(UART0))
+        {
+            /* Get the character from UART Buffer */
+            u8InChar = (uint8_t)UART_READ(UART0);
+
+            printf(&#34;%c &#34;, u8InChar);
+
+            if(u8InChar == &#39;0&#39;)
+            {
+                g_i32Wait = FALSE;
+            }
+
+            /* Check if buffer full */
+            if(g_u32comRbytes &lt; RXBUFSIZE)
+            {
+                /* Enqueue the character */
+                g_u8RecData[g_u32comRtail] = u8InChar;
+                g_u32comRtail = (g_u32comRtail == (RXBUFSIZE - 1)) ? 0 : (g_u32comRtail + 1);
+                g_u32comRbytes++;
+            }
+        }
+        printf(&#34;\nTransmission Test:&#34;);
+
+        /* Forces a write of all user-space buffered data for the given output */
+        fflush(stdout);
+    }
+
+    if(u32IntSts &amp; UART_INTSTS_THREINT_Msk)
+    {
+        uint32_t u32Tmp;
+        u32Tmp = g_u32comRtail;
+        if(g_u32comRhead != u32Tmp)
+        {
+            u8InChar = g_u8RecData[g_u32comRhead];
+            while(UART_IS_TX_FULL(UART0));  /* Wait Tx is not full to transmit data */
+            UART_WRITE(UART0, u8InChar);
+            g_u32comRhead = (g_u32comRhead == (RXBUFSIZE - 1)) ? 0 : (g_u32comRhead + 1);
+            g_u32comRbytes--;
+        }
+    }
+
+    /* Handle transmission error */
+    if(UART0-&gt;FIFOSTS &amp; (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk))
+    {
+        UART0-&gt;FIFOSTS = (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk);
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------*/
+/*  UART Function Test                                                                                     */
+/*---------------------------------------------------------------------------------------------------------*/
+void UART_FunctionTest(void)
+{
+    printf(&#34;+-----------------------------------------------------------+\n&#34;);
+    printf(&#34;|  UART Function Test                                       |\n&#34;);
+    printf(&#34;+-----------------------------------------------------------+\n&#34;);
+    printf(&#34;|  Description :                                            |\n&#34;);
+    printf(&#34;|    The sample code will print input char on terminal      |\n&#34;);
+    printf(&#34;|    Please enter any to start     (Press &#39;0&#39; to exit)      |\n&#34;);
+    printf(&#34;+-----------------------------------------------------------+\n&#34;);
+
+    /*
+        Using a RS232 cable to connect UART0 and PC.
+        UART0 is set to debug port. UART0 is enable RDA interrupt.
+        When inputting char to terminal screen, RDA interrupt will happen and
+        UART0 will print the received char on screen.
+    */
+
+    /* Enable UART RDA and THRE interrupt */
+    NVIC_EnableIRQ(UART0_IRQn);
+    UART_EnableInt(UART0, (UART_INTEN_RDAIEN_Msk | UART_INTEN_THREIEN_Msk));
+    while(g_i32Wait);
+
+    /* Disable UART RDA and THRE interrupt */
+    NVIC_DisableIRQ(UART0_IRQn);
+    UART_DisableInt(UART0, (UART_INTEN_RDAIEN_Msk | UART_INTEN_THREIEN_Msk));
+    g_i32Wait = TRUE;
+
 }
 </code></pre>
         </div>
