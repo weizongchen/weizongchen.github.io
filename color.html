@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>
+    FG: <input value='FF1A1A' size=4>
+    BG: <input value="FFE6E6" size=4>
+    s: <input value="//----- BLUE" size=10>
+    deep: <input value="16" size=2>
+    <button onclick='C.click()'>GO</button>
+  </p>
+    <svg width=800>
+      <rect x="0" width="95" height="45" fill='#F00' />
+      <rect x="380" width="95" height="45" fill='#F00' />
+    <g>
+    </g>
+    </svg>
+    <br>
+    <per id='msg'></per>
+    <!--  -->
+    <script>
+      sv = document.querySelector('svg g')
+      var [r1,r2] = document.querySelectorAll('svg rect')
+      var [in1,in2,in3,in4] = document.querySelectorAll('input')
+
+      var C = {
+        init(){
+        },
+        calrgb(c1, c2, s, dp=32){
+          C.dp=dp
+          console.log(s)
+          var r1 = parseInt(c1.slice(0,2), 16)
+          var g1 = parseInt(c1.slice(2,4), 16)
+          var b1 = parseInt(c1.slice(4,6), 16)
+          var r2 = parseInt(c2.slice(0,2), 16)
+          var g2 = parseInt(c2.slice(2,4), 16)
+          var b2 = parseInt(c2.slice(4,6), 16)
+          var r = (r2-r1)/(dp-1)
+          var g = (g2-g1)/(dp-1)
+          var b = (b2-b1)/(dp-1)
+          var ar = ' '.repeat(dp).split('').map((v,n)=>n) //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+          var rr = ar.map(i=>parseInt(r*i+0.5+r1))
+          var gr = ar.map(i=>parseInt(g*i+0.5+g1))
+          var br = ar.map(i=>parseInt(b*i+0.5+b1))
+          return [rr, gr, br]
+        },
+        RGB565(R,G,B){
+          var dp = C.dp
+          var v = ((R<<8)&0xF800)+((G<<3)&0x07E0)+(B>>3)
+          return v
+        },
+        maketable(c1='3040B0', c2='BBDDFF',s='//----- BLUE',dp=32){
+          var [rr,gr,br] = C.calrgb(c1, c2, s, dp)
+          C.tab = []
+          rr.forEach((v,i)=>{ C.tab = C.tab.concat(C.RGB565(rr[i],gr[i],br[i]))})
+          C.tb = rr.map((v,i)=>C.RGB565(rr[i],gr[i],br[i]))
+          s+='\n'
+          for(var i=0;i<C.tab.length;i+=8){
+            s += C.tab.slice(i,i+8).map(x=>'0x'+('0000'+x.toString(16)).slice(-4).toUpperCase()).join(',') +',\n'
+          }
+          msg.innerText = s
+          s = rr.map((x,i)=>`<rect x="${i*30}" y="50" width="28" height="28" fill="#${rr[i].toString(16)}${gr[i].toString(16)}${br[i].toString(16)}" />\n`)
+          sv.innerHTML = s
+          return s
+        },
+        click(){
+          var c1 = in1.value
+          var c2 = in2.value
+          var s = in3.value
+          var dp = parseInt(in4.value)
+          r1.setAttribute('fill',`#${c1}`)
+          r2.setAttribute('fill',`#${c2}`)
+          C.maketable(c1, c2, s, dp)
+        }
+      }
+      C.click()
+    </script>
+  </body>
+</html>
