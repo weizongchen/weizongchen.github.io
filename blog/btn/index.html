@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ICP 說明文件">
+  <meta name="description" content="使用 M467 開發版 來說明 Button 的使用方法">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -124,39 +124,309 @@
         <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
           class="text-primary">說明文件</a>
         
-        <h2>ICP 使用說明</h2>
+        <h2>Button 的各種說明</h2>
         <div class="mb-3 post-meta">
           <span>By 暐宗</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>11 June 2022</span>
+          <span>11 July 2022</span>
           
         </div>
         
-        <img src="https://weizongchen.github.io/images/post/ICP.JPG" class="img-fluid w-100 mb-4" alt="ICP 使用說明">
+        <img src="https://weizongchen.github.io/images/post/btn.jpg" class="img-fluid w-100 mb-4" alt="Button 的各種說明">
         
         <div class="content mb-5">
-          <blockquote>
-<p>可以直接來這邊下載  <a href="https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/">https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/</a></p>
-</blockquote>
-<h3 id="icp-tool">ICP Tool</h3>
-<p>新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階段。基於靈活的設定與直觀的操作，使用者可全面掌握量產流程。</p>
-<p>選擇你的series</p>
-<p><img src="/images/ICP.JPG" alt="blog圖片的連結"></p>
-<p>如果你電腦插著很多個NuLnk 可以選，點選Radio Button時，那個被指定的NuLnk會閃閃閃閃閃~</p>
-<p><img src="/images/ICP2.JPG" alt="blog圖片的連結"></p>
-<p>如果你電腦灌過ICP 軟體了，跟這板子原本的ICP版本不匹配，你可以更新，也可以不更新，一般我都直接不更新，反正可以燒就好。</p>
-<p><img src="/images/ICP3.JPG" alt="blog圖片的連結"></p>
-<p>因為我是要把板子上的APROM的 firmware拿出來存，可以照下圖的方式點選</p>
-<p><img src="/images/ICP4.JPG" alt="blog圖片的連結"></p>
-<p>最後成功存取</p>
-<p><img src="/images/ICP5.JPG" alt="blog圖片的連結"></p>
-<h3 id="file-data">File Data</h3>
-<p>要燒進去板子的FW版本</p>
-<h3 id="on-board-flash">On board flash</h3>
-<p>板子上面的FW版本</p>
-<h3 id="offline-flash">Offline Flash</h3>
-<p>在燒入除錯器裡面的版本</p>
+          <h2 id="button-的-狀態討論">Button 的 狀態討論</h2>
+<pre tabindex="0"><code>
+/*---------------------------------------------------------------------------------------------------------*/
+/*  Main Function                                                                                          */
+/*---------------------------------------------------------------------------------------------------------*/
+int32_t main(void)
+{
+    uint16_t cnt = 0;
+    uint8_t STA = 0;
+
+    /* Unlock protected registers */
+    SYS_UnlockReg();
+    /* Init System, peripheral clock and multi-function I/O */
+    SYS_Init();
+    /* Lock protected registers */
+    SYS_LockReg();
+    /* Init UART0 for printf */
+    UART0_Init();
+
+
+    while(1) {
+
+        STA &lt;&lt;= 1;
+        STA += PH0;
+		printf(&#34;%d \n&#34;, PH0);
+		TIMER_Delay(TIMER0, 1000000);
+        STA &amp;= 3;
+        if(STA == 2) {
+            cnt++;
+
+            //printf(&#34;%d &#34;, cnt);
+
+        }
+        //TIMER_Delay(TIMER0, 1000000);
+
+    }
+
+}
+</code></pre><p>STA 原始值 00000000(0)</p>
+<pre><code>           二進制 (十進制)
+</code></pre>
+<p>STA :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第一圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000000</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000000</td>
+</tr>
+<tr>
+<td style="text-align:center">00000000+ PH0(1)</td>
+<td style="text-align:center">[沒有按]</td>
+<td style="text-align:center">00000001</td>
+</tr>
+<tr>
+<td style="text-align:center">00000001 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000001(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第二圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000001</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000010</td>
+</tr>
+<tr>
+<td style="text-align:center">00000010 + PH0(1)</td>
+<td style="text-align:center">[沒有按]</td>
+<td style="text-align:center">00000011</td>
+</tr>
+<tr>
+<td style="text-align:center">00000011 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000011(3)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第三圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000011</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000110</td>
+</tr>
+<tr>
+<td style="text-align:center">00000110 + PH0(1)</td>
+<td style="text-align:center">[沒有按]</td>
+<td style="text-align:center">00000111</td>
+</tr>
+<tr>
+<td style="text-align:center">00000111 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000011(3)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第四圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000011</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000110</td>
+</tr>
+<tr>
+<td style="text-align:center">00000110 + PH0(1)</td>
+<td style="text-align:center">[沒有按]</td>
+<td style="text-align:center">00000111</td>
+</tr>
+<tr>
+<td style="text-align:center">00000111 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000011(3)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第五圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000011</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000110</td>
+</tr>
+<tr>
+<td style="text-align:center">00000110 + PH0(0)</td>
+<td style="text-align:center">[按下去]</td>
+<td style="text-align:center">00000110</td>
+</tr>
+<tr>
+<td style="text-align:center">00000110 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000010(2)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  true</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">印數字</td>
+</tr>
+</tbody>
+</table>
+<p>(CPU執行很快，可能不小心print到數個數字)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第六圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000010</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000100</td>
+</tr>
+<tr>
+<td style="text-align:center">00000100 + PH0(0)</td>
+<td style="text-align:center">[還按著]</td>
+<td style="text-align:center">00000100</td>
+</tr>
+<tr>
+<td style="text-align:center">00000100 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000000(0)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第七圈</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000000</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000000</td>
+</tr>
+<tr>
+<td style="text-align:center">00000000 + PH0(0)</td>
+<td style="text-align:center">[還按著]</td>
+<td style="text-align:center">00000000</td>
+</tr>
+<tr>
+<td style="text-align:center">00000000 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000000(0)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第八圈 (等於第一圈)</th>
+<th style="text-align:center"></th>
+<th style="text-align:center">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00000000</td>
+<td style="text-align:center">左移一次</td>
+<td style="text-align:center">00000000</td>
+</tr>
+<tr>
+<td style="text-align:center">00000000 + PH0(1)</td>
+<td style="text-align:center">[沒有按]</td>
+<td style="text-align:center">00000001</td>
+</tr>
+<tr>
+<td style="text-align:center">00000001 &amp; 00000011(3)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">00000001(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">STA == 2  false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
         </div>
 

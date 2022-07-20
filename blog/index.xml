@@ -6,7 +6,45 @@
     <description>Recent content in Blogs on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 10 Jul 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Jul 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> PWM 的 應用範例 </title>
+      <link>https://weizongchen.github.io/blog/pwm/</link>
+      <pubDate>Wed, 13 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/pwm/</guid>
+      <description>BSP EPWM 我是找 BSP 使用的 PWM PIN 角， 但還是用pinconfigure 看一下</description>
+    </item>
+    
+    <item>
+      <title>Timer Toggle 使用邏輯分析儀量測timer toggle (by M460)</title>
+      <link>https://weizongchen.github.io/blog/timer_init_timer0_toggle/</link>
+      <pubDate>Wed, 13 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/timer_init_timer0_toggle/</guid>
+      <description>Timer0 電路位置 由pinconfigure 可以知道Timer0 在 pin 1 (PB5) 接著
+設定 Timer0 pin 角 //&amp;mdash;PIN&amp;mdash;- /* Set timer toggle out pin */ SET_TM0_PB5();</description>
+    </item>
+    
+    <item>
+      <title>安裝新唐 Pinconfigure </title>
+      <link>https://weizongchen.github.io/blog/install_and_update_pinconfigure/</link>
+      <pubDate>Wed, 13 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/install_and_update_pinconfigure/</guid>
+      <description>新唐 Pinconfigure 地址 https://www.nuvoton.com/resource-download.jsp?tp_GUID=SW1320200319135912
+當發現我要的IC 沒有出現在 我要的M460 沒有在 Pinconfigure 選單</description>
+    </item>
+    
+    <item>
+      <title>Button 的各種說明</title>
+      <link>https://weizongchen.github.io/blog/btn/</link>
+      <pubDate>Mon, 11 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/btn/</guid>
+      <description>Button 的 狀態討論 /*---------------------------------------------------------------------------------------------------------*//* Main Function *//*---------------------------------------------------------------------------------------------------------*/int32_t main(void){uint16_t cnt = 0;uint8_t STA = 0;/* Unlock protected registers */SYS_UnlockReg();/* Init System, peripheral clock and multi-function I/O */SYS_Init();/* Lock protected registers */SYS_LockReg();/* Init UART0 for printf */UART0_Init();while(1) {STA &amp;lt;&amp;lt;= 1;STA += PH0;printf(&amp;#34;%d \n&amp;#34;, PH0);TIMER_Delay(TIMER0, 1000000);STA &amp;amp;= 3;if(STA == 2) {cnt++;//printf(&amp;#34;%d &amp;#34;, cnt);}//TIMER_Delay(TIMER0, 1000000);}} STA 原始值 00000000(0)</description>
+    </item>
+    
     <item>
       <title>Timer Delay 說明 (by M460)</title>
       <link>https://weizongchen.github.io/blog/timer_delay/</link>

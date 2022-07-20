@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="使用 M467 開發版 來說明 Timer Delay 的使用方法">
+  <meta name="description" content=" PWM 的 應用範例 by M460 開發版">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -124,43 +124,39 @@
         <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
           class="text-primary">說明文件</a>
         
-        <h2>Timer Delay 說明 (by M460)</h2>
+        <h2>PWM 的 應用範例</h2>
         <div class="mb-3 post-meta">
           <span>By 暐宗</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>10 July 2022</span>
+          <span>13 July 2022</span>
           
         </div>
         
-        <img src="https://weizongchen.github.io/images/post/timer.jpg" class="img-fluid w-100 mb-4" alt="Timer Delay 說明 (by M460)">
+        <img src="https://weizongchen.github.io/images/post/pwm6.jpg" class="img-fluid w-100 mb-4" alt="PWM 的 應用範例">
         
         <div class="content mb-5">
-          <h2 id="加入timer的driver">加入Timer的Driver</h2>
-<p><img src="/images/timer_1.JPG" alt="blog圖片的連結"></p>
-<h2 id="在-sys_init-時-加入tmr0-的-clock-source">在 SYS_Init() 時 ，加入TMR0 的 clock source</h2>
-<pre tabindex="0"><code>    /*---------------------------------------------------------------------------------------------------------*/
-    /* Initialization for sample code                                                                          */
-    /*---------------------------------------------------------------------------------------------------------*/
-    /* Enable TIMER module clock */
-    CLK_EnableModuleClock(TMR0_MODULE);
-
-    /* Select TIMER clock source */
-    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HIRC, 0);
-</code></pre><h2 id="在-sys_init-時-加入tmr0-的-clock-source-1">在 SYS_Init() 時 ，加入TMR0 的 clock source</h2>
-<pre tabindex="0"><code>    while(1) {
-        PH4 = 1;
-        TIMER_Delay(TIMER0, 1000000);
-        PH4 = 0;
-        TIMER_Delay(TIMER0, 1000000);
-    }
-</code></pre><h2 id="邏輯分析儀量測-led-訊號">邏輯分析儀量測 LED 訊號</h2>
-<p><img src="/images/timer_2.JPG" alt="blog圖片的連結"></p>
-<h2 id="用-timer0-控制-led-1秒亮-1秒滅">用 Timer0 控制 LED 1秒亮 1秒滅</h2>
+          <h2 id="bsp-epwm">BSP EPWM</h2>
+<p><img src="/images/pwm0.jpg" alt="Build and Join Docker files">
+<img src="/images/pwm1.jpg" alt="Build and Join Docker files"></p>
+<p>我是找 BSP 使用的 PWM PIN 角， 但還是用pinconfigure 看一下</p>
+<p>所以根據上圖以及BSP ，</p>
+<p>PWM1 的 Channel0</p>
+<p>會發訊號 給</p>
+<p>PWM1 的 Channel2</p>
+<h2 id="查看開發版的電路圖-是哪兩根pin">查看開發版的電路圖 是哪兩根PIN</h2>
+<p><img src="/images/pwm2.jpg" alt="Build and Join Docker files"></p>
+<h2 id="epwm_capture-bsp-的-console">EPWM_Capture BSP 的 console</h2>
+<p><img src="/images/pwm3.jpg" alt="Build and Join Docker files"></p>
+<h2 id="量測邏輯分析儀">量測邏輯分析儀</h2>
+<p><img src="/images/pwm4.jpg" alt="Build and Join Docker files"></p>
+<p><img src="/images/pwm5.jpg" alt="Build and Join Docker files"></p>
+<p><img src="/images/pwm6.jpg" alt="Build and Join Docker files"></p>
+<p>EPWM1 的 channel0 發 250 Hz pwm 訊號 30% duty</p>
 <pre tabindex="0"><code>/**************************************************************************//**
  * @file     main.c
  * @version  V3.00
- * @brief    Transmit and receive data from PC terminal through RS232 interface.
+ * @brief    Capture the EPWM1 Channel 0 waveform by EPWM1 Channel 2.
  *
  * @copyright SPDX-License-Identifier: Apache-2.0
  * @copyright Copyright (C) 2021 Nuvoton Technology Corp. All rights reserved.
@@ -168,37 +164,103 @@
 #include &lt;stdio.h&gt;
 #include &#34;NuMicro.h&#34;
 
+/*---------------------------------------------------------------------------------------------------------*/
+/* Macro, type and constant definitions                                                                    */
+/*---------------------------------------------------------------------------------------------------------*/
 
-#define RXBUFSIZE   1024
 
 /*---------------------------------------------------------------------------------------------------------*/
 /* Global variables                                                                                        */
 /*---------------------------------------------------------------------------------------------------------*/
-static uint8_t g_u8RecData[RXBUFSIZE]  = {0};
-
-static volatile uint32_t g_u32comRbytes = 0;
-static volatile uint32_t g_u32comRhead  = 0;
-static volatile uint32_t g_u32comRtail  = 0;
-static volatile int32_t g_i32Wait       = TRUE;
-
-/*---------------------------------------------------------------------------------------------------------*/
-/* Define functions prototype                                                                              */
-/*---------------------------------------------------------------------------------------------------------*/
-int32_t main(void);
-void UART_TEST_HANDLE(void);
-void UART_FunctionTest(void);
-
+void CalPeriodTime(EPWM_T *EPWM, uint32_t u32Ch);
 void SYS_Init(void);
 void UART0_Init(void);
-void UART0_IRQHandler(void);
+/*--------------------------------------------------------------------------------------*/
+/* Capture function to calculate the input waveform information                         */
+/* au32Count[4] : Keep the internal counter value when input signal rising / falling     */
+/*               happens                                                                */
+/*                                                                                      */
+/* time    A    B     C     D                                                           */
+/*           ___   ___   ___   ___   ___   ___   ___   ___                              */
+/*      ____|   |_|   |_|   |_|   |_|   |_|   |_|   |_|   |_____                        */
+/* index              0 1   2 3                                                         */
+/*                                                                                      */
+/* The capture internal counter down count from 0x10000, and reload to 0x10000 after    */
+/* input signal falling happens (Time B/C/D)                                            */
+/*--------------------------------------------------------------------------------------*/
+void CalPeriodTime(EPWM_T *EPWM, uint32_t u32Ch)
+{
+    uint16_t au16Count[4];
+    uint32_t u32i;
+    uint16_t u16RisingTime, u16FallingTime, u16HighPeriod, u16LowPeriod, u16TotalPeriod;
 
+    /* Clear Capture Falling Indicator (Time A) */
+    EPWM_ClearCaptureIntFlag(EPWM, u32Ch, EPWM_CAPTURE_INT_FALLING_LATCH);
+
+    /* Wait for Capture Falling Indicator  */
+    while((EPWM1-&gt;CAPIF &amp; EPWM_CAPIF_CFLIF2_Msk) == 0);
+
+    /* Clear Capture Falling Indicator (Time B)*/
+    EPWM_ClearCaptureIntFlag(EPWM, u32Ch, EPWM_CAPTURE_INT_FALLING_LATCH);
+
+    u32i = 0;
+
+    while(u32i &lt; 4)
+    {
+        /* Wait for Capture Falling Indicator */
+        while(EPWM_GetCaptureIntFlag(EPWM, u32Ch) &lt; 2);
+
+        /* Clear Capture Falling and Rising Indicator */
+        EPWM_ClearCaptureIntFlag(EPWM, u32Ch, EPWM_CAPTURE_INT_FALLING_LATCH | EPWM_CAPTURE_INT_RISING_LATCH);
+
+        /* Get Capture Falling Latch Counter Data */
+        au16Count[u32i++] = (uint16_t)EPWM_GET_CAPTURE_FALLING_DATA(EPWM, u32Ch);
+
+        /* Wait for Capture Rising Indicator */
+        while(EPWM_GetCaptureIntFlag(EPWM, u32Ch) &lt; 2);
+
+        /* Clear Capture Rising Indicator */
+        EPWM_ClearCaptureIntFlag(EPWM, u32Ch, EPWM_CAPTURE_INT_RISING_LATCH);
+
+        /* Get Capture Rising Latch Counter Data */
+        au16Count[u32i++] = (uint16_t)EPWM_GET_CAPTURE_RISING_DATA(EPWM, u32Ch);
+    }
+
+    u16RisingTime = au16Count[1];
+
+    u16FallingTime = au16Count[0];
+
+    u16HighPeriod = au16Count[1] - au16Count[2];
+
+    u16LowPeriod = (uint16_t)(0x10000 - au16Count[1]);
+
+    u16TotalPeriod = (uint16_t)(0x10000 - au16Count[2]);
+
+    printf(&#34;\nEPWM generate: \nHigh Period=17141 ~ 17143, Low Period=39999 ~ 40001, Total Period=57141 ~ 57143\n&#34;);
+    printf(&#34;\nCapture Result: Rising Time = %d, Falling Time = %d \nHigh Period = %d, Low Period = %d, Total Period = %d.\n\n&#34;,
+           u16RisingTime, u16FallingTime, u16HighPeriod, u16LowPeriod, u16TotalPeriod);
+    if((u16HighPeriod &lt; 17141) || (u16HighPeriod &gt; 17143) || (u16LowPeriod &lt; 39999) || (u16LowPeriod &gt; 40001) || (u16TotalPeriod &lt; 57141) || (u16TotalPeriod &gt; 57143))
+        printf(&#34;Capture Test Fail!!\n&#34;);
+    else
+        printf(&#34;Capture Test Pass!!\n&#34;);
+}
 
 void SYS_Init(void)
 {
 
+    /* Set PF multi-function pins for XT1_OUT(PF.2) and XT1_IN(PF.3) */
+    SET_XT1_OUT_PF2();
+    SET_XT1_IN_PF3();
+
     /*---------------------------------------------------------------------------------------------------------*/
     /* Init System Clock                                                                                       */
     /*---------------------------------------------------------------------------------------------------------*/
+
+    /* Enable HIRC and HXT clock */
+    CLK_EnableXtalRC(CLK_PWRCTL_HIRCEN_Msk | CLK_PWRCTL_HXTEN_Msk);
+
+    /* Wait for HIRC and HXT clock ready */
+    CLK_WaitClockReady(CLK_STATUS_HIRCSTB_Msk | CLK_STATUS_HXTSTB_Msk);
 
     /* Set PCLK0 and PCLK1 to HCLK/2 */
     CLK-&gt;PCLKDIV = (CLK_PCLKDIV_APB0DIV_DIV2 | CLK_PCLKDIV_APB1DIV_DIV2);
@@ -211,13 +273,18 @@ void SYS_Init(void)
                     CLK_AHBCLK0_GPECKEN_Msk | CLK_AHBCLK0_GPFCKEN_Msk | CLK_AHBCLK0_GPGCKEN_Msk | CLK_AHBCLK0_GPHCKEN_Msk;
     CLK-&gt;AHBCLK1 |= CLK_AHBCLK1_GPICKEN_Msk | CLK_AHBCLK1_GPJCKEN_Msk;
 
-    /* Enable UART module clock */
+    /* Enable UART0 module clock */
     CLK_EnableModuleClock(UART0_MODULE);
-    CLK_EnableModuleClock(UART1_MODULE);
 
-    /* Select UART module clock source and UART module clock divider */
+    /* Select UART0 module clock source as HIRC and UART0 module clock divider as 1 */
     CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_HIRC, CLK_CLKDIV0_UART0(1));
-    CLK_SetModuleClock(UART1_MODULE, CLK_CLKSEL1_UART1SEL_HIRC, CLK_CLKDIV0_UART1(1));
+
+    /* Enable EPWM1 module clock */
+    CLK_EnableModuleClock(EPWM1_MODULE);
+
+    /* Select EPWM1 module clock source */
+    CLK_SetModuleClock(EPWM1_MODULE, CLK_CLKSEL2_EPWM1SEL_PCLK1, 0);
+
 
     /*---------------------------------------------------------------------------------------------------------*/
     /* Init I/O Multi-function                                                                                 */
@@ -227,32 +294,21 @@ void SYS_Init(void)
     SET_UART0_RXD_PB12();
     SET_UART0_TXD_PB13();
 
-
-
-    /*---------------------------------------------------------------------------------------------------------*/
-    /* Initialization for sample code                                                                          */
-    /*---------------------------------------------------------------------------------------------------------*/
-    /* Enable TIMER module clock */
-    CLK_EnableModuleClock(TMR0_MODULE);
-
-    /* Select TIMER clock source */
-    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HIRC, 0);
+    /* Set multi-function pin for EPWM */
+    SET_EPWM1_CH0_PC5();
+    SET_EPWM1_CH2_PC3();
 
 }
-
 
 void UART0_Init(void)
 {
     /*---------------------------------------------------------------------------------------------------------*/
     /* Init UART                                                                                               */
     /*---------------------------------------------------------------------------------------------------------*/
-    /* Reset UART0 */
-    SYS_ResetModule(UART0_RST);
 
     /* Configure UART0 and set UART0 baud rate */
     UART_Open(UART0, 115200);
 }
-
 
 
 /*---------------------------------------------------------------------------------------------------------*/
@@ -260,132 +316,139 @@ void UART0_Init(void)
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {
+    /* Init System, IP clock and multi-function I/O
+       In the end of SYS_Init() will issue SYS_LockReg()
+       to lock protected register. If user want to write
+       protected register, please issue SYS_UnlockReg()
+       to unlock protected register if necessary */
+
     /* Unlock protected registers */
     SYS_UnlockReg();
-    /* Init System, peripheral clock and multi-function I/O */
+
+    /* Init System, IP clock and multi-function I/O */
     SYS_Init();
+
     /* Lock protected registers */
     SYS_LockReg();
-    /* Init UART0 for printf */
+
+    /* Init UART to 115200-8n1 for print message */
     UART0_Init();
 
+    printf(&#34;\n\nCPU @ %dHz(PLL@ %dHz)\n&#34;, SystemCoreClock, PllClock);
+    printf(&#34;+------------------------------------------------------------------------+\n&#34;);
+    printf(&#34;|                          EPWM Driver Sample Code                       |\n&#34;);
+    printf(&#34;|                                                                        |\n&#34;);
+    printf(&#34;+------------------------------------------------------------------------+\n&#34;);
+    printf(&#34;  This sample code will use EPWM1 channel 2 to capture\n  the signal from EPWM1 channel 0.\n&#34;);
+    printf(&#34;  I/O configuration:\n&#34;);
+    printf(&#34;    EPWM1 channel 2(PC.3) &lt;--&gt; EPWM1 channel 0(PC.5)\n\n&#34;);
+    printf(&#34;Use EPWM1 Channel 2(PC.3) to capture the EPWM1 Channel 0(PC.5) Waveform\n&#34;);
 
-
-    GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);
-
-
-    printf(&#34;test \n&#34;);
-
-
-    while(1) {
-        PH4 = 1;
-        TIMER_Delay(TIMER0, 1000000);
-        PH4 = 0;
-        TIMER_Delay(TIMER0, 1000000);
-    }
-
-}
-
-/*---------------------------------------------------------------------------------------------------------*/
-/* ISR to handle UART Channel 0 interrupt event                                                            */
-/*---------------------------------------------------------------------------------------------------------*/
-void UART0_IRQHandler(void)
-{
-    UART_TEST_HANDLE();
-}
-
-/*---------------------------------------------------------------------------------------------------------*/
-/* UART Callback function                                                                                  */
-/*---------------------------------------------------------------------------------------------------------*/
-void UART_TEST_HANDLE(void)
-{
-    uint8_t u8InChar = 0xFF;
-    uint32_t u32IntSts = UART0-&gt;INTSTS;
-
-    if(u32IntSts &amp; UART_INTSTS_RDAINT_Msk)
+    while(1)
     {
-        printf(&#34;\nInput:&#34;);
+        printf(&#34;\n\nPress any key to start EPWM Capture Test\n&#34;);
+        getchar();
 
-        /* Get all the input characters */
-        while(UART_IS_RX_READY(UART0))
-        {
-            /* Get the character from UART Buffer */
-            u8InChar = (uint8_t)UART_READ(UART0);
+        /*--------------------------------------------------------------------------------------*/
+        /* Set the EPWM1 Channel 0 as EPWM output function.                                     */
+        /*--------------------------------------------------------------------------------------*/
 
-            printf(&#34;%c &#34;, u8InChar);
+        /* Assume EPWM output frequency is 250Hz and duty ratio is 30%, user can calculate EPWM settings by follows.(up counter type)
+           duty ratio = (CMR)/(CNR+1)
+           cycle time = CNR+1
+           High level = CMR
+           EPWM clock source frequency = PLL/2 = 100000000
+           (CNR+1) = EPWM clock source frequency/prescaler/EPWM output frequency
+                   = 100000000/7/250 = 57142
+           (Note: CNR is 16 bits, so if calculated value is larger than 65536, user should increase prescale value.)
+           CNR = 57141
+           duty ratio = 30% ==&gt; (CMR)/(CNR+1) = 30%
+           CMR = 17142
+           Prescale value is 6 : prescaler= 7
+        */
 
-            if(u8InChar == &#39;0&#39;)
-            {
-                g_i32Wait = FALSE;
-            }
+        /* Set EPWM1 channel 0 output configuration */
+        EPWM_ConfigOutputChannel(EPWM1, 0, 250, 30);
 
-            /* Check if buffer full */
-            if(g_u32comRbytes &lt; RXBUFSIZE)
-            {
-                /* Enqueue the character */
-                g_u8RecData[g_u32comRtail] = u8InChar;
-                g_u32comRtail = (g_u32comRtail == (RXBUFSIZE - 1)) ? 0 : (g_u32comRtail + 1);
-                g_u32comRbytes++;
-            }
-        }
-        printf(&#34;\nTransmission Test:&#34;);
+        /* Enable EPWM Output path for EPWM1 channel 0 */
+        EPWM_EnableOutput(EPWM1, EPWM_CH_0_MASK);
 
-        /* Forces a write of all user-space buffered data for the given output */
-        fflush(stdout);
-    }
+        /* Enable Timer for EPWM1 channel 0 */
+        EPWM_Start(EPWM1, EPWM_CH_0_MASK);
 
-    if(u32IntSts &amp; UART_INTSTS_THREINT_Msk)
-    {
-        uint32_t u32Tmp;
-        u32Tmp = g_u32comRtail;
-        if(g_u32comRhead != u32Tmp)
-        {
-            u8InChar = g_u8RecData[g_u32comRhead];
-            while(UART_IS_TX_FULL(UART0));  /* Wait Tx is not full to transmit data */
-            UART_WRITE(UART0, u8InChar);
-            g_u32comRhead = (g_u32comRhead == (RXBUFSIZE - 1)) ? 0 : (g_u32comRhead + 1);
-            g_u32comRbytes--;
-        }
-    }
+        /*--------------------------------------------------------------------------------------*/
+        /* Set the EPWM1 channel 2 for capture function                                         */
+        /*--------------------------------------------------------------------------------------*/
 
-    /* Handle transmission error */
-    if(UART0-&gt;FIFOSTS &amp; (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk))
-    {
-        UART0-&gt;FIFOSTS = (UART_FIFOSTS_BIF_Msk | UART_FIFOSTS_FEF_Msk | UART_FIFOSTS_PEF_Msk | UART_FIFOSTS_RXOVIF_Msk);
+        /* If input minimum frequency is 250Hz, user can calculate capture settings by follows.
+           Capture clock source frequency = PLL = 100000000 in the sample code.
+           (CNR+1) = Capture clock source frequency/prescaler/minimum input frequency
+                   = 100000000/7/250 = 57142
+           (Note: CNR is 16 bits, so if calculated value is larger than 65536, user should increase prescale value.)
+           CNR = 0xFFFF
+           (Note: In capture mode, user should set CNR to 0xFFFF to increase capture frequency range.)
+
+           Capture unit time = 1/Capture clock source frequency/prescaler
+           70 ns = 1/100000000/7
+        */
+
+        /* Set EPWM1 channel 2 capture configuration */
+        EPWM_ConfigCaptureChannel(EPWM1, 2, 70, 0);
+
+        /* Enable Timer for EPWM1 channel 2 */
+        EPWM_Start(EPWM1, EPWM_CH_2_MASK);
+
+        /* Enable Capture Function for EPWM1 channel 2 */
+        EPWM_EnableCapture(EPWM1, EPWM_CH_2_MASK);
+
+        /* Enable falling capture reload */
+        EPWM1-&gt;CAPCTL |= EPWM_CAPCTL_FCRLDEN2_Msk;
+
+        /* Wait until EPWM1 channel 2 Timer start to count */
+        while((EPWM1-&gt;CNT[2]) == 0);
+
+        /* Capture the Input Waveform Data */
+        CalPeriodTime(EPWM1, 2);
+        /*------------------------------------------------------------------------------------------------------------*/
+        /* Stop EPWM1 channel 0 (Recommended procedure method 1)                                                      */
+        /* Set EPWM Timer loaded value(Period) as 0. When EPWM internal counter(CNT) reaches to 0, disable EPWM Timer */
+        /*------------------------------------------------------------------------------------------------------------*/
+
+        /* Set EPWM1 channel 0 loaded value as 0 */
+        EPWM_Stop(EPWM1, EPWM_CH_0_MASK);
+
+        /* Wait until EPWM1 channel 0 Timer Stop */
+        while((EPWM1-&gt;CNT[0] &amp; EPWM_CNT0_CNT_Msk) != 0);
+
+        /* Disable Timer for EPWM1 channel 0 */
+        EPWM_ForceStop(EPWM1, EPWM_CH_0_MASK);
+
+        /* Disable EPWM Output path for EPWM1 channel 0 */
+        EPWM_DisableOutput(EPWM1, EPWM_CH_0_MASK);
+
+        /*------------------------------------------------------------------------------------------------------------*/
+        /* Stop EPWM1 channel 2 (Recommended procedure method 1)                                                      */
+        /* Set EPWM Timer loaded value(Period) as 0. When EPWM internal counter(CNT) reaches to 0, disable EPWM Timer */
+        /*------------------------------------------------------------------------------------------------------------*/
+
+        /* Set loaded value as 0 for EPWM1 channel 2 */
+        EPWM_Stop(EPWM1, EPWM_CH_2_MASK);
+
+        /* Wait until EPWM1 channel 2 current counter reach to 0 */
+        while((EPWM1-&gt;CNT[2] &amp; EPWM_CNT2_CNT_Msk) != 0);
+
+        /* Disable Timer for EPWM1 channel 2 */
+        EPWM_ForceStop(EPWM1, EPWM_CH_2_MASK);
+
+        /* Disable Capture Function and Capture Input path for  EPWM1 channel 2*/
+        EPWM_DisableCapture(EPWM1, EPWM_CH_2_MASK);
+
+        /* Clear Capture Interrupt flag for EPWM1 channel 2 */
+        EPWM_ClearCaptureIntFlag(EPWM1, 2, EPWM_CAPTURE_INT_FALLING_LATCH);
     }
 }
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*  UART Function Test                                                                                     */
-/*---------------------------------------------------------------------------------------------------------*/
-void UART_FunctionTest(void)
-{
-    printf(&#34;+-----------------------------------------------------------+\n&#34;);
-    printf(&#34;|  UART Function Test                                       |\n&#34;);
-    printf(&#34;+-----------------------------------------------------------+\n&#34;);
-    printf(&#34;|  Description :                                            |\n&#34;);
-    printf(&#34;|    The sample code will print input char on terminal      |\n&#34;);
-    printf(&#34;|    Please enter any to start     (Press &#39;0&#39; to exit)      |\n&#34;);
-    printf(&#34;+-----------------------------------------------------------+\n&#34;);
-
-    /*
-        Using a RS232 cable to connect UART0 and PC.
-        UART0 is set to debug port. UART0 is enable RDA interrupt.
-        When inputting char to terminal screen, RDA interrupt will happen and
-        UART0 will print the received char on screen.
-    */
-
-    /* Enable UART RDA and THRE interrupt */
-    NVIC_EnableIRQ(UART0_IRQn);
-    UART_EnableInt(UART0, (UART_INTEN_RDAIEN_Msk | UART_INTEN_THREIEN_Msk));
-    while(g_i32Wait);
-
-    /* Disable UART RDA and THRE interrupt */
-    NVIC_DisableIRQ(UART0_IRQn);
-    UART_DisableInt(UART0, (UART_INTEN_RDAIEN_Msk | UART_INTEN_THREIEN_Msk));
-    g_i32Wait = TRUE;
-
-}
+/*** (C) COPYRIGHT 2021 Nuvoton Technology Corp. ***/
 </code></pre>
         </div>
 

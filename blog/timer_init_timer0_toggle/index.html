@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ICP 說明文件">
+  <meta name="description" content="使用 M467 開發版 來說明 邏輯分析儀量測timer toggle">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -124,40 +124,156 @@
         <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
           class="text-primary">說明文件</a>
         
-        <h2>ICP 使用說明</h2>
+        <h2>Timer Toggle 使用邏輯分析儀量測timer toggle (by M460)</h2>
         <div class="mb-3 post-meta">
           <span>By 暐宗</span>
           
           <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>11 June 2022</span>
+          <span>13 July 2022</span>
           
         </div>
         
-        <img src="https://weizongchen.github.io/images/post/ICP.JPG" class="img-fluid w-100 mb-4" alt="ICP 使用說明">
+        <img src="https://weizongchen.github.io/images/post/timer.jpg" class="img-fluid w-100 mb-4" alt="Timer Toggle 使用邏輯分析儀量測timer toggle (by M460)">
         
         <div class="content mb-5">
-          <blockquote>
-<p>可以直接來這邊下載  <a href="https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/">https://www.nuvoton.com/tool-and-software/debugger-and-programmer/mass-production-tool/</a></p>
-</blockquote>
-<h3 id="icp-tool">ICP Tool</h3>
-<p>新唐燒錄器適用於新唐NuMicro®微控制器的大量生產階段。基於靈活的設定與直觀的操作，使用者可全面掌握量產流程。</p>
-<p>選擇你的series</p>
-<p><img src="/images/ICP.JPG" alt="blog圖片的連結"></p>
-<p>如果你電腦插著很多個NuLnk 可以選，點選Radio Button時，那個被指定的NuLnk會閃閃閃閃閃~</p>
-<p><img src="/images/ICP2.JPG" alt="blog圖片的連結"></p>
-<p>如果你電腦灌過ICP 軟體了，跟這板子原本的ICP版本不匹配，你可以更新，也可以不更新，一般我都直接不更新，反正可以燒就好。</p>
-<p><img src="/images/ICP3.JPG" alt="blog圖片的連結"></p>
-<p>因為我是要把板子上的APROM的 firmware拿出來存，可以照下圖的方式點選</p>
-<p><img src="/images/ICP4.JPG" alt="blog圖片的連結"></p>
-<p>最後成功存取</p>
-<p><img src="/images/ICP5.JPG" alt="blog圖片的連結"></p>
-<h3 id="file-data">File Data</h3>
-<p>要燒進去板子的FW版本</p>
-<h3 id="on-board-flash">On board flash</h3>
-<p>板子上面的FW版本</p>
-<h3 id="offline-flash">Offline Flash</h3>
-<p>在燒入除錯器裡面的版本</p>
+          <h2 id="timer0-電路位置">Timer0 電路位置</h2>
+<p><img src="/images/timer_4.JPG" alt="blog圖片的連結"></p>
+<p>由pinconfigure 可以知道Timer0 在 pin 1 (PB5)  接著</p>
+<h2 id="設定-timer0-pin-角">設定 Timer0 pin 角</h2>
+<p>//&mdash;PIN&mdash;-
+/* Set timer toggle out pin */
+SET_TM0_PB5();</p>
+<h2 id="timer-delay">Timer Delay</h2>
+<p>Delay 1 秒:</p>
+<p>TIMER_Delay(TIMER0, 1000000);</p>
+<h2 id="timer-init_timer0_toggle">Timer init_TIMER0_Toggle</h2>
+<p>TIMER_Open(TIMER0, TIMER_TOGGLE_MODE, 250000);</p>
+<p>開啟TIMER0 反轉250K</p>
+<h2 id="邏輯分析儀量測">邏輯分析儀量測</h2>
+<ol>
+<li>邏輯分析儀 桶著 Pin1
+<img src="/images/timer_5.JPG" alt="blog圖片的連結"></li>
+<li>開 Salease 邏輯分析儀 SW
+<img src="/images/timer_3.JPG" alt="blog圖片的連結"></li>
+</ol>
+<p>可以發現訊號是125K Hz 波峰  +波谷 就250K Hz</p>
+<pre tabindex="0"><code>/*---------------------------------------------------------------------------------------------------------*/
+/* Global Interface Variables Declarations                                                                 */
+/*---------------------------------------------------------------------------------------------------------*/
+volatile uint32_t g_au32TMRINTCount[4] = {0};
+//----------------- TIMER0 --------------------
+void TMR0_IRQHandler(void)
+{
+    if(TIMER_GetIntFlag(TIMER0) == 1)
+    {
+        /* Clear Timer0 time-out interrupt flag */
+        TIMER_ClearIntFlag(TIMER0);
+        g_au32TMRINTCount[0]++;
+			
+			PH4 ^= 1;
+			
+    }
+}
+void TMR0_Init(void)
+{
+    /* Enable TIMER module clock */
+    //---clock---
+    CLK_EnableModuleClock(TMR0_MODULE);
+    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HXT, 0);
+     
+    //---PIN----
+    /* Set timer toggle out pin */
+    SET_TM0_PB5();
+     
+    /* Open Timer0 in periodic mode, enable interrupt and 1 interrupt tick per second */
+    TIMER_Open(TIMER0, TIMER_PERIODIC_MODE, 1);
+    /* Start Timer0 ~ Timer3 counting */
+    TIMER_Start(TIMER0);
+ 
+    //--- NVIC ----
+    TIMER_EnableInt(TIMER0);
+    /* Enable Timer0 ~ Timer3 NVIC */
+    NVIC_EnableIRQ(TMR0_IRQn);
+     
+    /* Check Timer0 ~ Timer3 interrupt counts */
+    //g_au32TMRINTCount[0];
+     
+}
 
+void init_TIMER0_Toggle(void)
+{
+    /* Enable TIMER module clock */
+    //---clock---
+    CLK_EnableModuleClock(TMR0_MODULE);
+    CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HXT, 0);
+    //---PIN----
+    /* Set timer toggle out pin */
+    SET_TM0_PB5();
+    /* Open Timer0 in periodic mode, enable interrupt and 1 interrupt tick per second */
+    TIMER_Open(TIMER0, TIMER_TOGGLE_MODE, 250000);
+    /* Start Timer0 ~ Timer3 counting */
+    TIMER_Start(TIMER0);
+}
+
+
+//-------------- HCLK  -------------
+void init_HCLK(void){
+ 
+    SYS_UnlockReg();
+ 
+ 
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Init System Clock                                                                                       */
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Set PCLK0 and PCLK1 to HCLK/2 */
+    CLK-&gt;PCLKDIV = (CLK_PCLKDIV_APB0DIV_DIV2 | CLK_PCLKDIV_APB1DIV_DIV2);
+    /* Set core clock to 200MHz */
+    CLK_SetCoreClock(200000000);
+    /* Enable all GPIO clock */
+    CLK-&gt;AHBCLK0 |= CLK_AHBCLK0_GPACKEN_Msk | CLK_AHBCLK0_GPBCKEN_Msk | CLK_AHBCLK0_GPCCKEN_Msk | CLK_AHBCLK0_GPDCKEN_Msk |
+                    CLK_AHBCLK0_GPECKEN_Msk | CLK_AHBCLK0_GPFCKEN_Msk | CLK_AHBCLK0_GPGCKEN_Msk | CLK_AHBCLK0_GPHCKEN_Msk;
+    CLK-&gt;AHBCLK1 |= CLK_AHBCLK1_GPICKEN_Msk | CLK_AHBCLK1_GPJCKEN_Msk;
+    /* Enable HXT clock */
+    CLK_EnableXtalRC(CLK_PWRCTL_HXTEN_Msk);
+    CLK_WaitClockReady( CLK_STATUS_HXTSTB_Msk);
+     
+     
+    SYS_LockReg();
+   
+}
+
+
+/*---------------------------------------------------------------------------------------------------------*/
+/*  Main Function                                                                                          */
+/*---------------------------------------------------------------------------------------------------------*/
+int32_t main(void)
+{
+    uint16_t cnt = 0;
+    uint8_t STA = 0;
+
+    /* Unlock protected registers */
+    SYS_UnlockReg();
+    /* Init System, peripheral clock and multi-function I/O */
+    SYS_Init();
+    /* Lock protected registers */
+    SYS_LockReg();
+    /* Init UART0 for printf */
+    UART0_Init();
+
+
+	init_HCLK();
+	init_TIMER0_Toggle();
+	
+    // PH4 LED R
+	GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);
+
+    while(1) {
+
+
+    }
+
+}
+</code></pre>
         </div>
 
         
