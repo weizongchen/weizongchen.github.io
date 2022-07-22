@@ -6,7 +6,36 @@
     <description>Recent content in Blogs on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 13 Jul 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Error:Flash Download failed - Cortex-M0</title>
+      <link>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</link>
+      <pubDate>Fri, 22 Jul 2022 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</guid>
+      <description>原因是這裡可能空白 至少要選一個</description>
+    </item>
+    
+    <item>
+      <title>SemiHost 使用方法</title>
+      <link>https://weizongchen.github.io/blog/debug_enable_semihost/</link>
+      <pubDate>Thu, 21 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/debug_enable_semihost/</guid>
+      <description>開啟 Option Define 好 DEBUG_ENABLE_SEMIHOST 在 Debug Mode 的時候打開 UART #1 可以看到 UART0 的輸出 </description>
+    </item>
+    
+    <item>
+      <title>使用M460開發版的 I2C 去要 BH1750 照度計sensor的data</title>
+      <link>https://weizongchen.github.io/blog/i2c_bh1750/</link>
+      <pubDate>Thu, 21 Jul 2022 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/i2c_bh1750/</guid>
+      <description>找M460開發版的2根空的 I2C 由上圖可以知道 I2C Pin角選
+PA5 SCL 板上 PIN75
+PA4 SDA 板上 PIN76</description>
+    </item>
+    
     <item>
       <title> PWM 的 應用範例 </title>
       <link>https://weizongchen.github.io/blog/pwm/</link>

@@ -6,7 +6,25 @@
     <description>Recent content in Tool on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 13 Jul 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jul 2022 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Error:Flash Download failed - Cortex-M0</title>
+      <link>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</link>
+      <pubDate>Fri, 22 Jul 2022 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</guid>
+      <description>原因是這裡可能空白 至少要選一個</description>
+    </item>
+    
+    <item>
+      <title>SemiHost 使用方法</title>
+      <link>https://weizongchen.github.io/blog/debug_enable_semihost/</link>
+      <pubDate>Thu, 21 Jul 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/debug_enable_semihost/</guid>
+      <description>開啟 Option Define 好 DEBUG_ENABLE_SEMIHOST 在 Debug Mode 的時候打開 UART #1 可以看到 UART0 的輸出 </description>
+    </item>
+    
     <item>
       <title>安裝新唐 Pinconfigure </title>
       <link>https://weizongchen.github.io/blog/install_and_update_pinconfigure/</link>

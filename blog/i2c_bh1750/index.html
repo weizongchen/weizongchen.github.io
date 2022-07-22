@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用M460開發版的 I2C 去要 BH1750 照度計sensor的data">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.100.1" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
+        
+        <h2>使用M460開發版的 I2C 去要 BH1750 照度計sensor的data</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>21 July 2022</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/BH1750.jpg" class="img-fluid w-100 mb-4" alt="使用M460開發版的 I2C 去要 BH1750 照度計sensor的data">
+        
+        <div class="content mb-5">
+          <h2 id="找m460開發版的2根空的-i2c">找M460開發版的2根空的 I2C</h2>
+<p><img src="/images/BH1750_1.jpg" alt="blog圖片的連結"></p>
+<p>由上圖可以知道 I2C Pin角選</p>
+<p>PA5 SCL  板上 PIN75</p>
+<p>PA4 SDA  板上 PIN76</p>
+<h2 id="bsp-包-直接用-i2c_multibytes_master">BSP 包 直接用 I2C_MultiBytes_Master</h2>
+<p><img src="/images/BH1750_2.jpg" alt="blog圖片的連結"></p>
+<p>/* Slave address */</p>
+<p>g_u8DeviceAddr = 0x46;</p>
+<p>BH1750的 ID 是 0x46 (包含第8個 bit)</p>
+<p>I2C_WriteByte(I2C0, device ID (不包含第8個bit), 要傳的命令)</p>
+<p>I2C_WriteByte(I2C0, 0x23, 0x10);</p>
+<p>這裡命令 0x10 是參考下圖</p>
+<p><img src="/images/BH1750_3.jpg" alt="blog圖片的連結"></p>
+<p>//I2C_ReadByte(I2C0, device ID (不包含第8個bit));</p>
+<p>//r = I2C_ReadByte(I2C0, 0x23);</p>
+<p>讀到幾個byte = I2C_ReadMultiBytes(I2C0, device ID 不包含第8個bit, 放個陣列ReadData 會存到回到ReadData, 讀取長度len = 2 )</p>
+<p>receive_byte = I2C_ReadMultiBytes(I2C0, 0x23, ReadData, 2);</p>
+<h2 id="la-量測結果">LA 量測結果</h2>
+<p><img src="/images/BH1750_5.jpg" alt="blog圖片的連結"></p>
+<p>我MCU發送 0x46 (第8bit 值0 方向 write) ID ，並給值 0x10 給 Device</p>
+<p>0x46+1 (第8bit 值1 方向 read)Device 回 MCU 2個值 : 0x00 0xC5</p>
+<h2 id="實體接線">實體接線</h2>
+<p><img src="/images/BH1750_4.jpg" alt="blog圖片的連結"></p>
+<pre tabindex="0"><code>/**************************************************************************//**
+ * @file     main.c
+ * @version  V3.00
+ * @brief
+ *           Show how to set I2C use Multi bytes API Read and Write data to Slave.
+ *           Needs to work with I2C_Slave sample code.
+ * @copyright (C) 2021 Nuvoton Technology Corp. All rights reserved.
+ *****************************************************************************/
+#include &lt;stdio.h&gt;
+#include &#34;NuMicro.h&#34;
+
+#define PLL_CLOCK       192000000
+
+/*---------------------------------------------------------------------------------------------------------*/
+/* Global variables                                                                                        */
+/*---------------------------------------------------------------------------------------------------------*/
+volatile uint8_t g_u8DeviceAddr;
+volatile uint8_t g_au8MstTxData[3];
+volatile uint8_t g_u8MstRxData;
+volatile uint8_t g_u8MstDataLen;
+volatile uint8_t g_u8MstEndFlag = 0;
+
+typedef void (*I2C_FUNC)(uint32_t u32Status);
+volatile static I2C_FUNC s_I2C0HandlerFn = NULL;
+
+
+void SYS_Init(void)
+{
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Init System Clock                                                                                       */
+    /*---------------------------------------------------------------------------------------------------------*/
+
+    /* Set PCLK0 and PCLK1 to HCLK/2 */
+    CLK-&gt;PCLKDIV = (CLK_PCLKDIV_APB0DIV_DIV2 | CLK_PCLKDIV_APB1DIV_DIV2);
+
+    /* Set core clock to 200MHz */
+    CLK_SetCoreClock(200000000);
+
+    /* Enable all GPIO clock */
+    CLK-&gt;AHBCLK0 |= CLK_AHBCLK0_GPACKEN_Msk | CLK_AHBCLK0_GPBCKEN_Msk | CLK_AHBCLK0_GPCCKEN_Msk | CLK_AHBCLK0_GPDCKEN_Msk |
+                    CLK_AHBCLK0_GPECKEN_Msk | CLK_AHBCLK0_GPFCKEN_Msk | CLK_AHBCLK0_GPGCKEN_Msk | CLK_AHBCLK0_GPHCKEN_Msk;
+    CLK-&gt;AHBCLK1 |= CLK_AHBCLK1_GPICKEN_Msk | CLK_AHBCLK1_GPJCKEN_Msk;
+
+    /* Enable UART0 module clock */
+    CLK_EnableModuleClock(UART0_MODULE);
+
+    /* Select UART0 module clock source as HIRC and UART0 module clock divider as 1 */
+    CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_HIRC, CLK_CLKDIV0_UART0(1));
+
+    /* Enable I2C0 peripheral clock */
+    CLK_EnableModuleClock(I2C0_MODULE);
+
+    /*---------------------------------------------------------------------------------------------------------*/
+    /* Init I/O Multi-function                                                                                 */
+    /*---------------------------------------------------------------------------------------------------------*/
+
+    /* Set multi-function pins for UART0 RXD and TXD */
+    SET_UART0_RXD_PB12();
+    SET_UART0_TXD_PB13();;
+
+    /* Set I2C0 multi-function pins */
+    SET_I2C0_SDA_PA4();
+    SET_I2C0_SCL_PA5();
+
+    /* I2C pin enable schmitt trigger */
+    PA-&gt;SMTEN |= GPIO_SMTEN_SMTEN4_Msk | GPIO_SMTEN_SMTEN5_Msk;
+}
+
+void I2C0_Init(void)
+{
+    /* Open I2C module and set bus clock */
+    I2C_Open(I2C0, 100000);
+
+    /* Get I2C0 Bus Clock */
+    printf(&#34;I2C clock %d Hz\n&#34;, I2C_GetBusClockFreq(I2C0));
+}
+
+void I2C0_Close(void)
+{
+    /* Disable I2C0 interrupt and clear corresponding NVIC bit */
+    I2C_DisableInt(I2C0);
+    NVIC_DisableIRQ(I2C0_IRQn);
+
+    /* Disable I2C0 and close I2C0 clock */
+    I2C_Close(I2C0);
+    CLK_DisableModuleClock(I2C0_MODULE);
+
+}
+
+
+int32_t main(void)
+{
+    uint32_t receive_byte;
+    uint8_t ReadData[2];
+		uint32_t Lux;
+
+    uint32_t i;
+    uint8_t txbuf[256] = {0}, rDataBuf[256] = {0};
+
+    /* Unlock protected registers */
+    SYS_UnlockReg();
+
+    /* Init System, IP clock and multi-function I/O. */
+    SYS_Init();
+
+    /* Configure UART0: 115200, 8-bit word, no parity bit, 1 stop bit. */
+    UART_Open(UART0, 115200);
+
+#ifdef _PZ
+    /* For palladium */
+    UART0-&gt;BAUD = UART_BAUD_MODE2 | UART_BAUD_MODE2_DIVIDER(153600, 38400);
+#endif
+
+    /*
+        This sample code sets I2C bus clock to 100kHz. Then, Master accesses Slave with Multi Bytes Write
+        and Multi Bytes Read operations, and check if the read data is equal to the programmed data.
+    */
+    printf(&#34;+--------------------------------------------------------+\n&#34;);
+    printf(&#34;| I2C Driver Sample Code for Multi Bytes Read/Write Test |\n&#34;);
+    printf(&#34;| Needs to work with I2C_Slave sample code               |\n&#34;);
+    printf(&#34;|                                                        |\n&#34;);
+    printf(&#34;| I2C Master (I2C0) &lt;---&gt; I2C Slave(I2C0)                |\n&#34;);
+    printf(&#34;| !! This sample code requires two borads to test !!     |\n&#34;);
+    printf(&#34;+--------------------------------------------------------+\n&#34;);
+
+    printf(&#34;\n&#34;);
+
+    /* Init I2C0 */
+    I2C0_Init();
+
+    /* Slave address */
+    g_u8DeviceAddr = 0x46;
+
+
+    I2C_WriteByte(I2C0, 0x23, 0x10);
+    //r = I2C_ReadByte(I2C0, 0x23);
+    receive_byte = I2C_ReadMultiBytes(I2C0, 0x23, ReadData, 2);
+    printf(&#34;receive_byte = %d \n&#34;, receive_byte);
+    printf(&#34;ReadData[0] = %x \n&#34;, ReadData[0]);
+    printf(&#34;ReadData[1] = %x \n&#34;, ReadData[1]);
+	Lux = ReadData[0] * 256 + ReadData[1];
+
+    while(1)
+	{
+			I2C_ReadMultiBytes(I2C0, 0x23, ReadData, 2);
+			Lux = ReadData[0] * 256 + ReadData[1];
+			printf(&#34;Lux = %d \n&#34;, Lux);
+	}
+
+}
+/*** (C) COPYRIGHT 2021 Nuvoton Technology Corp. ***/
+</code></pre>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-5770066"><i
+                class="ti-mobile mr-3 text-primary"></i>03-5770066</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
