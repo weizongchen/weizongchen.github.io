@@ -6,7 +6,16 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Fri, 22 Jul 2022 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</link>
+      <pubDate>Tue, 13 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</guid>
+      <description>跟新唐過去Cortex® M4 的 Feature 不一樣的地方 M4 speed 調升至 180 MHz 本章的重點，SRAM 有 128KB 以及 可以控制DDR 384KB Support Peripheral 1.</description>
+    </item>
+    
     <item>
       <title>Error:Flash Download failed - Cortex-M0</title>
       <link>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</link>

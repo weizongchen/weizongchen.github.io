@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="暐宗經驗分享">
+  <meta name="description" content="當沒有CH340可以用時，SemiHost 的 使用方法">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -116,207 +116,105 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
+        
+        <h2>解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>13 September 2022</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/MA35D1_RTP_memory.JPG" class="img-fluid w-100 mb-4" alt="解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法">
+        
+        <div class="content mb-5">
+          <h2 id="跟新唐過去cortex-m4-的-feature-不一樣的地方">跟新唐過去Cortex® M4 的 Feature 不一樣的地方</h2>
+<ol>
+<li>M4 speed 調升至 180 MHz</li>
+<li><strong>本章的重點，SRAM 有 128KB 以及 可以控制DDR 384KB</strong></li>
+<li>Support Peripheral 
+1. UART、I2C、I2S、PDMA、SPI、etc…
+<img src="/images/MA35D1_RTP_memory1.JPG" alt="blog圖片的連結"></li>
+<li>NuLink2Me Debug</li>
+<li>Wormhole</li>
+</ol>
+<h2 id="linux-setup">Linux Setup</h2>
+<h3 id="device-tree-查看各個-memory-設定">Device Tree 查看各個 memory 設定</h3>
+<p><img src="/images/MA35D1_RTP_memory2.jpg" alt="blog圖片的連結"></p>
+<p>這裡是設定 Memory 的起始位置 8000 0000</p>
+<p>注意 Reserved-memory :</p>
+<p>在這裡，我們為不同的功能保留了三個塊。 其中一個地方是 rproc 函數，它用在 M4 DRAM 上(384KB)</p>
+<p>(0x60000 = 384 KB)</p>
+<h3 id="device-tree-設定">Device Tree 設定</h3>
+<p>以設定UART16 為例</p>
+<p><img src="/images/MA35D1_RTP_memory3.jpg" alt="blog圖片的連結"></p>
+<p><img src="/images/MA35D1_RTP_memory4.jpg" alt="blog圖片的連結"></p>
+<p>_S 就是代表指定給A35</p>
+<p>_SUBM 代表指定給M4</p>
+<h3 id="compile-and-make-image">Compile and make Image</h3>
+<pre tabindex="0"><code>Compile the Linux kernel.
+$ bitbake linux-ma35d1 -C compile
+Compile the TF-A.
+$ bitbake tf-a-ma35d1 -C compile
+Build-up Image.
+$ bitbake nvt-image-qt5 –c cleanall &amp;&amp; bitbake nvt-image-qt5
+Burn-in Image into SD card.
+$ sudo dd if=core-image-minimal-xxxxx.rootfs.sdcard of=/dev/sdbx
+</code></pre><h3 id="在-keil-ide-設定-memory-使用空間">在 Keil IDE 設定 memory 使用空間</h3>
+<p><img src="/images/MA35D1_RTP_memory5.jpg" alt="blog圖片的連結"></p>
+<p>上圖中我們可以看到，RO data 配置位置在 0x0 ~ 0x1FFFF ，一共有128KB SRAM</p>
+<p>RW data 配置位置在 0x80040000 大小為0x1FFFF ，一共有128KB 的DDR</p>
+<h3 id="我寫一個-c-code-在-ddr-memory-使用空間">我寫一個 c code 在 DDR memory 使用空間</h3>
+<p><img src="/images/MA35D1_RTP_memory6.jpg" alt="blog圖片的連結"></p>
+<p>在 .c 的右鍵 option ，可以指定要把這個 function 放到 DDR 去</p>
+<p><img src="/images/MA35D1_RTP_memory7.jpg" alt="blog圖片的連結"></p>
+<p>在 map file 中可以看到 memtest 已經在DDR 的 使用空間了</p>
+<h3 id="使用-scatter-file-去直接指定-哪個">使用 scatter file 去直接指定 哪個</h3>
+<p><img src="/images/MA35D1_RTP_memory8.jpg" alt="blog圖片的連結"></p>
+<p>上圖可以看到 紅色 是代表記憶體區間</p>
+<p>0x00000000 ~ 0x0001FFFF 是SRAM 的空間</p>
+<p>這裡的寫法可以直接打開 map file ，copy paste 一模一樣的名子就可以了，</p>
+<p>例如 : startup_ma35d1_rtp.o(STACK, HEAP) 這個我放到SRAM</p>
+<p>pdm_converter.o(.bss) 我放到DRAM</p>
+<p>以此類推</p>
+<p>所以上圖可以知道，我把需要比較快速算完的data 放到SRAM</p>
+<p>比較不需要速度的資料我放到 DRAM</p>
 
-      
-      <div class="col-lg-4">
-  <div class="widgets">
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
     
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://weizongchen.github.io/images/myauthor.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Embedded Linux System
-Andoird App and MySQL Server
-Deep Learning</p>
-      <a href="https://weizongchen.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
     
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-        </li>
-        <li><a
-            href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
-        </li>
-      </ul>
-    </div>
     
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-m4/">Cortex m4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/ma35d1/">Ma35d1</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/opencv/">Opencv</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/tool/">Tool</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://github.com/weizongchen"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-      
-
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/MA35D1_RTP_memory.JPG" class="card-img-top" alt="解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/ma35d1_rtp_memory/" class="h5 d-block my-3">解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-09-13</span>
-            
-        </div>
-        <p class="card-text">當沒有CH340可以用時，SemiHost 的 使用方法</p>
-        <a href="https://weizongchen.github.io/blog/ma35d1_rtp_memory/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Error:Flash Download failed - Cortex-M0">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/" class="h5 d-block my-3">Error:Flash Download failed - Cortex-M0</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-07-22</span>
-            
-        </div>
-        <p class="card-text">Error:Flash Download failed - Cortex-M0</p>
-        <a href="https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="SemiHost 使用方法">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/debug_enable_semihost/" class="h5 d-block my-3">SemiHost 使用方法</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-07-21</span>
-            
-        </div>
-        <p class="card-text">當沒有CH340可以用時，SemiHost 的 使用方法</p>
-        <a href="https://weizongchen.github.io/blog/debug_enable_semihost/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/nuvoton_logo.png" class="card-img-top" alt="安裝新唐 Pinconfigure">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/install_and_update_pinconfigure/" class="h5 d-block my-3">安裝新唐 Pinconfigure</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-07-13</span>
-            
-        </div>
-        <p class="card-text">安裝新唐 Pinconfigure 或是更新的方式</p>
-        <a href="https://weizongchen.github.io/blog/install_and_update_pinconfigure/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ICP.JPG" class="card-img-top" alt="ICP 使用說明">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/icp_introduce/" class="h5 d-block my-3">ICP 使用說明</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-11</span>
-            
-        </div>
-        <p class="card-text">ICP 說明文件</p>
-        <a href="https://weizongchen.github.io/blog/icp_introduce/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-        </div>
-      </div>
-
-
-      
-      <div class="col-12 mt-5">
-        
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

@@ -3,24 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://weizongchen.github.io/blog/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/tool/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/</loc>
-    <lastmod>2022-07-22T13:24:00+08:00</lastmod>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</loc>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2022-09-13T23:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</loc>
     <lastmod>2022-07-22T13:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/blog/debug_enable_semihost/</loc>
