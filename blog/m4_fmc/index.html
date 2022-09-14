@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="暐宗經驗分享">
+  <meta name="description" content="如果需要把資料站存到不會揮發的flash存值後，然後再透過ICP把值讀回來">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -116,181 +116,63 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
-
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://weizongchen.github.io/images/myauthor.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Embedded Linux System
-Andoird App and MySQL Server
-Deep Learning</p>
-      <a href="https://weizongchen.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-        </li>
-        <li><a
-            href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-m4/">Cortex m4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/m4/">M4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/ma35d1/">Ma35d1</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/opencv/">Opencv</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/tool/">Tool</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://github.com/weizongchen"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-      
-
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack">
-        
-        <div class="card-body px-0">
+      <div class="col-lg-10 mx-auto">
         
         <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
+          class="text-primary">說明文件</a>
         
-        <a href="https://weizongchen.github.io/blog/keil_import_pack/" class="h5 d-block my-3">Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</a>
+        <h2>M4 把資料寫進 FMC的方法</h2>
         <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-17</span>
-            
-        </div>
-        <p class="card-text">Keil IDE 在啟動 project 時，會自己上網下載 一堆不是新唐的pack</p>
-        <a href="https://weizongchen.github.io/blog/keil_import_pack/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span>By 暐宗</span>
           
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/ARM_Keil.jpg" class="card-img-top" alt="Keil IDE 16K Code size 限制?">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/keil_ide_licence/" class="h5 d-block my-3">Keil IDE 16K Code size 限制?</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-16</span>
-            
-        </div>
-        <p class="card-text">Keil IDE 16K Code size 限制?</p>
-        <a href="https://weizongchen.github.io/blog/keil_ide_licence/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <img src="https://weizongchen.github.io/images/post/GPIO.png" class="card-img-top" alt="GPIO 說明">
-        
-        <div class="card-body px-0">
-        
-        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
-            class="text-primary">說明文件</a>
-        
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="h5 d-block my-3">GPIO 說明</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>2022-06-10</span>
-            
-        </div>
-        <p class="card-text">GPIO 說明文件</p>
-        <a href="https://weizongchen.github.io/blog/gpio_introduce/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>11 September 2022</span>
           
         </div>
-      </div>
+        
+        <img src="https://weizongchen.github.io/images/post/m487sidae.jpg" class="img-fluid w-100 mb-4" alt="M4 把資料寫進 FMC的方法">
+        
+        <div class="content mb-5">
+          <h1 id="pc-接好onboard的-nulink2-然後設定-keil-的-option">PC 接好onboard的 nulink2 然後設定 Keil 的 option</h1>
+<p><img src="/images/fmc_2.PNG" alt="Build and Join Docker files"></p>
+<p>這邊可以看到上圖我們開啟了412KB 的 flash 要使用</p>
+<p><img src="/images/fmc_3.PNG" alt="Build and Join Docker files"></p>
+<p>在程式的部分，我open 一個 fmc</p>
+<p>寫一個pattern : 0x5A5A5A5A</p>
+<p>然後下面有兩個API可以參考(FMC_Write 、 FMC_Read)，其他可以去看新唐的fmc.c 參考。</p>
+<p><img src="/images/fmc_4.PNG" alt="Build and Join Docker files"></p>
+<p>可以看到，我們用ICP查詢片上的flash 有0x5A5A5A5A 的資料被寫入</p>
 
+        </div>
 
-      
-      <div class="col-12 mt-5">
         
-    <ul class="pagination pagination-default">
-      <li class="page-item">
-        <a href="/tags/cortex-m4/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/tags/cortex-m4/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/tags/cortex-m4/" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item active">
-        <a aria-current="page" aria-label="Page 2" class="page-link" role="button">2</a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
-      </li>
-    </ul>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

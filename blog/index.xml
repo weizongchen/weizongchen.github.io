@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>M4 把資料寫進 FMC的方法</title>
+      <link>https://weizongchen.github.io/blog/m4_fmc/</link>
+      <pubDate>Sun, 11 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/m4_fmc/</guid>
+      <description>PC 接好onboard的 nulink2 然後設定 Keil 的 option 這邊可以看到上圖我們開啟了412KB 的 flash 要使用</description>
+    </item>
+    
+    <item>
       <title>Error:Flash Download failed - Cortex-M0</title>
       <link>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</link>
       <pubDate>Fri, 22 Jul 2022 13:24:00 +0800</pubDate>
