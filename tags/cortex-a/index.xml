@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cortex A on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/cortex-a/</link>
+    <description>Recent content in Cortex A on 暐宗&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Wed, 14 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-a/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>raspberry pi 3 Linux Device Driver</title>
+      <link>https://weizongchen.github.io/blog/raspberrypi3linuxdevicedriver/</link>
+      <pubDate>Wed, 14 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/raspberrypi3linuxdevicedriver/</guid>
+      <description>下載上課用Raspberry Pi image檔 (Linux 核心 4.14.x )(已包含上課用的範例程式 最新版本請再次下載)
+Raspberry Pi image</description>
+    </item>
+    
+  </channel>
+</rss>
