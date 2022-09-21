@@ -6,17 +6,7 @@
     <description>Recent content on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 14 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>raspberry pi 3 Linux Device Driver</title>
-      <link>https://weizongchen.github.io/blog/raspberrypi3linuxdevicedriver/</link>
-      <pubDate>Wed, 14 Sep 2022 23:24:00 +0800</pubDate>
-      
-      <guid>https://weizongchen.github.io/blog/raspberrypi3linuxdevicedriver/</guid>
-      <description>下載上課用Raspberry Pi image檔 (Linux 核心 4.14.x )(已包含上課用的範例程式 最新版本請再次下載)
-Raspberry Pi image</description>
-    </item>
-    
+    <lastBuildDate>Tue, 13 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</title>
       <link>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</link>

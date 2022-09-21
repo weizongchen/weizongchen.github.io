@@ -193,10 +193,18 @@ nuvoton@a24d9e06abe3:~/share/yocto$  git config --global http.sslverify false
 <pre tabindex="0"><code>~/yocto$ DISTRO=nvt-ma35d1-directfb MACHINE=numaker-som-ma35d16a81 source  sources/init-build-env build
 </code></pre><p>MACHINE 目前有 SOM 板 或 IOT 板，後面ma35d16a81是 板號，所以客戶可以做他自己的板子，用自己得板號。</p>
 <p>MACHINE=numaker-som-ma35d16a81</p>
-<p>MACHINE=numaker-iot-ma35d16f70</p>
+<p>MACHINE=numaker-iot-ma35d16f70 ( f7 =&gt; DDR 128MB )</p>
+<p>MACHINE=numaker-iot-ma35d16f90 ( f9 =&gt; DDR 512MB )</p>
 <p>test chip SOM :</p>
 <pre tabindex="0"><code>~/yocto$ DISTRO=nvt-ma35d1-directfb MACHINE=ma35d1-tc-som source  sources/init-build-env build
-</code></pre><p>Choose what Image you want to build</p>
+</code></pre><h5 id="補充說明-假設我要改build-不同的板號從numaker-som-ma35d16a81-改成-numaker-iot-ma35d16f70有兩個地方要改">(補充說明) 假設我要改build 不同的板號，從numaker-som-ma35d16a81 改成 numaker-iot-ma35d16f70，有兩個地方要改</h5>
+<ol>
+<li>local.conf 的 Machine 要改如下
+<img src="/images/ma35d1_7.jpg" alt="Build and Join Docker files"></li>
+<li>指定編譯
+DISTRO=nvt-ma35d1-directfb MACHINE=numaker-iot-ma35d16f70 source  sources/init-build-env build</li>
+</ol>
+<p>Choose what Image you want to build</p>
 <p>Image 包含Qt的版本 (建議)</p>
 <pre tabindex="0"><code>bitbake nvt-image-qt5
 </code></pre><p>小 Image 版本</p>

@@ -6,22 +6,13 @@
     <description>Recent content in Tags on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Wed, 14 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Cortex A</title>
-      <link>https://weizongchen.github.io/tags/cortex-a/</link>
-      <pubDate>Wed, 14 Sep 2022 23:24:00 +0800</pubDate>
-      
-      <guid>https://weizongchen.github.io/tags/cortex-a/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cortex M4</title>
-      <link>https://weizongchen.github.io/tags/cortex-m4/</link>
+      <title>M4</title>
+      <link>https://weizongchen.github.io/tags/m4/</link>
       <pubDate>Tue, 13 Sep 2022 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/tags/cortex-m4/</guid>
+      <guid>https://weizongchen.github.io/tags/m4/</guid>
       <description></description>
     </item>
     
@@ -40,6 +31,15 @@
       <pubDate>Fri, 22 Jul 2022 13:24:00 +0800</pubDate>
       
       <guid>https://weizongchen.github.io/tags/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cortex M4</title>
+      <link>https://weizongchen.github.io/tags/cortex-m4/</link>
+      <pubDate>Thu, 21 Jul 2022 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/tags/cortex-m4/</guid>
       <description></description>
     </item>
     

@@ -145,11 +145,6 @@
 <p>然後下面有兩個API可以參考(FMC_Write 、 FMC_Read)，其他可以去看新唐的fmc.c 參考。</p>
 <p><img src="/images/fmc_4.PNG" alt="Build and Join Docker files"></p>
 <p>可以看到，我們用ICP查詢片上的flash 有0x5A5A5A5A 的資料被寫入</p>
-<h1 id="fmc_eraseu32addr-一次會erase-4096-個-byte">FMC_Erase(u32Addr) 一次會Erase 4096 個 byte</h1>
-<p><img src="/images/fmc_5.PNG" alt="Build and Join Docker files"></p>
-<p>uTemp 一次要寫入 4 byte 的資料</p>
-<p>else if( (i*4) == 4096)</p>
-<p>因為一次會寫入4 byte，所以當i=1024時，寫買了需要Erase新的4096 byte 空間</p>
 
         </div>
 
