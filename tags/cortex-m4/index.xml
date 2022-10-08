@@ -6,7 +6,25 @@
     <description>Recent content in Cortex M4 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 21 Jul 2022 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</link>
+      <pubDate>Tue, 13 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</guid>
+      <description>跟新唐過去Cortex® M4 的 Feature 不一樣的地方 M4 speed 調升至 180 MHz 本章的重點，SRAM 有 128KB 以及 可以控制DDR 384KB Support Peripheral 1.</description>
+    </item>
+    
+    <item>
+      <title>M4 把資料寫進 FMC的方法</title>
+      <link>https://weizongchen.github.io/blog/m4_fmc/</link>
+      <pubDate>Sun, 11 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/m4_fmc/</guid>
+      <description>PC 接好onboard的 nulink2 然後設定 Keil 的 option 這邊可以看到上圖我們開啟了412KB 的 flash 要使用</description>
+    </item>
+    
     <item>
       <title>使用M460開發版的 I2C 去要 BH1750 照度計sensor的data</title>
       <link>https://weizongchen.github.io/blog/i2c_bh1750/</link>
@@ -96,6 +114,15 @@ ARM 對這個 MDK-Community 說明</description>
       <guid>https://weizongchen.github.io/blog/gpio_introduce/</guid>
       <description>User Manual https://www.nuvoton.com/export/resource-files/UM_NuMaker-ETM-M487_User_Manual_EN_Rev1.01.pdf
 通用 I/O (GPIO) 概述 M480 系列多達118 個通用I/O管腳和其他功能管腳共享，這取決於芯片的配置。 118個管腳分配在PA, PB, PC, PD, PE, PF, PG 和 PH這8個端口上。 PA, PB, PE和PG有16個管腳，PC，PD有15個管腳，PF，PH有12個管腳。每個管腳都是獨立的，都有相應的寄存器位來控制管腳功能模式與數據。</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 M4 使用設定</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_rtp/</link>
+      <pubDate>Tue, 07 Jun 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_rtp/</guid>
+      <description>Description Enable the Remoteproc device driver in the Linux kernel.</description>
     </item>
     
   </channel>

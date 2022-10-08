@@ -6,7 +6,17 @@
     <description>Recent content on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 13 Sep 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Oct 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MA35D1 IoT 的 SPI 介面使用</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_spi/</link>
+      <pubDate>Thu, 06 Oct 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_spi/</guid>
+      <description>MA35D1 SPI Device Tree 路徑 : ~/yocto/build/tmp-glibc/work-shared/numaker-iot-ma35d16f90/kernel-source/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+spi0: spi@40600000 {compatible = &amp;#34;nuvoton,ma35d1-spi&amp;#34;;reg = &amp;lt;0x0 0x40600000 0x0 0x10000&amp;gt;;interrupts = &amp;lt;GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH&amp;gt;;clocks = &amp;lt;&amp;amp;clk SPI0_GATE&amp;gt;;dmas = &amp;lt;&amp;amp;pdma1 4&amp;gt;,&amp;lt;&amp;amp;pdma1 5&amp;gt;;dma-names = &amp;#34;tx&amp;#34;,&amp;#34;rx&amp;#34;;pdma_reqsel_tx = &amp;lt;60&amp;gt;;pdma_reqsel_rx = &amp;lt;61&amp;gt;;use_pdma = &amp;lt;0&amp;gt;;num_cs = &amp;lt;2&amp;gt;;lsb = &amp;lt;0&amp;gt;;sleep = &amp;lt;0&amp;gt;;txbitlen = &amp;lt;8&amp;gt;;bus_num = &amp;lt;2&amp;gt;;spimode = &amp;lt;0&amp;gt;;mrxphase = &amp;lt;0&amp;gt;;spi-max-frequency = &amp;lt;10000000&amp;gt;;status = &amp;#34;disabled&amp;#34;;}; 路徑 : ~/yocto/build/tmp-glibc/work-shared/numaker-iot-ma35d16f90/kernel-source/arch/arm64/boot/dts/nuvoton/ma35d1-iot-512m.</description>
+    </item>
+    
     <item>
       <title>解決 MA35D1 M4 SRAM 128KB 不夠，調用A35 DDR space 384KB 的方法</title>
       <link>https://weizongchen.github.io/blog/ma35d1_rtp_memory/</link>
