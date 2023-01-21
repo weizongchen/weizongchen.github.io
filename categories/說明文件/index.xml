@@ -63,6 +63,16 @@ spi0: spi@40600000 {compatible = &amp;#34;nuvoton,ma35d1-spi&amp;#34;;reg = &a
     </item>
     
     <item>
+      <title>pi3ldd</title>
+      <link>https://weizongchen.github.io/blog/pi3ldd/</link>
+      <pubDate>Tue, 06 Sep 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/pi3ldd/</guid>
+      <description>Raspberry pi 3 Linux Device Driver
+下載上課用Raspberry Pi image檔 (Linux 核心 4.</description>
+    </item>
+    
+    <item>
       <title>Error:Flash Download failed - Cortex-M0</title>
       <link>https://weizongchen.github.io/blog/error_flash_download_failed_cortex-m0/</link>
       <pubDate>Fri, 22 Jul 2022 13:24:00 +0800</pubDate>
