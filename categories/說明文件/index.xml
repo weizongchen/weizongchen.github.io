@@ -6,7 +6,34 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 06 Oct 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Oct 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MA35D1 extra package in Yocto project after the image is built</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_extra_package_yocto/</link>
+      <pubDate>Mon, 17 Oct 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_extra_package_yocto/</guid>
+      <description>Open local.conf nuvoton@84d536ecc45d:~/shared/yocto/build$ vim conf/local.conf For example : add pip3 and devmem2 CORE_IMAGE_EXTRA_INSTALL += &amp;ldquo;devmem2&amp;rdquo;</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 devmem2 Read / Write memory address</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_devmem2/</link>
+      <pubDate>Sun, 16 Oct 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_devmem2/</guid>
+      <description>devmem2 Tool read register devmem2 0x40600014 TRM SPI Status Register (SPIx_STATUS) write 32bit to register devmem2 0x40600014 w 0x0058112 </description>
+    </item>
+    
+    <item>
+      <title>MA35D1 開機啟動位置</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_startup_execute/</link>
+      <pubDate>Sun, 16 Oct 2022 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_startup_execute/</guid>
+      <description>MA35D1 QT startup path vi /etc/profile.d/qt5-env.sh You can write that you want to auto execute command or script here.</description>
+    </item>
+    
     <item>
       <title>MA35D1 IoT 的 SPI 介面使用</title>
       <link>https://weizongchen.github.io/blog/ma35d1_spi/</link>

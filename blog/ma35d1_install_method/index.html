@@ -210,7 +210,7 @@ DISTRO=nvt-ma35d1-directfb MACHINE=numaker-iot-ma35d16f70 source  sources/init-b
 </code></pre><p>小 Image 版本</p>
 <pre tabindex="0"><code>bitbake core-image-minimal
 </code></pre><h2 id="copy-the-image-to-sd">Copy the image to SD</h2>
-<pre tabindex="0"><code>$ sudo dd if=nvt-image-qt5-evb-ma35d1-xxxxx.rootfs.sdcard of=/dev/sdb
+<pre tabindex="0"><code>$ sudo dd if=nvt-image-qt5-evb-ma35d1-xxxxx.rootfs.sdcard of=/dev/sdb status=progress
 </code></pre><p><img src="/images/ma35d1_3.jpg" alt="Build and Join Docker files"></p>
 <h2 id="fast-application-development">Fast Application Development</h2>
 <p>Make a toolchain installer</p>
