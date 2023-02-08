@@ -13,10 +13,9 @@
       <pubDate>Fri, 03 Feb 2023 23:24:00 +0800</pubDate>
       
       <guid>https://weizongchen.github.io/blog/add_tensorflow_lite_to_ma35d1_yocto/</guid>
-      <description>Hello World
-我是暐宗
-yocto添加網路上現有的meta layer 查找菜譜 可以點下面連結去首頁
-OpenEmbedded Layer Index</description>
+      <description>yocto添加網路上現有的meta layer 查找菜譜 可以點下面連結去首頁
+OpenEmbedded Layer Index
+也可以直接點下面是 Tensorflow Lite 的資源</description>
     </item>
     
     <item>
