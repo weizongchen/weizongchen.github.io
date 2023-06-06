@@ -6,17 +6,15 @@
     <description>Recent content in 心得 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 06 Jun 2022 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 May 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>文章的Markdwon 說明</title>
-      <link>https://weizongchen.github.io/blog/test/</link>
-      <pubDate>Mon, 06 Jun 2022 23:24:00 +0800</pubDate>
+      <title> M460 Level0 說明</title>
+      <link>https://weizongchen.github.io/blog/m460_level0/</link>
+      <pubDate>Thu, 25 May 2023 23:24:00 +0800</pubDate>
       
-      <guid>https://weizongchen.github.io/blog/test/</guid>
-      <description>Hello World
-我是暐宗
-一級標題 二級標題 五級標題 六級標題 我是暐宗，這裡是測試文章
-暐宗 有序序列 內縮 第三繩得有序序列內縮開頭 Hello test Hello printf(); World Hello 引用 通常放到文章最前面 https://github.</description>
+      <guid>https://weizongchen.github.io/blog/m460_level0/</guid>
+      <description>控制 LED 0x4000_4000 是一個32位元的記憶體位址，所以我需要一個 uint32_t* 去接他
+uint32_t* ptr_mode;ptr_mode = (uint32_t*)(0x40004000 + 0x1c0);*ptr_mode = 0x00000100;uint32_t* ptr_value;ptr_value = (uint32_t*)(0x40004000 + 0x1c8);*ptr_value = 0xFFFFFFEF; 負源觸發補充說明 : 也可以使用 Keil 的 tool 看，如下圖所示:</description>
     </item>
     
   </channel>

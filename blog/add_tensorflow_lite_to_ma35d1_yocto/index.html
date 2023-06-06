@@ -171,7 +171,12 @@
 <p><img src="/images/TFLite10.JPG" alt="blog圖片的連結"></p>
 <h5 id="直接找到他把它關掉">直接找到他把它關掉</h5>
 <p><img src="/images/TFLite11.JPG" alt="blog圖片的連結"></p>
-<h5 id="tensorflow-lite-加入成功">Tensorflow-Lite 加入成功</h5>
+<pre tabindex="0"><code>EXTRA_OECMAKE = &#34;\
+    -DTFLITE_ENABLE_XNNPACK=off \
+    -DTFLITE_ENABLE_RUY=on \
+    -DTFLITE_ENABLE_GPU=off \
+    ${S}/tensorflow/lite/ \
+</code></pre><h5 id="tensorflow-lite-加入成功">Tensorflow-Lite 加入成功</h5>
 <p><img src="/images/TFLite14.JPG" alt="blog圖片的連結"></p>
 <h1 id="加入-vnc-相關的-library">加入 VNC 相關的 Library</h1>
 <p>下面這幾個library 是跟tigervnc相關:</p>
@@ -295,6 +300,9 @@ DISTRO_FEATURES_append += &#34; x11 &#34;
         <ul class="list-unstyled">
           <li class="mb-3"><a class="text-dark"
               href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
           </li>
           <li class="mb-3"><a class="text-dark"
               href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>

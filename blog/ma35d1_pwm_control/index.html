@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在做Machine Learning 專案的時候，image Classfication的輸送帶要用PWM控制物件的 SG90 伺服馬達">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.100.1" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6"
+          class="text-primary">安裝步驟文件</a>
+        
+        <h2>MA35D1 Control</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>05 June 2023</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/MA35D1_PWM.jpg" class="img-fluid w-100 mb-4" alt="MA35D1 Control">
+        
+        <div class="content mb-5">
+          <h1 id="要找ma35d1的兩根pin腳給pwm">要找MA35D1的兩根pin腳給PWM</h1>
+<p><img src="/images/MA35D1_PWM1.png" alt="blog圖片的連結"></p>
+<h1 id="新唐定義-pg1-pg2-的地方">新唐定義 PG1 PG2 的地方</h1>
+<p><img src="/images/MA35D1_PWM2.png" alt="blog圖片的連結"></p>
+<h1 id="設定-device-tree">設定 device tree</h1>
+<p>Kernel configuration settin</p>
+<pre tabindex="0"><code>/* 1. Add node in device tree root&#39;s configuration */
+/ {
+	model = &#34;Nuvoton MA35D1-SOM&#34;;
+        ………
+        gpio_pwm {
+		compatible = &#34;gpio-pwm&#34;;
+		status = &#34;okay&#34;;
+		pinctrl-names = &#34;default&#34;;
+		pinctrl-0 = &lt;&amp;pinctrl_gpio_pwm&gt;;
+		gpios = &lt;&amp;gpiog 1 GPIO_ACTIVE_LOW&gt;,
+		        &lt;&amp;gpiog 2 GPIO_ACTIVE_LOW&gt;;       
+        };
+        ………
+};
+
+/* 2. Add module pin configuration to device tree&#39;s pinctl as below */
+&amp;pinctrl {
+	………
+	gpio_pwm {
+		pinctrl_gpio_pwm: gpio_pwmgrp{
+			nuvoton,pins =
+			&lt;SYS_GPG_MFPL_PG1MFP_GPIO &amp;pcfg_default&gt;,
+			&lt;SYS_GPG_MFPL_PG2MFP_GPIO &amp;pcfg_default&gt;;
+		};		
+	};
+………
+</code></pre><h1 id="gpio-pwm-的driver">gpio-pwm 的Driver</h1>
+<h3 id="gpio-pwmc">gpio-pwm.c</h3>
+<pre tabindex="0"><code>#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/init.h&gt;
+#include &lt;linux/slab.h&gt;
+#include &lt;linux/timer.h&gt;
+#include &lt;linux/sched.h&gt;
+#include &lt;linux/reboot.h&gt;
+#include &lt;linux/pwm.h&gt;
+#include &lt;linux/gpio.h&gt;
+#include &lt;linux/hrtimer.h&gt;
+#include &lt;linux/platform_device.h&gt;
+#include &lt;linux/of.h&gt;
+#include &lt;linux/of_platform.h&gt;
+#include &lt;linux/of_gpio.h&gt;
+
+#include &#34;gpio_pwm.h&#34;
+
+#define GPIO_STATE_DEFAULT         0
+
+struct gpio_pwm_driver_data {
+	unsigned int gpio;
+	bool gpio_state;
+	struct pwm_device *pwm_dev;
+	bool pwm_enable;
+	bool pwm_requset; 
+	struct hrtimer timer;
+	struct mutex lock;
+};
+
+struct gpio_pwm_chip {
+	struct pwm_chip chip;
+	int gpio_nums;
+	struct gpio_pwm_driver_data gpio_pwm_drv_data[];
+};
+
+static enum hrtimer_restart gpio_pwm_timer_fun(struct hrtimer *data)
+{
+	int gpio_pwm_hi_time = 0;
+	int gpio_pwm_lo_time = 0;
+	int gpio_keep_time = 0;
+
+	struct gpio_pwm_driver_data *gpio_pwm_drv = container_of(data, struct gpio_pwm_driver_data, timer);
+	struct pwm_device *pwm_dev = gpio_pwm_drv-&gt;pwm_dev;
+
+	gpio_pwm_hi_time = pwm_dev-&gt;state.duty_cycle;
+	gpio_pwm_lo_time = pwm_dev-&gt;state.period - pwm_dev-&gt;state.duty_cycle;
+
+	if(gpio_pwm_drv-&gt;gpio_state == 0) {
+		gpio_keep_time = gpio_pwm_hi_time;
+	} else {
+		gpio_keep_time = gpio_pwm_lo_time;
+	}
+
+	gpio_pwm_drv-&gt;gpio_state ^= 0x01;
+	gpio_set_value(gpio_pwm_drv-&gt;gpio, gpio_pwm_drv-&gt;gpio_state);
+
+	hrtimer_forward_now(&amp;gpio_pwm_drv-&gt;timer, ns_to_ktime(gpio_keep_time));
+
+	return HRTIMER_RESTART;
+}
+
+static int gpio_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+{
+	struct gpio_pwm_chip *pwm_chip_ptr = container_of(chip, struct gpio_pwm_chip, chip);
+	struct gpio_pwm_driver_data *gpio_pwm_drv = &amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[pwm-&gt;hwpwm]);
+	int ret = 0;
+
+	ret = gpio_request_one(gpio_pwm_drv-&gt;gpio, GPIOF_DIR_OUT, pwm-&gt;label);
+	if (ret == 0) {
+		gpio_pwm_drv-&gt;gpio_state = GPIO_STATE_DEFAULT;
+		gpio_set_value(gpio_pwm_drv-&gt;gpio, gpio_pwm_drv-&gt;gpio_state);
+		gpio_pwm_drv-&gt;pwm_requset = 1;
+	}
+
+	return ret;
+}
+
+static void gpio_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+{
+	struct gpio_pwm_chip *pwm_chip_ptr = container_of(chip, struct gpio_pwm_chip, chip);
+	struct gpio_pwm_driver_data *gpio_pwm_drv = &amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[pwm-&gt;hwpwm]);
+	int i;
+
+	mutex_lock(&amp;gpio_pwm_drv-&gt;lock);
+
+	if(gpio_pwm_drv-&gt;pwm_enable) {
+		hrtimer_cancel(&amp;gpio_pwm_drv-&gt;timer);
+		gpio_pwm_drv-&gt;pwm_enable = false;
+	}
+
+	mutex_unlock(&amp;gpio_pwm_drv-&gt;lock);
+
+	for(i=0; i &lt; pwm_chip_ptr-&gt;gpio_nums; i++) {
+		if (gpio_pwm_drv-&gt;pwm_requset == 1) {   
+			gpio_free(gpio_pwm_drv-&gt;gpio);
+		}
+	}
+}
+
+static int gpio_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
+{
+	struct gpio_pwm_chip *pwm_chip_ptr = container_of(chip, struct gpio_pwm_chip, chip);
+	struct gpio_pwm_driver_data *gpio_pwm_drv = &amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[pwm-&gt;hwpwm]);
+
+	mutex_lock(&amp;gpio_pwm_drv-&gt;lock);
+
+	if(!gpio_pwm_drv-&gt;pwm_enable) {
+		hrtimer_init(&amp;gpio_pwm_drv-&gt;timer, CLOCK_REALTIME, HRTIMER_MODE_ABS);
+		gpio_pwm_drv-&gt;timer.function = gpio_pwm_timer_fun;
+		gpio_pwm_drv-&gt;pwm_enable = true;
+	}
+
+	mutex_unlock(&amp;gpio_pwm_drv-&gt;lock);
+	hrtimer_start(&amp;gpio_pwm_drv-&gt;timer, ktime_add_ns(ktime_get(), pwm-&gt;state.duty_cycle), HRTIMER_MODE_ABS);
+	return 0;
+}
+
+static int gpio_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm, int duty_ns, int period_ns)
+{
+	pwm-&gt;state.period = period_ns;
+	pwm-&gt;state.duty_cycle = duty_ns;
+	return 0;
+}
+
+static void gpio_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+{
+	struct gpio_pwm_chip *pwm_chip_ptr = container_of(chip, struct gpio_pwm_chip, chip);
+	struct gpio_pwm_driver_data * gpio_pwm_drv = &amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[pwm-&gt;hwpwm]);
+
+	mutex_lock(&amp;gpio_pwm_drv-&gt;lock);
+
+	if(gpio_pwm_drv-&gt;pwm_enable) {
+		hrtimer_cancel(&amp;gpio_pwm_drv-&gt;timer);
+		gpio_pwm_drv-&gt;pwm_enable = false;
+	}
+
+	mutex_unlock(&amp;gpio_pwm_drv-&gt;lock);
+}
+
+static struct pwm_ops gpio_pwm_ops = {
+	.request = gpio_pwm_request,
+	.free = gpio_pwm_free,
+	.enable = gpio_pwm_enable,
+	.disable = gpio_pwm_disable,
+	.config = gpio_pwm_config,
+	.owner = THIS_MODULE,
+};
+
+#ifdef CONFIG_OF
+static const struct of_device_id of_gpio_pwm_match[] = {
+	{ .compatible = &#34;gpio-pwm&#34;, },
+	{},
+};
+#endif
+
+static struct gpio_pwm_chip *gpio_pwmparse_dt(struct device *dev)
+{
+	const struct of_device_id *of_id = of_match_device(of_gpio_pwm_match, dev);
+	struct device_node *np = dev-&gt;of_node;
+	enum of_gpio_flags flags;
+	struct gpio_pwm_chip *pwm_chip_ptr;
+	int gpio_nums;
+	int i;
+	int err;
+
+	if (!of_id || !np)
+		return NULL;
+
+	gpio_nums = of_gpio_count(np);
+	if (!gpio_nums)           
+		return ERR_PTR(-ENODEV);    
+
+	printk(&#34;gpio_nums = %d\n&#34;, gpio_nums);
+
+	pwm_chip_ptr = devm_kzalloc(dev, 
+			sizeof(struct gpio_pwm_chip) + (gpio_nums * sizeof(struct gpio_pwm_driver_data)), GFP_KERNEL);
+
+	if (!pwm_chip_ptr)
+		return ERR_PTR(-ENOMEM);
+
+	pwm_chip_ptr-&gt;gpio_nums = gpio_nums;
+
+	for(i = 0; i &lt; gpio_nums; i++) {
+		pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].gpio = of_get_gpio_flags(np, i, &amp;flags);
+
+		mutex_init(&amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].lock));
+		pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].pwm_enable = false;
+
+		printk(&#34;gpio=%d\n&#34;, pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].gpio);
+	}
+
+	err = of_property_read_u32(np, &#34;base&#34;, &amp;pwm_chip_ptr-&gt;chip.base);
+	if (err)
+		pwm_chip_ptr-&gt;chip.base = 0x20;
+
+	return pwm_chip_ptr;
+}
+
+static int gpio_pwm_probe(struct platform_device *pdev)
+{
+	struct device *dev = &amp;pdev-&gt;dev;
+	struct gpio_pwm_platform_data *pdata = (struct gpio_pwm_platform_data *)dev_get_platdata(dev);
+	struct gpio_pwm_chip *pwm_chip_ptr = NULL;
+	int i = 0;
+	int ret = 0;
+
+	if (!pdata) {
+
+		printk(&#34;probe dt\n&#34;);
+
+		pwm_chip_ptr = gpio_pwmparse_dt(dev);
+		if (IS_ERR(pwm_chip_ptr))
+			return PTR_ERR(pwm_chip_ptr);
+
+		if (!pwm_chip_ptr) {
+			dev_err(dev, &#34;pwm gpio missing platform data\n&#34;);
+			return -EINVAL;
+		}
+	} else {
+
+		pwm_chip_ptr = devm_kzalloc(&amp;pdev-&gt;dev, sizeof(struct gpio_pwm_chip) + (pdata-&gt;gpio_nums * sizeof(struct gpio_pwm_driver_data)), GFP_KERNEL);
+
+		if(pwm_chip_ptr == NULL)
+			return -ENOMEM;
+
+		pwm_chip_ptr-&gt;gpio_nums = pdata-&gt;gpio_nums;
+		for(i=0; i &lt; pdata-&gt;gpio_nums; i++) {
+			pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].gpio = pdata-&gt;gpios[i];
+			mutex_init(&amp;(pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].lock));
+			pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].pwm_enable = false;
+
+			printk(&#34;gpio-%d\n&#34;,pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].gpio);
+		}
+		pwm_chip_ptr-&gt;chip.base = pdata-&gt;pwm_chip_idx;
+
+		printk(&#34;pwm_chip_idx=%d\n&#34;, pdata-&gt;pwm_chip_idx);
+	}
+
+	pwm_chip_ptr-&gt;chip.npwm = pwm_chip_ptr-&gt;gpio_nums;
+	pwm_chip_ptr-&gt;chip.ops = &amp;gpio_pwm_ops;
+	pwm_chip_ptr-&gt;chip.dev = &amp;pdev-&gt;dev;
+
+#ifdef CONFIG_OF 
+	pwm_chip_ptr-&gt;chip.dev-&gt;of_node = pdev-&gt;dev.of_node;
+#endif
+
+	ret = pwmchip_add(&amp;pwm_chip_ptr-&gt;chip);
+	if(ret) {
+		return ret;
+	}
+
+	for(i = 0; i &lt; pwm_chip_ptr-&gt;gpio_nums; i++) {
+		pwm_chip_ptr-&gt;gpio_pwm_drv_data[i].pwm_dev = &amp;pwm_chip_ptr-&gt;chip.pwms[i];
+	}
+
+	platform_set_drvdata(pdev, pwm_chip_ptr);
+
+	return 0;
+}
+
+static int gpio_pwm_remove(struct platform_device *pdev)
+{
+	struct gpio_pwm_chip *pwm_chip_ptr = platform_get_drvdata(pdev);
+
+	pwmchip_remove(&amp;pwm_chip_ptr-&gt;chip);
+	platform_set_drvdata(pdev, NULL);
+
+	return 0;
+}
+
+static struct platform_driver gpio_pwm_driver = {
+	.probe		= gpio_pwm_probe,
+	.remove		= gpio_pwm_remove,
+	.driver		= {
+		.name	= &#34;gpio-pwm&#34;,
+		.owner	= THIS_MODULE,
+		.of_match_table = of_match_ptr(of_gpio_pwm_match),
+	},
+};
+
+module_platform_driver(gpio_pwm_driver);
+
+MODULE_AUTHOR(&#34;nuvoton porting&#34;);
+MODULE_DESCRIPTION(&#34;gpio pwm chip driver&#34;);
+MODULE_LICENSE(&#34;GPL&#34;);
+</code></pre><h3 id="gpio-pwmh">gpio-pwm.h</h3>
+<pre tabindex="0"><code>#ifndef __GPIO_PWM_H
+#define __GPIO_PWM_H
+
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/init.h&gt;
+#include &lt;linux/slab.h&gt;
+
+struct gpio_pwm_platform_data {
+	int pwm_chip_idx;
+    	int gpio_nums;
+	unsigned int *gpios;
+};
+
+#endif
+</code></pre><h3 id="makefile-to-build-gpio-pwmko">MakeFile to Build gpio-pwm.ko</h3>
+<p>下面要注意 :</p>
+<ol>
+<li>在docker裡面 make</li>
+<li>LINUX_DIR 要擺已經Build過的 kernel 位置</li>
+<li>aarch64 tool chain 要有 : source /usr/local/oecore-x86_64/environment-setup-aarch64-poky-linux</li>
+</ol>
+<pre tabindex="0"><code>PWD := $(shell pwd)
+
+obj-m += gpio-pwm.o
+
+.PHONY: all clean
+
+COMPILE=aarch64-poky-linux-
+
+LINUX_DIR=../tmp-glibc/work/numaker_som_ma35d16a81-poky-linux/linux-ma35d1/5.10.140-r0/build
+
+all:
+	make ARCH=arm64 CROSS_COMPILE=$(COMPILE) -C $(LINUX_DIR) M=$(PWD) modules
+	
+	
+</code></pre><h3 id="結構應該長得像下面的資料夾">結構應該長得像下面的資料夾</h3>
+<p><img src="/images/MA35D1_PWM3.png" alt="blog圖片的連結"></p>
+<h3 id="實體接線">實體接線</h3>
+<p><img src="/images/MA35D1_PWM4.jpg" alt="blog圖片的連結">
+<img src="/images/MA35D1_PWM5.png" alt="blog圖片的連結"></p>
+<h3 id="ap-層控制">AP 層控制</h3>
+<p>GPIO PWM執行輸出與佔空比設定</p>
+<p>Export PWM</p>
+<pre tabindex="0"><code>echo 0 &gt; /sys/class/pwm/pwmchip32/export
+</code></pre><p>PWM 週期設定,單位為ns, gpioi12 輸出頻率為 100 HZ</p>
+<pre tabindex="0"><code>echo 10000000 &gt; /sys/class/pwm/pwmchip32/pwm0/period
+</code></pre><p>PWM 佔空比設定, 以下設定佔空比為 0.5</p>
+<pre tabindex="0"><code>echo 5000000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle
+</code></pre><p>PWM 使能輸出</p>
+<pre tabindex="0"><code>echo 1 &gt;/sys/class/pwm/pwmchip32/pwm0/enable
+</code></pre><h5 id="echo-0-會-export-這個時候會出現pwm0的節點">echo 0 會 export ，這個時候，會出現pwm0的節點</h5>
+<pre tabindex="0"><code>echo 0 &gt; /sys/class/pwm/pwmchip32/export
+echo 20000000 &gt; /sys/class/pwm/pwmchip32/pwm0/period
+echo 1000000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle
+echo 2000000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle
+echo 1 &gt;/sys/class/pwm/pwmchip32/pwm0/enable
+</code></pre><h5 id="pwm1-也是差不多的方式">PWM1 也是差不多的方式</h5>
+<p>echo 1  export ，這個時候會出現pwm1的節點</p>
+<pre tabindex="0"><code>echo 1 &gt; /sys/class/pwm/pwmchip32/export
+echo 20000000 &gt; /sys/class/pwm/pwmchip32/pwm1/period
+echo 1000000 &gt; /sys/class/pwm/pwmchip32/pwm1/duty_cycle
+echo 2000000 &gt; /sys/class/pwm/pwmchip32/pwm1/duty_cycle
+echo 1 &gt;/sys/class/pwm/pwmchip32/pwm1/enable
+</code></pre><h3 id="sg90-伺服馬達說明">SG90 伺服馬達說明</h3>
+<p>小巧輕便且輸出功率高。伺服馬達可以大約旋轉180度（每個方向90度），並且與標準的伺服馬達一樣工作，只是體積更小。</p>
+<p>您可以使用任何伺服馬達的程式碼、硬體或庫來控制這些伺服馬達。</p>
+<p>對於初學者來說非常適合，他們想要讓東西移動，而不需要建立帶有反饋和齒輪箱的馬達控制器，尤其是因為它可以放在狹小的空間中。</p>
+<p>位置 &ldquo;0&rdquo;（1.5 毫秒脈衝）代表中間位置。</p>
+<p>位置 &ldquo;90&rdquo;（約 2 毫秒脈衝）代表向右極限。</p>
+<p>位置 &ldquo;-90&rdquo;（約 1 毫秒脈衝）代表向左極限。</p>
+<p>簡單來說，這段描述了 PWM 信號的位置與對應的角度之間的關係。位置 &ldquo;0&rdquo; 代表中間位置，位置 &ldquo;90&rdquo; 代表完全向右轉的極限，而位置 &ldquo;-90&rdquo; 則代表完全向左轉的極限。這些位置對應於 PWM 脈衝的持續時間，可以控制舵機或其他類似裝置的運動位置。</p>
+<p><img src="/images/MA35D1_PWM6.png" alt="blog圖片的連結"></p>
+<h2 id="注意">注意</h2>
+<p>100 Hz 是 :</p>
+<p>echo 10000000 &gt; /sys/class/pwm/pwmchip32/pwm0/period</p>
+<p>Datashet 要 50 Hz</p>
+<p>要寫成以下才會是50 Hz:</p>
+<h6 id="echo-20000000--sysclasspwmpwmchip32pwm0period">echo 20000000 &gt; /sys/class/pwm/pwmchip32/pwm0/period</h6>
+<p>1 ms 的duty 我要給以下:</p>
+<p>echo 1000000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle</p>
+<p>1.5 ms 的duty 我要給以下:</p>
+<p>echo 1500000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle</p>
+<p>2 ms 的duty 我要給以下:</p>
+<p>echo 2000000 &gt; /sys/class/pwm/pwmchip32/pwm0/duty_cycle</p>
+
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-5770066"><i
+                class="ti-mobile mr-3 text-primary"></i>03-5770066</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
