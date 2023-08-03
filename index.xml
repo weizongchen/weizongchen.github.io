@@ -6,7 +6,26 @@
     <description>Recent content on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 05 Jun 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MA35D1 Buildroot 打開 openssh</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_openssh/</link>
+      <pubDate>Tue, 01 Aug 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_openssh/</guid>
+      <description>在Buildroot中啟用SSH功能需要進行以下步驟： 1. 進入Buildroot目錄，啟動menuconfig配置工具： sudo make menuconfigTarget packages -&amp;gt; Networking applications -&amp;gt; [*]openssh[*]ethtool [*] enable pretty printing [*]dhcpcd #順便看要不要make -j16 後重燒 SD 2.</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 LED Button Control</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_led_button/</link>
+      <pubDate>Tue, 01 Aug 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_led_button/</guid>
+      <description>控制LED燈 亮滅 直接控制以下節點就可以
+# ls# cat /sys/class/leds/LEDLED0/ LED2/# cat /sys/class/leds/LED0/brightness0# cat /sys/class/leds/LED2/brightness0 # echo 1 &amp;gt; /sys/class/leds/LED0/brightness# cat /sys/class/leds/LED0/brightness1# echo 1 &amp;gt; /sys/class/leds/LED2/brightness# cat /sys/class/leds/LED0/brightness 控制 BTN 要控制 BTN 前，可以先確認板子上的button 是不是 work的情況 可以使用跟上面LED一樣，去cat看看button</description>
+    </item>
+    
     <item>
       <title>MA35D1 Control </title>
       <link>https://weizongchen.github.io/blog/ma35d1_pwm_control/</link>

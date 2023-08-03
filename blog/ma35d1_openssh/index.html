@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="暐宗經驗分享">
+  <meta name="description" content="MA35D1 打開openssh步驟">
   <meta name="author" content="暐宗">
   <meta name="generator" content="Hugo 0.100.1" />
 
@@ -116,149 +116,90 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
-
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://weizongchen.github.io/images/myauthor.jpg" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p>Embedded Linux System
-Andoird App and MySQL Server
-Deep Learning</p>
-      <a href="https://weizongchen.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
-        </li>
-        <li><a
-            href="/categories/%e5%bf%83%e5%be%97/">心得</a>
-        </li>
-        <li><a
-            href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-a/">Cortex a</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/cortex-m4/">Cortex m4</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/ma35d1/">Ma35d1</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/opencv/">Opencv</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/tool/">Tool</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
+      <div class="col-lg-10 mx-auto">
         
-        <li class="list-inline-item"><a href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a></li>
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
         
-        <li class="list-inline-item"><a href="https://github.com/weizongchen"><i class="ti-github"></i></a></li>
-        
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-      
-
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/" class="h5 d-block my-3">說明文件</a>
+        <h2>MA35D1 Buildroot 打開 openssh</h2>
         <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span>By 暐宗</span>
           
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="https://weizongchen.github.io/categories/%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E6%96%87%E4%BB%B6/" class="h5 d-block my-3">安裝步驟文件</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://weizongchen.github.io/categories/%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E6%96%87%E4%BB%B6/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/" class="h5 d-block my-3">心得</a>
-        <div class="mb-3 post-meta">
-            <span>By 暐宗</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>0001-01-01</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>01 August 2023</span>
           
         </div>
-      </div>
+        
+        <img src="https://weizongchen.github.io/images/post/MA35D1_openssh.jpg" class="img-fluid w-100 mb-4" alt="MA35D1 Buildroot 打開 openssh">
+        
+        <div class="content mb-5">
+          <h3 id="在buildroot中啟用ssh功能需要進行以下步驟">在Buildroot中啟用SSH功能需要進行以下步驟：</h3>
+<h3 id="1-進入buildroot目錄啟動menuconfig配置工具">1. 進入Buildroot目錄，啟動menuconfig配置工具：</h3>
+<pre tabindex="0"><code>sudo make menuconfig
 
-
-      
-      <div class="col-12 mt-5">
+Target packages -&gt; 
+    Networking applications -&gt; 
+        [*]openssh
+        [*]ethtool    
+        [*]  enable pretty printing               
+        [*]dhcpcd                        #順便看要不要
         
+</code></pre><p><img src="/images/ma35d1_openssh0.png" alt="blog圖片的連結">
+<img src="/images/ma35d1_openssh1.png" alt="blog圖片的連結"></p>
+<pre tabindex="0"><code>make -j16 後重燒 SD
+</code></pre><h3 id="2-root-密碼">2. root 密碼</h3>
+<p>在Buildroot生成的Linux系統中，默認情況下，root用戶是沒有設置密碼的，這意味著您無法使用空密碼進行登錄。當您嘗試使用root用戶登錄時，系統會要求您輸入密碼，但實際上該密碼是不存在的。</p>
+<p>為了解決這個問題，您有幾個選項：</p>
+<p>為root用戶設置密碼：您可以登錄到Buildroot生成的Linux系統，並為root用戶設置一個密碼。在命令行中執行以下命令：</p>
+<pre tabindex="0"><code>passwd root
+</code></pre><p>然後按照提示設置root用戶的密碼。設置了密碼後，您就可以使用root用戶進行遠程登錄，並輸入密碼進行身份驗證。</p>
+<p><img src="/images/ma35d1_openssh6.png" alt="blog圖片的連結"></p>
+<h3 id="3-ssh配置">3. SSH配置</h3>
+<p>檢查SSH服務器的配置文件，通常是/etc/ssh/sshd_config。確保以下設置正確：</p>
+<pre tabindex="0"><code># vi /etc/ssh/sshd_config
+</code></pre><p>直接加這兩個在最後一行就好了</p>
+<pre tabindex="0"><code>PermitRootLogin yes
+PasswordAuthentication yes
+</code></pre><hr>
+<hr>
+<p>密碼權限問題：檢查root用戶的密碼文件權限是否正確。使用以下命令修復密碼文件權限：</p>
+<pre tabindex="0"><code>反正就打這個，一般我記得都是一樣的
+chmod 600 /etc/shadow
+</code></pre><p>重啟SSH服務：在對SSH配置文件進行更改後，您可能需要重啟SSH服務，以使更改生效。</p>
+<pre tabindex="0"><code>reboot
+</code></pre><h3 id="最後就直接網路控制拉">最後就直接網路控制拉</h3>
+<p><img src="/images/ma35d1_openssh7.png" alt="blog圖片的連結"></p>
+
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 
