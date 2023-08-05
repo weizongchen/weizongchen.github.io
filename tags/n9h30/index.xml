@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>N9H30 on 暐宗&#39;s Blog</title>
+    <link>https://weizongchen.github.io/tags/n9h30/</link>
+    <description>Recent content in N9H30 on 暐宗&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-tw</language>
+    <lastBuildDate>Thu, 03 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/n9h30/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>N9H30 Buildroot Quick Start</title>
+      <link>https://weizongchen.github.io/blog/n9h30_quickstart/</link>
+      <pubDate>Thu, 03 Aug 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/n9h30_quickstart/</guid>
+      <description>opennuvoton N9H30 https://github.com/OpenNuvoton/MPU-Family
+Start up with VMware This VMware Image offers a Linux development environment for N9H30.</description>
+    </item>
+    
+  </channel>
+</rss>

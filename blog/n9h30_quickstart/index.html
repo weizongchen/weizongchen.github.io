@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="this is meta description">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.100.1" />
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6"
+          class="text-primary">安裝步驟文件</a>
+        
+        <h2>N9H30 Buildroot Quick Start</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>03 August 2023</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/N9H30.png" class="img-fluid w-100 mb-4" alt="N9H30 Buildroot Quick Start">
+        
+        <div class="content mb-5">
+          <blockquote>
+<p>opennuvoton N9H30 <a href="https://github.com/OpenNuvoton/MPU-Family">https://github.com/OpenNuvoton/MPU-Family</a></p>
+</blockquote>
+<h1 id="start-up-with-vmware">Start up with VMware</h1>
+<p>This VMware Image offers a Linux development environment for N9H30.</p>
+<p>opennuvoton 的 VM 檔案 : <a href="https://www.nuvoton.com/resource-download.jsp?tp_GUID=SW1320200406183205">N9H30 VMware</a></p>
+<p>User Name: nuvoton</p>
+<p>Password: user</p>
+<h1 id="download-and-update-buildroot">Download and Update Buildroot</h1>
+<p>Open Terminal and path to the NUC970_Buildroot folder:</p>
+<pre tabindex="0"><code>$ cd NUC970_Buildroot
+</code></pre><p>Update the buildroot:</p>
+<pre tabindex="0"><code>/NUC970_Buildroot$ git pull
+</code></pre><p><img src="/images/N9H30-1.png" alt="blog圖片的連結"></p>
+<p>Set configuration to the target board</p>
+<pre tabindex="0"><code>$ make nuvoton_n9h30_emwin_defconfig
+</code></pre><p><img src="/images/N9H30-2.png" alt="blog圖片的連結"></p>
+<p>Build image</p>
+<pre tabindex="0"><code>$ make
+</code></pre><p><img src="/images/N9H30-3.png" alt="blog圖片的連結"></p>
+<h1 id="building-finishing">Building Finishing</h1>
+<p>Once the build is complete, you can find the resulting image at /output/image</p>
+<p><img src="/images/N9H30-4.png" alt="blog圖片的連結"></p>
+<ul>
+<li>Need the u-boot.bin and uImage files to program the N9H30 EVB through NuWriter.
+<ul>
+<li>
+<p><code>Image</code>: Linux kernel image used for running on DDR</p>
+</li>
+<li>
+<p><code>uImage</code>: Linux kernel image used for booting with uboot</p>
+</li>
+<li>
+<p><code>u-boot.bin</code>: uboot image</p>
+</li>
+<li>
+<p><code>u-boot-spl.bin</code>: “uboot Secondary Program Loader image”, used for booting from SPI NAND</p>
+<p>(~/output/build/uboot-master/spl/u-boot-spl.bin)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="if-you-made-a-minor-change-you-can-use-the-following">If you made a minor change, you can use the following:</h5>
+<p>To configure Buildroot:</p>
+<pre tabindex="0"><code>$ make menuconfig 
+</code></pre><p>To configure uboot:</p>
+<pre tabindex="0"><code>$ make uboot-menuconfig 
+</code></pre><p>To configure kernel:</p>
+<pre tabindex="0"><code>$ make linux-menuconfig 
+</code></pre><p>make</p>
+<pre tabindex="0"><code>$ make –j4
+</code></pre><p>Rebuild the uboot</p>
+<pre tabindex="0"><code>$ make uboot-rebuild &amp;&amp; make
+</code></pre><p>Rebuild the kernel</p>
+<pre tabindex="0"><code>$ make linux-rebuild &amp;&amp; make
+</code></pre><p>Clean directory project (Ex)</p>
+<pre tabindex="0"><code>$ make &lt;package&gt;-dirclean
+</code></pre><p>Clean up any previously built files, you can use the following commands:​</p>
+<pre tabindex="0"><code>$ make clean 
+</code></pre><h1 id="programming">Programming</h1>
+<p>Usually, you would use NuWriter for N9H30 to program the image.</p>
+<p>Install WinUSB4NuVCOM Driver</p>
+<p>Open NUC970_NuWriter-master\NuWriter\NuWriter\Release</p>
+<p>Select the corresponding IC model. <code>N9H30F61IEC.ini</code></p>
+<p><img src="/images/N9H30-5.png" alt="blog圖片的連結"></p>
+<h1 id="evaluation-board-introduction">Evaluation Board Introduction</h1>
+<ol>
+<li>Debug Port (console): show the debug message</li>
+<li>USB Device: used to program image by NuWriter</li>
+<li>Power-On Switch: Switch booting source</li>
+<li>Reset Button: reset N9H30</li>
+</ol>
+<p><img src="/images/N9H30-6.png" alt="blog圖片的連結"></p>
+<h6 id="to--program-an-image-to-n9h30-evb-set-the-power-o-setting-to-usb-mode-and-connect-it-to-the-pc">To  program an image to N9H30 EVB, set the Power-o-setting to USB mode and connect it to the PC</h6>
+<h6 id="s0-and-s1-are-high"><code>S0 and S1 are High</code></h6>
+<h6 id="按下reset後在按tool的connect">按下Reset後，在按tool的connect</h6>
+<p><img src="/images/N9H30-7.png" alt="blog圖片的連結"></p>
+<h6 id="click-the-reset-button-and-you-will-see-the-debug-message-boot-from-usb">Click the Reset button and you will see the debug message: “Boot from USB”.</h6>
+<p><img src="/images/N9H30-8.png" alt="blog圖片的連結"></p>
+<h1 id="ram">RAM:</h1>
+<h3 id="ddrsram--non-permanent-data-storage-for-debugging">DDR/SRAM : Non-permanent data storage for debugging</h3>
+<p><img src="/images/N9H30-9.png" alt="blog圖片的連結"></p>
+<h1 id="external-storage-">External storage :</h1>
+<h3 id="nand">NAND</h3>
+<h3 id="spi-flash">SPI-Flash</h3>
+<p><img src="/images/N9H30-10.png" alt="blog圖片的連結"></p>
+<h1 id="envtxt">Env.txt</h1>
+<p><img src="/images/N9H30-11.png" alt="blog圖片的連結"></p>
+<p>Kernel Size 重點說明</p>
+<p>stderr=serial, stdin=serial, stdout=serial： 這些參數設置了標準輸入（stdin）、標準輸出（stdout）和標準錯誤（stderr）的輸出位置。</p>
+<p>在這裡，它們都被設定為串列（serial）介面，這意味著系統將使用串列通訊埠來進行輸入和輸出。</p>
+<p>loadkernel=nand read 0x7fc0 0x200000 0x800000： 此參數是一個自定義的指令，用於從 NAND 快閃記憶體中讀取核心映像並載入到記憶體中。</p>
+<p>具體來說：</p>
+<p>nand read: 這個指令表示從 NAND 快閃記憶體中讀取資料。</p>
+<p>0x7fc0: 是載入核心映像的目標記憶體位址。</p>
+<p>0x200000: 是從 NAND 記憶體中讀取資料的位址偏移量。</p>
+<p>0x800000: 是要讀取的字節數（此處為 8MB）。</p>
+<hr>
+<hr>
+<hr>
+<h1 id="file-system">FILE SYSTEM</h1>
+<h1 id="yaffs">YAFFS</h1>
+<h3 id="create-yaffs-format-root-filesystem-on-nand">Create YAFFS Format Root Filesystem on NAND</h3>
+<p>1.1 Setting up the development enviromnet.</p>
+<p>Please donwload the necessary package for development.</p>
+<pre tabindex="0"><code>$ sudo apt install git make g++ python nucurses5-dev meas-common-dev libglu1-mesa-dev
+</code></pre><p>Download the N9H30 Source code</p>
+<pre tabindex="0"><code>$ git clone https://github.com/OpenNuvoton/NUC970_Buildroot.git NUC970_Buildroot_N9H30
+</code></pre><p>1.2 Configuration options for the N9H30 system.</p>
+<p>Setup default configuration of N9H30</p>
+<pre tabindex="0"><code>$ make nuvoton_n9h30_emwin_defconfig
+</code></pre><p>Build default image and related configurations.</p>
+<pre tabindex="0"><code>$ make -j8
+</code></pre><p>1.3 Configuration options for NAND flash setting options.</p>
+<p>Buildroot</p>
+<pre tabindex="0"><code>$ make menuconfig
+</code></pre><p><img src="/images/N9H30-12.png" alt="blog圖片的連結"></p>
+<p>Linux kernal</p>
+<pre tabindex="0"><code>$ make linux-menuconfig
+</code></pre><p><img src="/images/N9H30-13.png" alt="blog圖片的連結"></p>
+<p><img src="/images/N9H30-14.png" alt="blog圖片的連結"></p>
+<p><img src="/images/N9H30-15.png" alt="blog圖片的連結"></p>
+<p><img src="/images/N9H30-16.png" alt="blog圖片的連結"></p>
+<pre tabindex="0"><code>$ make linux-rebuild
+$ make -j8
+</code></pre><p><img src="/images/N9H30-17.png" alt="blog圖片的連結">
+<img src="/images/N9H30-17_2.png" alt="blog圖片的連結"></p>
+<h1 id="modify-u-boot-envtxt">Modify u-boot env.txt</h1>
+<p>env.txt is a u-boot environment variable file. u-boot can read data to RAM from Flash, boot kernel from RAM.</p>
+<p>The variable bootcmd will be executed when u-boot starts and the variable bootdelay has been defined.</p>
+<p>The following command will read the kernel image from Flash to RAM and boot from RAM address 7fc0.</p>
+<p>env.txt 是一個 u-boot 環境變數文件。u-boot 可以從 Flash 讀取數據到 RAM，然後從 RAM 啟動內核。</p>
+<p>當 u-boot 啟動並且已經定義了變數 bootdelay 時，變數 bootcmd 將被執行。</p>
+<p>以下命令將從 Flash 讀取內核映像到 RAM，然後從 RAM 地址 0x7fc0 開始啟動</p>
+<pre tabindex="0"><code>loadkernel=nand read 0x7fc0 0x200000 0x600000
+bootcmd=run loadkernel;bootm 0x7fc0
+</code></pre><p>u-boot can use MTD to partition Flash into three mtdblocks and create YAFFS2 format root filesystem on mtdblock2.</p>
+<p>The Flash address and size below can be changed to anywhere you want.</p>
+<p>u-boot 可以使用 MTD（Memory Technology Device）將 Flash 劃分為三個 mtdblocks（區塊），並在 mtdblock2 上創建 YAFFS2 格式的根文件系統。</p>
+<p>下面的 Flash 地址和大小可以根據需要進行更改。</p>
+<ul>
+<li>mtdblock0 stores u-boot image and its Flash offset is from 0x0 to 0x200000.</li>
+<li>mtdblock1 stores kernel image and its Flash offset is from 0x200000 to 0x800000.</li>
+<li>mtdblock2 stores root filesystem image and its Flash offset is from 0x800000 to the end.</li>
+</ul>
+<p>這些信息說明了 Flash 存儲中的三個 mtdblocks 的配置：</p>
+<ul>
+<li>mtdblock0 存儲 u-boot 映像，其 Flash 偏移從 0x0 到 0x200000。</li>
+<li>mtdblock1 存儲內核映像，其 Flash 偏移從 0x200000 到 0x800000。</li>
+<li>mtdblock2 存儲根文件系統映像，其 Flash 偏移從 0x800000 到 Flash 的結尾。
+每個 mtdblock 都是 Flash 存儲中的一個連續區塊，用於存儲特定的數據，如 u-boot 映像、內核映像和根文件系統映像。Flash 偏移指的是 Flash 存儲中的起始位置，並以十六進制地址表示。</li>
+</ul>
+<p>這種配置可讓 u-boot 和其他系統元件能夠輕鬆地從 Flash 存儲區讀取所需的映像，並在系統啟動過程中使用它們。這種分區和映像的組織方式有助於確保系統的順利運行，同時也方便了升級和維護。</p>
+<h2 id="the-whole-envtxt-content-is-shown-below">The whole env.txt content is shown below:</h2>
+<pre tabindex="0"><code>baudrate=115200
+bootdelay=1
+stderr=serial
+stdin=serial
+stdout=serial
+loadkernel=nand read 0x7fc0 0x200000 0x600000
+bootcmd=run loadkernel;bootm 7fc0
+bootargs=noinitrd root=/dev/mtdblock2 rootfstype=yaffs2 rootflags=inband-tags
+console=ttyS0 rdinit=/sbin/init mem=64M
+mtdparts=nand0:0x200000@0x0(u-boot),0x600000@0x200000(kernel),-(user) ignore_loglevel
+</code></pre><h1 id="program-image-to-evaluation-board">Program Image to Evaluation Board</h1>
+<p>Program the following Image files to the target board. Each image has particular address and these addresses depend on</p>
+<p>env.txt.</p>
+<table>
+<thead>
+<tr>
+<th>Image Name</th>
+<th style="text-align:center">Image Type</th>
+<th style="text-align:right">Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u-boot-spl.bin</td>
+<td style="text-align:center">uboot</td>
+<td style="text-align:right">0x200</td>
+</tr>
+<tr>
+<td>env.txt</td>
+<td style="text-align:center">Env</td>
+<td style="text-align:right">0x80000</td>
+</tr>
+<tr>
+<td>u-boot.bin</td>
+<td style="text-align:center">Data</td>
+<td style="text-align:right">0x100000</td>
+</tr>
+<tr>
+<td>uImage</td>
+<td style="text-align:center">Data</td>
+<td style="text-align:right">0x200000</td>
+</tr>
+<tr>
+<td>rootfs.yaffs2</td>
+<td style="text-align:center">Data</td>
+<td style="text-align:right">0x800000</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/N9H30-18.png" alt="blog圖片的連結">
+<img src="/images/N9H30-19.png" alt="blog圖片的連結"></p>
+<h2 id="check-root-filesystem">Check Root Filesystem</h2>
+<p>Please enter the following command in the terminal of the N9H30 system.</p>
+<pre tabindex="0"><code># dmesg | grep yaffs
+</code></pre><pre tabindex="0"><code>Kernel command line: noinitrd root=/dev/mtdblock2 rootfstype=yaffs2 rootflags=inband-tags console=ttyS0
+rdinit=/sbin/init mem=64M
+mtdparts=nand0:0x200000@0x0(u-boot),0x600000@0x200000(kernel),-(user) ignore_loglevel
+yaffs: yaffs built Apr 6 2023 13:10:23 Installing.
+yaffs: dev is 32505858 name is &#34;mtdblock2&#34; rw
+yaffs: passed flags &#34;inband-tags&#34;
+yaffs: yaffs: Attempting MTD mount of 31.2,&#34;mtdblock2&#34;
+yaffs: block 957 is bad
+yaffs: block 958 is bad
+yaffs: block 959 is bad
+yaffs: block 960 is bad
+yaffs: 129 blocks to be sorted...
+yaffs: yaffs_read_super: is_checkpointed 0
+VFS: Mounted root (yaffs2 filesystem) on device 31:2.
+</code></pre><hr>
+<hr>
+<hr>
+<h1 id="file-system-1">FILE SYSTEM</h1>
+<h1 id="jffs2">JFFS2</h1>
+<h3 id="create-jffs2-format-root-filesystem-on-nor-flash">Create JFFS2 Format Root Filesystem on NOR Flash</h3>
+<h5 id="modify-buildroot-configuration">Modify Buildroot Configuration</h5>
+<pre tabindex="0"><code>Buildroot$ make menuconfig
+</code></pre><p><img src="/images/N9H30-20.png" alt="blog圖片的連結"></p>
+<ol>
+<li>
+<p>Cancel the default configuration that creates root file system on RAM.</p>
+<p>Cancel cpio the root filesytem(for use as an initial RAM filesytem)</p>
+<p>Cancel initial RAM filesytem linked into linux kernel</p>
+</li>
+<li>
+<p>Use JFFS2 root filesytem.</p>
+</li>
+<li>
+<p>Separate Linux kernel and root filesytem from uImage and tar the root filesystem with JFFS2 Format.</p>
+<p>Choose Flash Type to Parallel Flash with 128KB erase size.</p>
+</li>
+</ol>
+<h5 id="modify-linux-kernel-configuration">Modify Linux Kernel configuration</h5>
+<pre tabindex="0"><code>~Buildroot$ make linux-menuconfig
+</code></pre><p><img src="/images/N9H30-21.png" alt="blog圖片的連結"></p>
+<ol>
+<li>
+<p>Cancel RAM filesystem and RAM disk support.</p>
+<p>Cancel Initial RAM filesystem and RAM disk (initramfs/initrd) support.</p>
+</li>
+<li>
+<p>Use MTD partition command in u-boot.</p>
+<p>Tick command line partition table parsing.</p>
+<p>Tick caching block device access to MTD devices.</p>
+</li>
+<li>
+<p>Use SPI support</p>
+<p>Tick Nuvoton NUC970/N9H30 Series SPI Port 0.</p>
+</li>
+<li>
+<p>Ensure that Linux kernel supports JFFS2 format:</p>
+<p>Tick Journalling Flash File System v2 (JFFS2) support to open JFSS2 options.</p>
+<p>Tick JFFS2 summary support</p>
+<p>Tick JFFS2 XATTR support</p>
+<p>Tick JFFS2 Security Labels</p>
+</li>
+</ol>
+<h5 id="modify-mtdblock-auto-mount">Modify mtdblock Auto Mount</h5>
+<p>Some particular evaluation boards have &ldquo;mdev&rdquo; file determining which mtdblock will be auto mounted.</p>
+<p>You can check if the path board/nuvoton/rootfs-xxx/etc has &ldquo;mdev&rdquo; file or not.</p>
+<p>The default setting is auto mount mtdblock1 to mtdblock9.</p>
+<p>In other words, it will mount u-boot and Linux kernel and will cause error.</p>
+<p>To avoid this problem, modify &ldquo;mdev&rdquo; file with the following step. This demo is operated on</p>
+<pre tabindex="0"><code>~Buildroot$ vim board/nuvoton/rootfs-xxx/etc/mdev.conf
+</code></pre><p>Modify the source code below:</p>
+<pre tabindex="0"><code>mtdblock([3-9]+) 0:0 660 */sbin/automount.sh $MDEV X${ACTION}
+</code></pre><p>一些特定的評估板使用 &ldquo;mdev&rdquo; 文件來確定將自動掛載哪個 mtdblock。您可以檢查路徑 board/nuvoton/rootfs-xxx/etc 是否具有 &ldquo;mdev&rdquo; 文件。</p>
+<p>默認設置是自動掛載 mtdblock1 到 mtdblock9。換句話說，這將掛載 u-boot 和 Linux 內核，並導致錯誤。</p>
+<p>為了避免這個問題，請按照以下步驟修改 &ldquo;mdev&rdquo; 文件。</p>
+<h5 id="modify-jffs2-erase-size">Modify JFFS2 Erase Size</h5>
+<p>The rootfs_jffs2 image cannot be directly programed into an evaluation board. Thus, you can use mkfs tool to generate jffs2.img.</p>
+<p>Because JFFS2 format needs the minimum erase size of 8k, you should modify setting in Linux driver.</p>
+<h6 id="modify-outputbuildlinux-masterdriversmtddevicesm25p80c">Modify output/build/linux-master/drivers/mtd/devices/m25p80.c</h6>
+<pre tabindex="0"><code>/* Winbond -- w25x &#34;blocks&#34; are 64K, &#34;sectors&#34; are 4KiB */
+{ &#34;w25x10&#34;, INFO(0xef3011, 0, 64 * 1024, 2, SECT_4K) },
+{ &#34;w25x20&#34;, INFO(0xef3012, 0, 64 * 1024, 4, SECT_4K) },
+{ &#34;w25x40&#34;, INFO(0xef3013, 0, 64 * 1024, 8, SECT_4K) },
+{ &#34;w25x80&#34;, INFO(0xef3014, 0, 64 * 1024, 16, SECT_4K) },
+{ &#34;w25x16&#34;, INFO(0xef3015, 0, 64 * 1024, 32, SECT_4K) },
+{ &#34;w25x32&#34;, INFO(0xef3016, 0, 64 * 1024, 64, SECT_4K) },
+{ &#34;w25q32&#34;, INFO(0xef4016, 0, 64 * 1024, 64, SECT_4K) },
+{ &#34;w25q32dw&#34;, INFO(0xef6016, 0, 64 * 1024, 64, SECT_4K) },
+{ &#34;w25x64&#34;, INFO(0xef3017, 0, 64 * 1024, 128, SECT_4K) },
+{ &#34;w25q64&#34;, INFO(0xef4017, 0, 64 * 1024, 128, SECT_4K) },
+{ &#34;w25q80&#34;, INFO(0xef5014, 0, 64 * 1024, 16, SECT_4K) },
+{ &#34;w25q80bl&#34;, INFO(0xef4014, 0, 64 * 1024, 16, SECT_4K) },
+{ &#34;w25q128&#34;, INFO(0xef4018, 0, 64 * 1024, 256, SECT_4K | M25P80_DUAL_READ | M25P80_QUAD_READ | M25P80_QUAD_WRI
+/* { &#34;w25q256&#34;, INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K) }, */
+{ &#34;w25q256&#34;, INFO(0xef4019, 0, 64 * 1024, 512, 0) },
+{ &#34;w25q256jvim&#34;, INFO(0xef7019, 0, 64 * 1024, 512, SECT_4K) },
+{ &#34;w25q512jvf&#34;, INFO(0xef4020, 0, 64 * 1024, 1024, SECT_4K) },
+</code></pre><p><img src="/images/N9H30-22.png" alt="blog圖片的連結"></p>
+<pre tabindex="0"><code>~Buildroot$ make linux-rebuild
+</code></pre><h6 id="modify-uboot-configuration">Modify uboot configuration</h6>
+<p>Follw the steps below to modify Buildrot configuration.</p>
+<pre tabindex="0"><code>~Buildroot$ cd output/build/uboot-master/
+~Buildroot/output/build/uboot-master/$ make menuconfig
+</code></pre><p><img src="/images/N9H30-23.png" alt="blog圖片的連結"></p>
+<ol>
+<li>Use SPI support</li>
+</ol>
+<p>Tick NUC970/N9H30 SPI driver and select NUC970/N9H30 SPI in Quad mode</p>
+<ol start="2">
+<li>Enable the legacy SPI flash support. This will include basic standard support for things like probing, read / write, and erasing through cmd_sf interface.</li>
+</ol>
+<p>Tick SPI flash Bank/Extended address register support. This opetion is used to access the flash which has size &gt; 16 MiB in 3-byte addresing.</p>
+<p>Tick Winbond SPI flash. Because N9H30 evb just used Winboad flash.</p>
+<ol start="3">
+<li>Device access commands</li>
+</ol>
+<p>Tick sf command.</p>
+<p>Tick sspi command.</p>
+<h6 id="modify-includeconfigsnuc970_evbh">Modify include/configs/nuc970_evb.h</h6>
+<pre tabindex="0"><code>#define CONFIG_SYS_USE_SPIFLASH
+#define CONFIG_SYS_USE_NANDFLASH
+/*#define CONFIG_ENV_IS_IN_NAND */
+#define CONFIG_ENV_IS_IN_SPI_FLASH
+/*#define CONFIG_ENV_IS_IN_MMC */
+</code></pre><pre tabindex="0"><code>~Buildroot/output/build/uboot-master/$ cd -
+
+~Buildroot$ make uboot-rebuild
+
+~Buildroot$ make
+</code></pre><h3 id="use-mkfs-tool-to-generate-root-filesystem-image">Use mkfs Tool to Generate Root Filesystem Image</h3>
+<p>After installing successfully and compiling Linux kernel, go to Image folder. Create rootfs folder to unzip rootfs.tar.</p>
+<pre tabindex="0"><code>~Buildroot$ cd output/images
+~Buildroot/output/images$ mkdir rootfs
+~Buildroot/output/images$ sudo tar -C ./rootfs -xf rootfs.tar
+</code></pre><p>Use mkfs to generate jffs2.img</p>
+<pre tabindex="0"><code>~Buildroot/output/images$ sudo mkfs.jffs2 -s 0x1000 -e 0x10000 -p 0x800000 -d ./rootfs -o jffs2.img
+</code></pre><h6 id="modify-u-boot-envtxt-1">Modify u-boot env.txt</h6>
+<p>env.txt is a u-boot environment variable file. u-boot can read data to RAM from Flash, boot kernel from RAM.</p>
+<p>The variable bootcmd will be executed when u-boot starts and the variable bootdelay has been defined.</p>
+<p>The following command will read the kernel image from Flash to RAM and boot from RAM address 7fc0.</p>
+<p>The difference of command between NAND Flash and NOR Flash is NAND Flash uses nand read and the NOR Flash uses sf read.</p>
+<p>Sf probe should have been executed first because NOR Flash should be initiated first.</p>
+<pre tabindex="0"><code>setspi=sf probe 0 30000000
+loadkernel=sf read 7fc0 200000 600000
+bootcmd=run setspi;loadkernel;bootm 7fc0;
+</code></pre><p>u-boot can use MTD to partition Flash into three mtdblocks and create JFFS2 format root filesystem on mtdblock2.</p>
+<p>The Flash address and size listed below can be changed to anywhere you want.</p>
+<ul>
+<li>mtdblock0 stores u-boot image and its Flash offset is from 0x0 to 0x200000.</li>
+<li>mtdblock1 stores kernel image and its Flash offset is from 0x200000 to 0x800000.</li>
+<li>mtdblock2 stores root filesystem image and its Flash offset is from 0x800000 to the end.</li>
+</ul>
+<p>The whole env.txt content is shown below:</p>
+<pre tabindex="0"><code>baudrate=115200
+bootdelay=1
+stderr=serial
+stdin=serial
+stdout=serial
+setspi=sf probe 0 30000000;
+loadkernel=sf read 7fc0 200000 600000
+bootcmd=run setspi;run loadkernel;bootm 7fc0;
+bootargs=noinitrd root=/dev/mtdblock2 rw rootfstype=jffs2 console=ttyS0 rdinit=/sbin/init mem=32M
+mtdparts=m25p80:0x200000@0x0(u-boot),0x600000@0x200000(kernel),-(user) ignore_loglevel
+</code></pre><h1 id="program-image-to-evaluation-board-1">Program Image to Evaluation Board</h1>
+<p>Program the following Image files to the target board. Each image has particular address and these addresses depend on</p>
+<p>env.txt.</p>
+<table>
+<thead>
+<tr>
+<th>Image Name</th>
+<th style="text-align:center">Image Type</th>
+<th style="text-align:right">Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u-boot.bin</td>
+<td style="text-align:center">Loarder</td>
+<td style="text-align:right">0xe00000</td>
+</tr>
+<tr>
+<td>env.txt</td>
+<td style="text-align:center">Env</td>
+<td style="text-align:right">0x80000</td>
+</tr>
+<tr>
+<td>uImage</td>
+<td style="text-align:center">Data</td>
+<td style="text-align:right">0x200000</td>
+</tr>
+<tr>
+<td>jffs2.img</td>
+<td style="text-align:center">Data</td>
+<td style="text-align:right">0x800000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="check-root-filesystem-1">Check Root Filesystem</h2>
+<p>Type the following command on device terminal to check if the root filesystem has been mounted on or not.</p>
+<p>Compare the MTD partition you defined in env.txt with the message after you type the command below.</p>
+<pre tabindex="0"><code>/ # cat /proc/mtd
+dev: size erasesize name
+mtd0: 00200000 00010000 &#34;u-boot&#34;
+mtd1: 00600000 00010000 &#34;kernel&#34;
+mtd2: 01800000 00010000 &#34;user&#34;
+</code></pre>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-5770066"><i
+                class="ti-mobile mr-3 text-primary"></i>03-5770066</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

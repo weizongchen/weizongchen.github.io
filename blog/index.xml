@@ -6,7 +6,17 @@
     <description>Recent content in Blogs on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 01 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>N9H30 Buildroot Quick Start</title>
+      <link>https://weizongchen.github.io/blog/n9h30_quickstart/</link>
+      <pubDate>Thu, 03 Aug 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/n9h30_quickstart/</guid>
+      <description>opennuvoton N9H30 https://github.com/OpenNuvoton/MPU-Family
+Start up with VMware This VMware Image offers a Linux development environment for N9H30.</description>
+    </item>
+    
     <item>
       <title>MA35D1 Buildroot 打開 openssh</title>
       <link>https://weizongchen.github.io/blog/ma35d1_openssh/</link>
