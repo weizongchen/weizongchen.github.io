@@ -6,7 +6,20 @@
     <description>Recent content on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 03 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 09:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>簡單說明Linux驅動程式</title>
+      <link>https://weizongchen.github.io/blog/ldd_brief_intro/</link>
+      <pubDate>Sat, 05 Aug 2023 09:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ldd_brief_intro/</guid>
+      <description>Char Device Kernel設備驅動程式是將底層硬體公開給系統其餘部分的機制。
+作為嵌入式系統的開發者，您需要了解這些設備驅動程式如何適合整體架構，以及如何從用戶空間程式中訪問它們。
+您的系統可能會有一些新奇的硬體組件，您需要找到一種方法來訪問它們。
+在許多情況下，您會發現已經為您提供了一些設備驅動程式，您可以在不編寫任何Kernel代碼的情況下實現所需的一切。
+例如，您可以使用 sysfs 中的文件來操作 GPIO 引腳和 LED，並且有庫可以訪問串行匯流排，包括 SPI（串行週邊介面）和 I2C（雙線串行匯流排）。</description>
+    </item>
+    
     <item>
       <title>N9H30 Buildroot Quick Start</title>
       <link>https://weizongchen.github.io/blog/n9h30_quickstart/</link>
@@ -300,15 +313,6 @@ Clock, LDO control Rigister, PDBIASEN 這個 bit</description>
       
       <guid>https://weizongchen.github.io/blog/opencv_env/</guid>
       <description>系統環境 Windows 10 VS 2019 OpenCV 4.5.5 選擇 Windows 版本的OpenCV download下來 解壓縮到指定資料夾 可以在C 根目錄建一個 OpenCV 資料夾，在OpenCV資料夾下再建一個OpenCV4.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://weizongchen.github.io/blog/m460-level0/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://weizongchen.github.io/blog/m460-level0/</guid>
-      <description></description>
     </item>
     
   </channel>

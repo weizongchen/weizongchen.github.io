@@ -6,7 +6,20 @@
     <description>Recent content in 心得 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 25 May 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 09:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>簡單說明Linux驅動程式</title>
+      <link>https://weizongchen.github.io/blog/ldd_brief_intro/</link>
+      <pubDate>Sat, 05 Aug 2023 09:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ldd_brief_intro/</guid>
+      <description>Char Device Kernel設備驅動程式是將底層硬體公開給系統其餘部分的機制。
+作為嵌入式系統的開發者，您需要了解這些設備驅動程式如何適合整體架構，以及如何從用戶空間程式中訪問它們。
+您的系統可能會有一些新奇的硬體組件，您需要找到一種方法來訪問它們。
+在許多情況下，您會發現已經為您提供了一些設備驅動程式，您可以在不編寫任何Kernel代碼的情況下實現所需的一切。
+例如，您可以使用 sysfs 中的文件來操作 GPIO 引腳和 LED，並且有庫可以訪問串行匯流排，包括 SPI（串行週邊介面）和 I2C（雙線串行匯流排）。</description>
+    </item>
+    
     <item>
       <title> M460 Level0 說明</title>
       <link>https://weizongchen.github.io/blog/m460_level0/</link>

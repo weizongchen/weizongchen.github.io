@@ -3,10 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://weizongchen.github.io/blog/</loc>
-    <lastmod>2023-08-03T23:24:00+08:00</lastmod>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/</loc>
-    <lastmod>2023-08-03T23:24:00+08:00</lastmod>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/tags/linux/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/tags/raspberry-pi/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/tags/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/ldd_brief_intro/</loc>
+    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/n9h30/</loc>
     <lastmod>2023-08-03T23:24:00+08:00</lastmod>
@@ -14,13 +32,7 @@
     <loc>https://weizongchen.github.io/blog/n9h30_quickstart/</loc>
     <lastmod>2023-08-03T23:24:00+08:00</lastmod>
   </url><url>
-    <loc>https://weizongchen.github.io/tags/</loc>
-    <lastmod>2023-08-03T23:24:00+08:00</lastmod>
-  </url><url>
     <loc>https://weizongchen.github.io/categories/%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2023-08-03T23:24:00+08:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/</loc>
     <lastmod>2023-08-03T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/ma35d1/</loc>
@@ -44,9 +56,6 @@
     <loc>https://weizongchen.github.io/tags/cortex-m4/</loc>
     <lastmod>2023-05-25T23:24:00+08:00</lastmod>
   </url><url>
-    <loc>https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
-    <lastmod>2023-05-25T23:24:00+08:00</lastmod>
-  </url><url>
     <loc>https://weizongchen.github.io/blog/add_tensorflow_lite_to_ma35d1_yocto/</loc>
     <lastmod>2023-02-03T23:24:00+08:00</lastmod>
   </url><url>
@@ -67,9 +76,6 @@
   </url><url>
     <loc>https://weizongchen.github.io/blog/m4_fmc/</loc>
     <lastmod>2022-09-11T23:24:00+08:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/tags/cortex-a/</loc>
-    <lastmod>2022-09-06T23:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/blog/pi3ldd/</loc>
     <lastmod>2022-09-06T23:24:00+08:00</lastmod>
@@ -139,7 +145,5 @@
   </url><url>
     <loc>https://weizongchen.github.io/search/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/blog/m460-level0/</loc>
   </url>
 </urlset>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Char Device">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.116.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e5%bf%83%e5%be%97"
+          class="text-primary">心得</a>
+        
+        <h2>簡單說明Linux驅動程式</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>05 August 2023</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/linux_device.jpg" class="img-fluid w-100 mb-4" alt="簡單說明Linux驅動程式">
+        
+        <div class="content mb-5">
+          <h1 id="char-device">Char Device</h1>
+<p>Kernel設備驅動程式是將底層硬體公開給系統其餘部分的機制。</p>
+<p>作為嵌入式系統的開發者，您需要了解這些設備驅動程式如何適合整體架構，以及如何從用戶空間程式中訪問它們。</p>
+<p>您的系統可能會有一些新奇的硬體組件，您需要找到一種方法來訪問它們。</p>
+<p>在許多情況下，您會發現已經為您提供了一些設備驅動程式，您可以在不編寫任何Kernel代碼的情況下實現所需的一切。</p>
+<p>例如，您可以使用 sysfs 中的文件來操作 GPIO 引腳和 LED，並且有庫可以訪問串行匯流排，包括 SPI（串行週邊介面）和 I2C（雙線串行匯流排）。</p>
+<p>字符設備（Character Device）適用於 <code>**非緩衝的輸入/輸出(unbuffered I/O)</code> 操作，提供了多種豐富的功能，並在應用程式代碼和驅動程式之間保持了簡潔的界面。當您需要實現自訂的設備驅動程式時，這通常是首選方案。換句話說，它能夠讓您的應用程式直接和硬體互動，而不需要太多繁雜的中間步驟。(這裡的&quot;中間步驟&quot;是指介於應用程式和驅動程式之間的額外操作、轉換或處理，這可能會增加代碼的複雜性和執行時間。)</p>
+<p>例如，<code>您可能會通過 /sys/class/gpio 目錄下的一組文件來訪問 GPIO 驅動程式。</code></p>
+<p>字符設備在用戶空間中通過稱為設備節點的特殊文件來識別。這個文件名通過主要和次要編號來映射到設備驅動程式。主要編號將設備節點映射到特定的驅動程式，次要編號則告訴驅動程式訪問的介面。</p>
+<p>例如，在 ARM Versatile PB 上，</p>
+<p><strong>第一個串口的設備</strong>節點是 <code>/dev/ttyAMA0</code>，</p>
+<p>它的<code>主要編號是 204，次要編號是 64</code>。</p>
+<p><strong>第二個串口的設備</strong>節點<code>有相同的主要編號</code>，但<code>次要編號是 65</code>。這些編號可以從目錄清單中看到。</p>
+<pre tabindex="0"><code># ls -l /dev/ttyAMA*
+crw-rw---- 1 root root 204, 64 Jan 1 1970 /dev/ttyAMA0
+crw-rw---- 1 root root 204, 65 Jan 1 1970 /dev/ttyAMA1
+crw-rw---- 1 root root 204, 66 Jan 1 1970 /dev/ttyAMA2
+crw-rw---- 1 root root 204, 67 Jan 1 1970 /dev/ttyAMA3
+</code></pre><p>標準的主要（major number） 和次要（minor number）編號清單可以在Linux Kernel文檔中的 Documentation/devices.txt 找到。該清單不會經常更新，且不包含前面段落中描述的 ttyAMA 設備。然而，如果您查看位於 drivers/tty/serial/amba-pl011.c 的Kernel源代碼，您將看到major number和minor number的define：</p>
+<pre tabindex="0"><code>#define SERIAL_AMBA_MAJOR 204
+#define SERIAL_AMBA_MINOR 64
+</code></pre><p>這些聲明指定了特定設備（例如 ttyAMA）的major number和minor number，以便Kernel和應用程式可以識別和訪問這些設備。雖然該標準清單可能不包含所有設備，但它提供了一個參考，供開發者了解如何設定major number和minor number以進行設備識別。</p>
+<p>當存在多個同類型的設備實例時，例如 ttyAMA 驅動程式，形成設備節點名稱的慣例是採用基本名稱 ttyAMA，然後在這個例子中從 0 到 3 添加實例編號。</p>
+<pre tabindex="0"><code>我的raspberry pi 如下
+root@raspberrypi:~# ls -l /dev/ttyAMA*
+crw-rw---- 1 root dialout 204, 64 Aug  5 10:38 /dev/ttyAMA0
+</code></pre><p>P.S. 在一些系統中，特別是像 Linux 等操作系統中，串口（UART）設備的命名可能會類似於 ttyS0、ttyS1 等。不同的系統和設備可能會有不同的命名慣例。
+在 Raspberry Pi 上，UART 串口的命名通常是 ttyAMA0。但是，如果您使用的是較新的 Raspberry Pi 版本，例如 Raspberry Pi 3 或更高版本，可能會使用 ttyS0 來表示第一個 UART 串口。</p>
+<p>linux 裝置管理員 有以下這麼多種:</p>
+<p>devtmpfs：當設備驅動程式使用由驅動程式提供的基本名稱（例如 ttyAMA）和實例編號註冊新的設備介面時，設備節點將被創建。</p>
+<p><code>udev</code> 或 mdev（不使用 devtmpfs）：與使用 devtmpfs 基本相同，不同之處在於需要使用用戶空間的守護程序從 sysfs 中提取設備名稱並創建節點。稍後我會談到 sysfs。</p>
+<p>mknod：如果您正在使用靜態設備節點，則可以使用 mknod 手動創建它們。</p>
+<p>major number已經擴展為12位元，有效的編號範圍從1到4,095，而minor number則擴展為20位元，範圍從0到1,048,575。</p>
+<p>當你打開一個字符設備節點時，內核會檢查主要和次要編號是否落在由字符設備驅動程式註冊的範圍內。如果是，它會將呼叫傳遞給驅動程式，否則打開呼叫將失敗。設備驅動程式可以提取次要編號，以了解要使用哪個硬體介面。</p>
+<p>所以 major number + minor number = 32個位元</p>
+<p>假設你有個應用程式(Application)如下，一個簡單的例子是虛擬隨機數發生器 urandom，每次讀取它時會返回隨機數據的位元組:</p>
+<div class="highlight"><pre tabindex="0" style="color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;stdio.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;sys/types.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;sys/stat.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;fcntl.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;unistd.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200"></span><span style="color:#f00">int</span> <span style="color:#00f">main</span><span style="color:#f00">(</span><span style="color:#f00">void</span><span style="color:#f00">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">int</span> <span style="color:#00f">f</span><span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">unsigned</span> <span style="color:#f00">int</span> <span style="color:#00f">rnd</span><span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">int</span> <span style="color:#00f">n</span><span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">f</span> <span style="color:#f00">=</span> <span style="color:#00f">open</span><span style="color:#f00">(</span>&#34;/dev/urandom&#34;<span style="color:#f00">,</span> <span style="color:#00f">O_RDONLY</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> <span style="color:#f00">(</span><span style="color:#00f">f</span> <span style="color:#f00">&lt;</span> 0<span style="color:#f00">)</span> <span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">perror</span><span style="color:#f00">(</span>&#34;Failed to open urandom&#34;<span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> 1<span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">n</span> <span style="color:#f00">=</span> <span style="color:#00f">read</span><span style="color:#f00">(</span><span style="color:#00f">f</span><span style="color:#f00">,</span> <span style="color:#f00">&amp;</span><span style="color:#00f">rnd</span><span style="color:#f00">,</span> <span style="color:#f00">sizeof</span><span style="color:#f00">(</span><span style="color:#00f">rnd</span><span style="color:#f00">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">if</span> <span style="color:#f00">(</span><span style="color:#00f">n</span> <span style="color:#f00">!=</span> <span style="color:#f00">sizeof</span><span style="color:#f00">(</span><span style="color:#00f">rnd</span><span style="color:#f00">))</span> <span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">perror</span><span style="color:#f00">(</span>&#34;Problem reading urandom&#34;<span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f00">return</span> 1<span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00f">printf</span><span style="color:#f00">(</span>&#34;Random number = 0x%x\n&#34;<span style="color:#f00">,</span> <span style="color:#00f">rnd</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00f">close</span><span style="color:#f00">(</span><span style="color:#00f">f</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f00">return</span> 0<span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">}</span>
+</span></span></code></pre></div><p>我的RPI如下:</p>
+<p>/dev/urandom 不是一個真的硬體，但軟體RD 喜歡這樣，把東西都給虛擬化、抽象化。</p>
+<p><img src="/images/ldd_1.png" alt="blog圖片的連結"></p>
+<h1 id="finding-out-about-drivers-at-runtime">Finding out about drivers at runtime</h1>
+<p>一旦您運行了 Linux 系統，了解已加載的設備驅動程式以及它們的狀態將非常有用。您可以通過讀取 /proc 和 /sys 目錄中的文件來獲得許多信息。</p>
+<pre tabindex="0"><code># cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  7 vcs
+ 10 misc
+ 13 input
+ 14 sound
+ 29 fb
+ 81 video4linux
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyAMA
+226 drm
+240 cec
+241 media
+242 uio
+243 hidraw
+244 rpmb
+245 bcm2835-gpiomem
+246 vc-mem
+247 bsg
+248 watchdog
+249 ptp
+250 pps
+251 lirc
+252 rtc
+253 dma_heap
+254 gpiochip
+
+Block devices:
+  1 ramdisk
+  7 loop
+  8 sd
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+179 mmc
+259 blkext
+
+/proc 是告訴我，目前那些東西已經啟動
+
+root@raspberrypi:~# cd /proc/
+root@raspberrypi:/proc# ls
+1    208  281  405  522  684        cgroups      key-users      swaps
+10   209  285  41   53   688        cmdline      kmsg           sys
+100  210  289  42   553  690        consoles     kpagecgroup    sysrq-trigger
+11   211  29   420  554  741        cpu          kpagecount     sysvipc
+112  212  3    421  567  743        cpuinfo      kpageflags     thread-self
+114  213  32   43   58   744        crypto       latency_stats  timer_list
+12   214  33   44   59   746        devices      loadavg        tty
+13   22   35   451  591  749        device-tree  locks          uptime
+138  23   36   452  6    88         diskstats    meminfo        version
+14   24   360  456  60   89         driver       misc           vmallocinfo
+146  253  362  464  61   90         execdomains  modules        vmstat
+15   256  363  465  613  91         fb           mounts         zoneinfo
+16   257  37   482  62   92         filesystems  net
+165  27   372  485  63   93         fs           pagetypeinfo
+17   272  378  5    633  95         interrupts   partitions
+178  273  38   50   64   96         iomem        schedstat
+179  277  385  502  65   97         ioports      self
+18   279  39   51   656  asound     irq          slabinfo
+19   28   4    516  66   buddyinfo  kallsyms     softirqs
+2    280  40   52   683  bus        keys         stat
+</code></pre><h1 id="getting-information-from-sysfs">Getting information from sysfs</h1>
+<h2 id="新的driver-都希望在sys-產生節點">新的driver 都希望在/sys 產生節點</h2>
+<p>您可以將 sysfs 在嚴格的定義中看作是內核對象、屬性和關係的表示。內核對象是一個目錄，屬性是一個文件，而關係則是從一個對象到另一個對象的符號連結。從一個更實際的角度來看，由於 Linux 設備驅動程式模型將所有設備和驅動程式都表示為內核對象，您可以透過查看 /sys 來看到內核對系統的視圖，如下所示：</p>
+<pre tabindex="0"><code>root@raspberrypi:/proc# ls /sys/class
+backlight        extcon            iscsi_iface      pps          spi_master
+bcm2835-gpiomem  gpio              iscsi_session    ptp          spi_slave
+bdi              graphics          iscsi_transport  pwm          thermal
+block            hidraw            leds             rc           tty
+bluetooth        hwmon             lirc             regulator    udc
+bsg              i2c-adapter       mdio_bus         rfkill       uio
+devcoredump      ieee80211         mem              rtc          vc
+devlink          input             misc             scsi_device  vc-mem
+dma              iscsi_connection  mmc_host         scsi_disk    video4linux
+dma_heap         iscsi_endpoint    net              scsi_host    vtconsole
+drm              iscsi_host        power_supply     sound        watchdog
+
+root@raspberrypi:/proc# ls /dev
+autofs         loop4         ram2     tty17  tty41  tty9       vcsu1
+block          loop5         ram3     tty18  tty42  ttyAMA0    vcsu2
+btrfs-control  loop6         ram4     tty19  tty43  ttyprintk  vcsu3
+bus            loop7         ram5     tty2   tty44  ttyS0      vcsu4
+cachefiles     loop-control  ram6     tty20  tty45  uhid       vcsu5
+cec0           mapper        ram7     tty21  tty46  uinput     vcsu6
+char           media0        ram8     tty22  tty47  urandom    vhci
+console        media1        ram9     tty23  tty48  v4l        video10
+cuse           media2        random   tty24  tty49  vchiq      video11
+disk           mem           rfkill   tty25  tty5   vcio       video12
+dma_heap       mmcblk0       serial0  tty26  tty50  vc-mem     video13
+dri            mmcblk0p1     serial1  tty27  tty51  vcs        video14
+fd             mmcblk0p2     shm      tty28  tty52  vcs1       video15
+full           mqueue        snd      tty29  tty53  vcs2       video16
+fuse           net           stderr   tty3   tty54  vcs3       video18
+gpiochip0      null          stdin    tty30  tty55  vcs4       video20
+gpiochip1      ppp           stdout   tty31  tty56  vcs5       video21
+gpiomem        ptmx          tty      tty32  tty57  vcs6       video22
+hwrng          pts           tty0     tty33  tty58  vcsa       video23
+initctl        ram0          tty1     tty34  tty59  vcsa1      video31
+input          ram1          tty10    tty35  tty6   vcsa2      watchdog
+kmsg           ram10         tty11    tty36  tty60  vcsa3      watchdog0
+log            ram11         tty12    tty37  tty61  vcsa4      zero
+loop0          ram12         tty13    tty38  tty62  vcsa5
+loop1          ram13         tty14    tty39  tty63  vcsa6
+loop2          ram14         tty15    tty4   tty7   vcsm-cma
+loop3          ram15         tty16    tty40  tty8   vcsu
+
+root@raspberrypi:/proc# cd ~
+root@raspberrypi:~# ls /sys/class/tty/ttyAMA0
+close_delay     dev     iomem_base       line       type
+closing_wait    device  iomem_reg_shift  port       uartclk
+console         flags   io_type          power      uevent
+custom_divisor  hci0    irq              subsystem  xmit_fifo_size
+root@raspberrypi:~# cat /sys/class/tty/ttyAMA0/dev
+204:64
+</code></pre><p>都希望在class 下產生，SW RD 想要抽象化，希望使用者，可以直接透過class 存取到device就好，不用直接去改到driver code。</p>
+<h1 id="在-make-menuconfig-放入自己寫的driver">在 make menuconfig 放入自己寫的Driver</h1>
+<h2 id="注意環境變數">注意環境變數</h2>
+<p>這邊以raspberry pi3 為例</p>
+<pre tabindex="0"><code>$ sudo apt install bc bison crossbuild-essential-armhf flex git libc6-dev libncurses5-dev libssl-dev
+
+$ export ARCH=arm
+
+$ export KERNEL=kernel7
+
+$ export CROSS_COMPILE=arm-linux-gnueabihf-
+
+$ git clone --depth=1 https://github.com/raspberrypi/linux
+
+$ cd linux
+
+$ make bcm2709_defconfig
+</code></pre><p><img src="/images/ldd_3.png" alt="blog圖片的連結"></p>
+<ol>
+<li>在linux/drivers/char 下放入driver source code ，假設是hello 如下圖所示:</li>
+</ol>
+<p><img src="/images/ldd_4.png" alt="blog圖片的連結"></p>
+<div class="highlight"><pre tabindex="0" style="color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#008000">//main.c
+</span></span></span><span style="display:flex;"><span><span style="color:#008000"></span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;linux/module.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;linux/init.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200"></span><span style="color:#00f">MODULE_LICENSE</span><span style="color:#f00">(</span>&#34;Dual BSD/GPL&#34;<span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">extern</span> <span style="color:#f00">void</span> <span style="color:#00f">sub</span><span style="color:#f00">(</span><span style="color:#f00">void</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">static</span> <span style="color:#f00">int</span> <span style="color:#00f">hello_init</span><span style="color:#f00">(</span><span style="color:#f00">void</span><span style="color:#f00">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00f">printk</span><span style="color:#f00">(</span><span style="color:#00f">KERN_ALERT</span> &#34;driver loaded\n&#34;<span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00f">sub</span><span style="color:#f00">();</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	<span style="color:#f00">return</span> 0<span style="color:#f00">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">static</span> <span style="color:#f00">void</span> <span style="color:#00f">hello_exit</span><span style="color:#f00">(</span><span style="color:#f00">void</span><span style="color:#f00">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00f">printk</span><span style="color:#f00">(</span><span style="color:#00f">KERN_ALERT</span> &#34;driver unloaded\n&#34;<span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">module_init</span><span style="color:#f00">(</span><span style="color:#00f">hello_init</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">module_exit</span><span style="color:#f00">(</span><span style="color:#00f">hello_exit</span><span style="color:#f00">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#008000">//sub.c
+</span></span></span><span style="display:flex;"><span><span style="color:#008000"></span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;linux/module.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200">#include</span> <span style="color:#963200">&lt;linux/init.h&gt;</span><span style="color:#963200">
+</span></span></span><span style="display:flex;"><span><span style="color:#963200"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">void</span> <span style="color:#00f">sub</span><span style="color:#f00">(</span><span style="color:#f00">void</span><span style="color:#f00">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00f">printk</span><span style="color:#f00">(</span>&#34;%s: sub() called\n&#34;<span style="color:#f00">,</span> <span style="color:#00f">__func__</span><span style="color:#f00">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">}</span>
+</span></span></code></pre></div><p>Makefile :</p>
+<pre tabindex="0"><code>obj-$(CONFIG_HELLO)         += hello.o
+
+hello-objs			:= main.o sub.o
+</code></pre><ol start="2">
+<li>在 hello 上層，也就是char 這層更改 Kconfig 和 Makefile</li>
+</ol>
+<p><img src="/images/ldd_5.png" alt="blog圖片的連結"></p>
+<p><img src="/images/ldd_6.png" alt="blog圖片的連結"></p>
+<ol start="3">
+<li>Make menuconfig 可以 M module選取，然後make</li>
+</ol>
+<p><img src="/images/ldd_7.png" alt="blog圖片的連結"></p>
+<p><img src="/images/ldd_8.png" alt="blog圖片的連結"></p>
+<h1 id="獨立編譯ko的方式以-ma35d1-為例">獨立編譯.ko的方式，以 MA35D1 為例</h1>
+<pre tabindex="0"><code># export PATH=$PATH:/home/user/buildroot/MA35D1_Buildroot/output/host/bin
+
+PWD := $(shell pwd)
+
+KDIR = /home/user/buildroot/MA35D1_Buildroot/output/build/linux-custom
+
+
+obj-m += mymodule.o
+
+mymodule-objs := main.o sub.o
+
+ARCH ?= arm64
+
+CROSS_COMPILE ?= aarch64-linux-
+
+all drivers:
+	make -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(PWD) modules
+clean:
+	make -C $(KDIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(PWD) clean
+</code></pre><h1 id="一個ioctl的範例">一個ioctl的範例</h1>
+<p>下載看&hellip;..</p>
+<p><img src="/images/ldd_9.png" alt="blog圖片的連結"></p>
+<p><img src="/images/ldd_10.png" alt="blog圖片的連結"></p>
+<p><img src="/images/ldd_11.png" alt="blog圖片的連結"></p>
+
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-"><i
+                class="ti-mobile mr-3 text-primary"></i>03-</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2023 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>
