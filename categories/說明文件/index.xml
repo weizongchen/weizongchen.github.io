@@ -6,7 +6,16 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 01 Aug 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Sep 2023 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用M460開發版的 ADC 去要 GY-61 Acc 加速度計的data</title>
+      <link>https://weizongchen.github.io/blog/m460_adc_gy61/</link>
+      <pubDate>Sun, 03 Sep 2023 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/m460_adc_gy61/</guid>
+      <description>參考 Opennuvoton 的 EADC_ADINT_Trigger 範例 觀察到 user manual 的 PB0 PB1 PB2 是有接出來可以用的，所以:</description>
+    </item>
+    
     <item>
       <title>MA35D1 Buildroot 打開 openssh</title>
       <link>https://weizongchen.github.io/blog/ma35d1_openssh/</link>

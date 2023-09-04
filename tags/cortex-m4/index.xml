@@ -6,7 +6,16 @@
     <description>Recent content in Cortex M4 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Thu, 25 May 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Sep 2023 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/tags/cortex-m4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用M460開發版的 ADC 去要 GY-61 Acc 加速度計的data</title>
+      <link>https://weizongchen.github.io/blog/m460_adc_gy61/</link>
+      <pubDate>Sun, 03 Sep 2023 13:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/m460_adc_gy61/</guid>
+      <description>參考 Opennuvoton 的 EADC_ADINT_Trigger 範例 觀察到 user manual 的 PB0 PB1 PB2 是有接出來可以用的，所以:</description>
+    </item>
+    
     <item>
       <title> M460 Level0 說明</title>
       <link>https://weizongchen.github.io/blog/m460_level0/</link>
