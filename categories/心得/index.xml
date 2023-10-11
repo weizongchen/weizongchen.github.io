@@ -6,7 +6,16 @@
     <description>Recent content in 心得 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sat, 05 Aug 2023 09:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Sep 2023 10:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M460 RTOS Keil RTX 版本</title>
+      <link>https://weizongchen.github.io/blog/m460_rtos_thread/</link>
+      <pubDate>Mon, 04 Sep 2023 10:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/m460_rtos_thread/</guid>
+      <description>Manage Run-Time Emvironment 選擇 RTOS1(API) Keil RTX 的版本 現在最新應該是RTOS2 (API) Keil RTX5，但是這篇是講解API1的&amp;hellip;.</description>
+    </item>
+    
     <item>
       <title>簡單說明Linux驅動程式</title>
       <link>https://weizongchen.github.io/blog/ldd_brief_intro/</link>

@@ -3,27 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://weizongchen.github.io/blog/</loc>
-    <lastmod>2023-09-03T13:24:00+08:00</lastmod>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/</loc>
-    <lastmod>2023-09-03T13:24:00+08:00</lastmod>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/cortex-m4/</loc>
-    <lastmod>2023-09-03T13:24:00+08:00</lastmod>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/m460_rtos_thread/</loc>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/</loc>
-    <lastmod>2023-09-03T13:24:00+08:00</lastmod>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
   </url><url>
-    <loc>https://weizongchen.github.io/blog/m460_adc_gy61/</loc>
-    <lastmod>2023-09-03T13:24:00+08:00</lastmod>
+    <loc>https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/</loc>
+    <lastmod>2023-09-04T10:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/m460_adc_gy61/</loc>
     <lastmod>2023-09-03T13:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2023-09-03T13:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/categories/for-mm10-%E7%B6%B2%E9%A0%81%E7%AF%84%E4%BE%8B/</loc>
+    <lastmod>2023-08-30T09:24:00+08:00</lastmod>
+  </url><url>
+    <loc>https://weizongchen.github.io/blog/ml_example_for_mm10/</loc>
     <lastmod>2023-08-30T09:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/mm10-website-example/</loc>
@@ -39,9 +48,6 @@
     <lastmod>2023-08-05T09:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/tags/raspberry-pi/</loc>
-    <lastmod>2023-08-05T09:24:00+08:00</lastmod>
-  </url><url>
-    <loc>https://weizongchen.github.io/categories/%E5%BF%83%E5%BE%97/</loc>
     <lastmod>2023-08-05T09:24:00+08:00</lastmod>
   </url><url>
     <loc>https://weizongchen.github.io/blog/ldd_brief_intro/</loc>
