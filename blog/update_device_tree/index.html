@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="MA35D1 Update Device Tree and look up change data method">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.116.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
+        
+        <h2>MA35D1 Update Device Tree and Check change data</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>05 November 2023</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/devicetree.png" class="img-fluid w-100 mb-4" alt="MA35D1 Update Device Tree and Check change data">
+        
+        <div class="content mb-5">
+          <h1 id="update-device-tree-設定">Update Device Tree 設定</h1>
+<h2 id="compile-後-直接更換-sd-卡上的-device-tree不用整個sd-重新燒錄">compile 後 ，直接更換 SD 卡上的 Device Tree，不用整個SD 重新燒錄</h2>
+<pre tabindex="0"><code>$ bitbake linux-ma35d1 -C compile
+</code></pre><p>下面是腳本，隨便放在家目錄都可以</p>
+<p>PKGPATH=&rsquo;/home/nuvoton/yocto/build/tmp-glibc/deploy/images/numaker-som-ma35d16a81/Image.dtb'</p>
+<p>要放到對的位置</p>
+<pre tabindex="0"><code>#!/bin/bash
+# 宣告使用 bash shell 執行此腳本
+
+# 檢查第一個參數（$1）是否為空
+if [ -z &#34;$1&#34; ]
+
+then
+    echo &#34;Please input the sdcard node ex:/dev/sdx&#34;
+    # 如果參數為空，提示用戶輸入SD卡的設備路徑（例如：/dev/sdx）
+    exit
+    # 退出腳本
+fi
+
+# 設定設備樹二進制文件（DTB）的路徑
+#PKGPATH=&#39;/home/cwhuang/MA35D1_MP_Project/build/tmp-glibc/deploy/images/numaker-som-ma35d16a81/Image.dtb&#39;
+#PKGPATH=&#39;/home/cwhuang/SSD1/yocto/NuMaker-SOM-MA35D1/build/tmp-glibc/deploy/images/numaker-som-ma35d16a81/Image.dtb&#39;
+PKGPATH=&#39;/home/nuvoton/yocto/build/tmp-glibc/deploy/images/numaker-som-ma35d16a81/Image.dtb&#39;
+
+# 將腳本的第一個參數（SD卡的設備路徑）賦值給 SDCARDPATH 變數
+SDCARDPATH=$1
+
+# 打印出設備樹二進制文件的路徑
+echo &#34;sdcard Package is ${PKGPATH}&#34;
+
+# 打印出SD卡的設備路徑
+echo &#34;sdcard node is ${SDCARDPATH}&#34;
+
+# 檢查設備樹二進制文件是否存在
+if [ -f &#34;${PKGPATH}&#34; ]
+
+then
+  echo &#34;Start downloading...&#34;
+  # 如果文件存在，則打印“開始下載...”
+else
+  echo &#34;Can&#39;t find the Kernel dtb.&#34;
+  # 如果文件不存在，則打印無法找到內核DTB的消息
+  exit
+  # 並退出腳本
+fi
+
+# 使用 dd 命令將設備樹二進制文件寫入SD卡。這裡指定了塊大小和在輸出文件中跳過的塊數量
+#Refer to build/tmp-glibc/deploy/images/ma35d1-evb/nuwriter/pack-sdcard.json Image.dtb= 1024*2816 = 0x2C0000*
+sudo dd if=${PKGPATH} bs=1024 seek=2816 of=${SDCARDPATH}
+
+# 檢查 dd 命令的退出狀態
+if [ &#34;$?&#34; -eq &#34;0&#34; ]
+
+then  
+   echo &#34;Download Success.&#34;
+   # 如果退出狀態為 0（表示成功），則打印&#34;下載成功&#34;
+else
+   echo &#34;Download Failure.&#34;
+   # 否則，打印&#34;下載失敗&#34;
+   exit
+   # 並退出腳本
+fi
+
+# 執行 sync 命令以確保所有數據都已經寫入SD卡
+sync
+</code></pre><p>執行方法如下</p>
+<p>注意是 /dev/sdb</p>
+<div class="highlight"><pre tabindex="0" style="color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#00f">nuvoton</span>@<span style="color:#00f">ubuntu</span><span style="color:#f00">:</span><span style="color:#f00">~</span>$ <span style="color:#f00">.</span><span style="color:#f00">/</span><span style="color:#00f">update_device_tree</span><span style="color:#f00">.</span><span style="color:#00f">sh</span> <span style="color:#f00">/</span><span style="color:#00f">dev</span><span style="color:#f00">/</span><span style="color:#00f">sdb</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">sdcard</span> <span style="color:#00f">Package</span> <span style="color:#00f">is</span> <span style="color:#f00">/</span><span style="color:#00f">home</span><span style="color:#f00">/</span><span style="color:#00f">nuvoton</span><span style="color:#f00">/</span><span style="color:#00f">yocto</span><span style="color:#f00">/</span><span style="color:#00f">build</span><span style="color:#f00">/</span><span style="color:#00f">tmp</span><span style="color:#f00">-</span><span style="color:#00f">glibc</span><span style="color:#f00">/</span><span style="color:#00f">deploy</span><span style="color:#f00">/</span><span style="color:#00f">images</span><span style="color:#f00">/</span><span style="color:#00f">numaker</span><span style="color:#f00">-</span><span style="color:#00f">som</span><span style="color:#f00">-</span><span style="color:#00f">ma35d16a81</span><span style="color:#f00">/</span><span style="color:#00f">Image</span><span style="color:#f00">.</span><span style="color:#00f">dtb</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">sdcard</span> <span style="color:#00f">node</span> <span style="color:#00f">is</span> <span style="color:#f00">/</span><span style="color:#00f">dev</span><span style="color:#f00">/</span><span style="color:#00f">sdb</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">Start</span> <span style="color:#00f">downloading</span><span style="color:#f00">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f00">[</span><span style="color:#00f">sudo</span><span style="color:#f00">]</span> <span style="color:#00f">password</span> <span style="color:#f00">for</span> <span style="color:#00f">nuvoton</span><span style="color:#f00">:</span> 
+</span></span><span style="display:flex;"><span>41<span style="color:#f00">+</span>1 <span style="color:#00f">records</span> <span style="color:#00f">in</span>
+</span></span><span style="display:flex;"><span>41<span style="color:#f00">+</span>1 <span style="color:#00f">records</span> <span style="color:#00f">out</span>
+</span></span><span style="display:flex;"><span>42006 <span style="color:#00f">bytes</span> <span style="color:#f00">(</span>42 <span style="color:#00f">kB</span><span style="color:#f00">,</span> 41 <span style="color:#00f">KiB</span><span style="color:#f00">)</span> <span style="color:#00f">copied</span><span style="color:#f00">,</span> 0.0185719 <span style="color:#00f">s</span><span style="color:#f00">,</span> 2.3 <span style="color:#00f">MB</span><span style="color:#f00">/</span><span style="color:#00f">s</span>
+</span></span><span style="display:flex;"><span><span style="color:#00f">Download</span> <span style="color:#00f">Success</span><span style="color:#f00">.</span>
+</span></span></code></pre></div><h1 id="update-device-tree-設定後-在ma35d1-上去檢查">Update Device Tree 設定後 在MA35D1 上去檢查</h1>
+<h2 id="以-display-這個節點為例如下所示">以 display 這個節點為例，如下所示:</h2>
+<p><img src="/images/device_tree_0.JPG" alt=" device tree "></p>
+<h2 id="hexdump-或-cat-觀察數值-">Hexdump 或 cat 觀察數值 :</h2>
+<p>buffer-num     為例，上面device tree是 &lt;3&gt;   ，我們 hexdump 出來 是 03 (16進位)，轉成10進位就是 3 。</p>
+<p>bits-per-pixel 為例，上面device tree是 &lt;32&gt; ，我們 hexdump 出來 是 20 (16進位)，轉成10進位就是 32。</p>
+<p>reset_offset_en 為例，上面device tree是 <!-- raw HTML omitted --> ，我們 cat 出來 就是 no</p>
+<p><img src="/images/device_tree_1.JPG" alt=" device tree "></p>
+<h3 id="這裡可以觀察到最右邊的位是低位元最左邊會是高位元">這裡可以觀察到，最右邊的位是低位元，最左邊會是高位元。</h3>
+<pre tabindex="0"><code>root@numaker-som-ma35d16a81:/proc/device-tree/display@40260000# hexdump -C bits-per-pixel
+
+root@numaker-som-ma35d16a81:/proc/device-tree/display@40260000# cat reset_offset_en
+</code></pre><h1 id="用-dtc-去-讀取-ma35d1-som-256m--510140-r0-numaker-som-ma35d16a81-20231115075231dtb">用 dtc 去 讀取 ma35d1-som-256m&ndash;5.10.140-r0-numaker-som-ma35d16a81-20231115075231.dtb</h1>
+<pre tabindex="0"><code>nuvoton@ubuntu:~$ sudo apt search dtc
+Sorting... Done
+Full Text Search... Done
+ddtc/focal,focal 0.17.2 all
+  Deal with ddts mails
+
+device-tree-compiler/focal 1.5.1-1 amd64
+  Device Tree Compiler for Flat Device Trees
+
+python-dtcwt-doc/focal,focal 0.12.0-2 all
+  documentation for dtcwt
+
+python3-dtcwt/focal,focal 0.12.0-2 all
+  Dual-Tree Complex Wavelet Transform library for Python 3
+
+r-cran-waveslim/focal 1.7.5.2-1 amd64
+  GNU R wavelet routines for 1-, 2- and 3-D signal processing
+
+sbox-dtc/focal 1.11.7-1build1 amd64
+  CGI chroot wrapper script for safer hosting environment
+
+ubuntu-developer-tools-center/focal,focal 18.09+disco1 all
+  transitional dummy package
+
+nuvoton@ubuntu:~$ sudo apt-get install device-tree-compiler
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libfdt1
+The following NEW packages will be installed:
+  device-tree-compiler libfdt1
+0 upgraded, 2 newly installed, 0 to remove and 204 not upgraded.
+Need to get 265 kB of archives.
+After this operation, 559 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://us.archive.ubuntu.com/ubuntu focal/main amd64 libfdt1 amd64 1.5.1-1 [18.8 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu focal/main amd64 device-tree-compiler amd64 1.5.1-1 [247 kB]
+Fetched 265 kB in 2s (112 kB/s)                
+Selecting previously unselected package libfdt1:amd64.
+(Reading database ... 203335 files and directories currently installed.)
+Preparing to unpack .../libfdt1_1.5.1-1_amd64.deb ...
+Unpacking libfdt1:amd64 (1.5.1-1) ...
+Selecting previously unselected package device-tree-compiler.
+Preparing to unpack .../device-tree-compiler_1.5.1-1_amd64.deb ...
+Unpacking device-tree-compiler (1.5.1-1) ...
+Setting up libfdt1:amd64 (1.5.1-1) ...
+Setting up device-tree-compiler (1.5.1-1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.7) ...
+
+nuvoton@ubuntu:~$ dtc /home/nuvoton/yocto/build/tmp-glibc/deploy/images/numaker-som-ma35d16a81/ma35d1-som-256m--5.10.140-r0-numaker-som-ma35d16a81-20231115075231.dtb
+&lt;stdout&gt;: Warning (unit_address_vs_reg): /i2c-gpio-0: node has a reg or ranges property, but no unit name
+&lt;stdout&gt;: Warning (unit_address_vs_reg): /i2c-gpio-1: node has a reg or ranges property, but no unit name
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/rproc_buf@0: duplicate unit-address (also used in node /reserved-memory/display_buf@0)
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/rproc_buf@0: duplicate unit-address (also used in node /reserved-memory/vc8k_buf@0)
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/display_buf@0: duplicate unit-address (also used in node /reserved-memory/vc8k_buf@0)
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/rproc_buf@0: duplicate unit-address (also used in node /reserved-memory/gc520l_buf@0)
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/display_buf@0: duplicate unit-address (also used in node /reserved-memory/gc520l_buf@0)
+&lt;stdout&gt;: Warning (unique_unit_address): /reserved-memory/vc8k_buf@0: duplicate unit-address (also used in node /reserved-memory/gc520l_buf@0)
+/dts-v1/;
+
+/ {
+	compatible = &#34;nuvoton,ma35d1&#34;;
+	interrupt-parent = &lt;0x01&gt;;
+	#address-cells = &lt;0x02&gt;;
+	#size-cells = &lt;0x02&gt;;
+	model = &#34;Nuvoton MA35D1-SOM&#34;;
+
+	aliases {
+		ethernet0 = &#34;/ethernet@40120000&#34;;
+		ethernet1 = &#34;/ethernet@40130000&#34;;
+	};
+
+	cpus {
+		#address-cells = &lt;0x02&gt;;
+		#size-cells = &lt;0x00&gt;;
+
+		cpu@0 {
+			device_type = &#34;cpu&#34;;
+			compatible = &#34;arm,cortex-a35&#34;;
+			reg = &lt;0x00 0x00&gt;;
+			enable-method = &#34;psci&#34;;
+			next-level-cache = &lt;0x02&gt;;
+		};
+
+		cpu@1 {
+			device_type = &#34;cpu&#34;;
+			compatible = &#34;arm,cortex-a35&#34;;
+			reg = &lt;0x00 0x01&gt;;
+			enable-method = &#34;psci&#34;;
+			next-level-cache = &lt;0x02&gt;;
+		};
+
+		l2-cache0 {
+			compatible = &#34;cache&#34;;
+			cache-level = &lt;0x02&gt;;
+			phandle = &lt;0x02&gt;;
+		};
+	};
+
+	psci {
+		compatible = &#34;arm,psci-0.2&#34;;
+		method = &#34;smc&#34;;
+	};
+
+	clock-controller@40460200 {
+		compatible = &#34;nuvoton,ma35d1-clk\0syscon\0simple-mfd&#34;;
+
+
+        ...
+        
+</code></pre>
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-"><i
+                class="ti-mobile mr-3 text-primary"></i>03-</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/for-mm10-%e7%b6%b2%e9%a0%81%e7%af%84%e4%be%8b/">For mm10 網頁範例</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2023 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

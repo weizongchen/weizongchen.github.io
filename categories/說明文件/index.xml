@@ -6,7 +6,35 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Sun, 03 Sep 2023 13:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MA35D1 開啟 HM1055</title>
+      <link>https://weizongchen.github.io/blog/ma35d1_hm1055/</link>
+      <pubDate>Mon, 06 Nov 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/ma35d1_hm1055/</guid>
+      <description>Device Tree 設定 Device Tree - ccap0 /dev/video0 是 CCAP</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 Update Device Tree and Check change data</title>
+      <link>https://weizongchen.github.io/blog/update_device_tree/</link>
+      <pubDate>Sun, 05 Nov 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/update_device_tree/</guid>
+      <description>Update Device Tree 設定 compile 後 ，直接更換 SD 卡上的 Device Tree，不用整個SD 重新燒錄 $ bitbake linux-ma35d1 -C compile 下面是腳本，隨便放在家目錄都可以</description>
+    </item>
+    
+    <item>
+      <title>MA35D1 systemd-journald</title>
+      <link>https://weizongchen.github.io/blog/close_systemd_service_journal/</link>
+      <pubDate>Sat, 04 Nov 2023 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/close_systemd_service_journal/</guid>
+      <description>Update Device Tree 設定 status :
+systemctl status systemd-journald mv /lib/systemd/system/systemd-journald.</description>
+    </item>
+    
     <item>
       <title>使用M460開發版的 ADC 去要 GY-61 Acc 加速度計的data</title>
       <link>https://weizongchen.github.io/blog/m460_adc_gy61/</link>
