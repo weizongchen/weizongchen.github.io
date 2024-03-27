@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-tw"><head>
+  <meta charset="utf-8">
+  <title>暐宗&#39;s Blog</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="想要設定Windows 11的資料夾與Ubuntu 22.04虛擬機器共用">
+  <meta name="author" content="暐宗">
+  <meta name="generator" content="Hugo 0.116.1">
+
+  <!-- plugins -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/slick/slick.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/themify-icons/themify-icons.css ">
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/plugins/venobox/venobox.css ">
+  
+
+  <!-- Main Stylesheet -->
+  
+  <link rel="stylesheet" href="https://weizongchen.github.io/scss/style.min.css" media="screen">
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+  <link rel="icon" href="https://weizongchen.github.io/images/favicon.png " type="image/x-icon">
+
+  <!-- google analitycs -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-231684786-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head><body>
+<!-- preloader start -->
+<div class="preloader">
+  
+</div>
+<!-- preloader end -->
+<!-- navigation -->
+<header class="navigation">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
+      <a class="navbar-brand mobile-view" href="https://weizongchen.github.io"><img class="img-fluid"
+          src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
+        <i class="ti-menu"></i>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <div class="desktop-view">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.instagram.com/wei_zong_chen/"><i class="ti-instagram"></i></a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/weizongchen"><i class="ti-github"></i></a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <a class="navbar-brand mx-auto desktop-view" href="https://weizongchen.github.io"><img class="img-fluid"
+            src="https://weizongchen.github.io/images/mylogo.png" alt="暐宗&#39;s Blog"></a>
+
+        <ul class="navbar-nav">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/">Home</a>
+          </li>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="https://weizongchen.github.io/about">About</a>
+          </li>
+          
+          
+        </ul>
+
+        
+        <!-- search -->
+        <div class="search pl-lg-4">
+          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
+          <div class="search-wrapper">
+            <form action="https://weizongchen.github.io/search" class="h-100">
+              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
+            </form>
+            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
+          </div>
+        </div>
+        
+
+        
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- /navigation -->
+
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        
+        <a href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6"
+          class="text-primary">說明文件</a>
+        
+        <h2>VMware Workstation 17 Player安裝Ubuntu 22.04和Windows 11共用資料夾</h2>
+        <div class="mb-3 post-meta">
+          <span>By 暐宗</span>
+          
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>06 March 2024</span>
+          
+        </div>
+        
+        <img src="https://weizongchen.github.io/images/post/sharefolder1.JPG" class="img-fluid w-100 mb-4" alt="VMware Workstation 17 Player安裝Ubuntu 22.04和Windows 11共用資料夾">
+        
+        <div class="content mb-5">
+          <h4 id="1連續按兩下桌面的捷徑圖示開啟vmware-player">1.連續按兩下桌面的捷徑圖示，開啟VMware Player。</h4>
+<p><img src="/images/sharefolder1.jpg" alt="VMware icon"></p>
+<h4 id="2選擇ubuntu-2204虛擬機器點選edit-virtual-machine-settings">2.選擇Ubuntu 22.04虛擬機器，點選「Edit virtual machine settings」。</h4>
+<p><img src="/images/sharefolder2.jpg" alt="VMware icon"></p>
+<h4 id="3選擇options的索引標籤">3.選擇「Options」的索引標籤。</h4>
+<p><img src="/images/sharefolder3.jpg" alt="VMware icon"></p>
+<h4 id="4選擇shared-folders點選always-enabled">4.選擇「Shared Folders」，點選「Always enabled」。</h4>
+<h4 id="5點選add準備設定分享的資料夾">5.點選「Add…」，準備設定分享的資料夾。</h4>
+<p><img src="/images/sharefolder4.jpg" alt="VMware icon"></p>
+<h4 id="6點選next">6.點選「Next」。</h4>
+<p><img src="/images/sharefolder5.jpg" alt="VMware icon"></p>
+<h4 id="7點選browse">7.點選「Browse&hellip;」。</h4>
+<p><img src="/images/sharefolder6.jpg" alt="VMware icon"></p>
+<h4 id="8選取要分享的資料夾點選確定">8.選取要分享的資料夾，點選「確定」。</h4>
+<p><img src="/images/sharefolder7.jpg" alt="VMware icon"></p>
+<h4 id="9使用預設的名稱或自己輸入資料夾名稱點選next">9.使用預設的名稱或自己輸入資料夾名稱，點選「Next」。</h4>
+<p><img src="/images/sharefolder8.jpg" alt="VMware icon"></p>
+<h4 id="10使用預設的選項enable-this-share點選finish">10.使用預設的選項「Enable this share」，點選「Finish」。</h4>
+<p><img src="/images/sharefolder9.jpg" alt="VMware icon"></p>
+<h4 id="11分享的資料夾已經設定完成點選ok">11.分享的資料夾已經設定完成，點選「OK」。</h4>
+<p><img src="/images/sharefolder10.jpg" alt="VMware icon"></p>
+<h4 id="12點選play-virtual-machine開啟ubuntu-2204">12.點選「Play virtual machine」，開啟Ubuntu 22.04。</h4>
+<p><img src="/images/sharefolder11.jpg" alt="VMware icon"></p>
+<h3 id="13開啟ubuntu以後必須先掛載分享的資料夾才能瀏覽分享的檔案點選顯示應用程式選擇終端機">13.開啟Ubuntu以後，必須先掛載分享的資料夾才能瀏覽分享的檔案，點選「顯示應用程式」，選擇「終端機」。</h3>
+<p><img src="/images/sharefolder12.jpg" alt="VMware icon"></p>
+<h3 id="14在終端機輸入sudo-nautilus按鍵盤的enter鍵輸入開機密碼以root的身分開啟檔案總管才能編輯與儲存要掛載的檔案">14.在終端機輸入「sudo nautilus」，按鍵盤的Enter鍵，輸入開機密碼，以root的身分開啟檔案總管，才能編輯與儲存要掛載的檔案。</h3>
+<blockquote>
+<p>sudo nautilus</p>
+</blockquote>
+<p><img src="/images/sharefolder13.jpg" alt="VMware icon"></p>
+<h4 id="15已經使用root身分開啟檔案點選其他的位置">15.已經使用root身分開啟「檔案」，點選「其他的位置」。</h4>
+<p><img src="/images/sharefolder14.jpg" alt="VMware icon"></p>
+<h4 id="16點選電腦">16.點選「電腦」。</h4>
+<p><img src="/images/sharefolder15.jpg" alt="VMware icon"></p>
+<h4 id="17對著etc資料夾連續按兩下滑鼠左鍵開啟資料夾">17.對著etc資料夾連續按兩下滑鼠左鍵，開啟資料夾。</h4>
+<p><img src="/images/sharefolder16.jpg" alt="VMware icon"></p>
+<h4 id="18對著檔案fstab連續按兩下滑鼠左鍵開啟檔案">18.對著檔案fstab連續按兩下滑鼠左鍵，開啟檔案。</h4>
+<p><img src="/images/sharefolder17.jpg" alt="VMware icon"></p>
+<h4 id="19開啟的fstab內容如下圖所示">19.開啟的fstab內容如下圖所示。</h4>
+<p><img src="/images/sharefolder18.jpg" alt="VMware icon"></p>
+<h4 id="20在程式的最後新增一行文字host---------mnthgfs---------------fusevmhgfs-fuse-allow_otherdefaults---0-------0點選儲存以後開機就會自動掛載分享的資料夾">20.在程式的最後新增一行文字「.host:/         /mnt/hgfs               fuse.vmhgfs-fuse allow_other,defaults   0       0」，點選「儲存」，以後開機就會自動掛載分享的資料夾。</h4>
+<div class="highlight"><pre tabindex="0" style="color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f00">.</span><span style="color:#00f">host</span><span style="color:#f00">:</span><span style="color:#f00">/</span>         <span style="color:#f00">/</span><span style="color:#00f">mnt</span><span style="color:#f00">/</span><span style="color:#00f">hgfs</span>               <span style="color:#00f">fuse</span><span style="color:#f00">.</span><span style="color:#00f">vmhgfs</span><span style="color:#f00">-</span><span style="color:#00f">fuse</span> <span style="color:#00f">allow_other</span><span style="color:#f00">,</span><span style="color:#00f">defaults</span>   0       0
+</span></span></code></pre></div><p><img src="/images/sharefolder19.jpg" alt="VMware icon"></p>
+<h4 id="21save-並-關閉fstab">21.save 並 關閉fstab。</h4>
+<h4 id="22關閉檔案">22.關閉檔案。</h4>
+<h4 id="23輸入exit結束終端機">23.輸入「exit」，結束終端機。</h4>
+<h4 id="24點選電源選擇關閉電源">24.點選「電源」，選擇「關閉電源」。</h4>
+<p><img src="/images/sharefolder20.jpg" alt="VMware icon"></p>
+<p>25.點選「重新開機」。</p>
+<p>26.重新開機以後，點選「檔案」，選擇「+其他的位置」。</p>
+<p><img src="/images/sharefolder21.jpg" alt="VMware icon"></p>
+<p>27.選擇「電腦」。</p>
+<p>28.對著mnt連續按兩下滑鼠左鍵，開啟資料夾。</p>
+<p><img src="/images/sharefolder22.jpg" alt="VMware icon"></p>
+<p>29.對著hgfs連續按兩下滑鼠左鍵，開啟資料夾。</p>
+<p><img src="/images/sharefolder23.jpg" alt="VMware icon"></p>
+<p>30.將分享資料夾，到 bookmarks</p>
+<p><img src="/images/sharefolder24.jpg" alt="VMware icon"></p>
+
+        </div>
+
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "weizongchen" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="text-capitalize">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-5">
+
+      </div>
+               
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Contact Me</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="tel:03-"><i
+                class="ti-mobile mr-3 text-primary"></i>03-</a></li>
+          
+                     
+          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>台灣, 竹北</li>
+          
+                     
+          <li class="mb-3"><a class="text-dark" href="mailto:weizongchen0906@gmail.com"><i
+                class="ti-email mr-3 text-primary"></i>weizongchen0906@gmail.com</a>
+          
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Social Contacts</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/wei_zong_chen/">instagram</a></li>
+          
+          <li class="mb-3"><a class="text-dark" href="https://github.com/weizongchen">github</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Categories</h6>
+        <ul class="list-unstyled">
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/for-mm10-%e7%b6%b2%e9%a0%81%e7%af%84%e4%be%8b/">For mm10 網頁範例</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%ae%89%e8%a3%9d%e6%ad%a5%e9%a9%9f%e6%96%87%e4%bb%b6/">安裝步驟文件</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e5%bf%83%e5%be%97/">心得</a>
+          </li>
+          <li class="mb-3"><a class="text-dark"
+              href="/categories/%e8%aa%aa%e6%98%8e%e6%96%87%e4%bb%b6/">說明文件</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-sm-6 mb-5">
+        <h6 class="mb-4">Quick Links</h6>
+        <ul class="list-unstyled">
+          
+          <li class="mb-3"><a class="text-dark" href="https://weizongchen.github.io/about/">About</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-12 border-top py-4 text-center">
+        | copyright © 2023 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var indexURL = "https://weizongchen.github.io/index.json"
+</script>
+
+<!-- JS Plugins -->
+
+<script src="https://weizongchen.github.io/plugins/jQuery/jquery.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/slick/slick.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/venobox/venobox.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/fuse.min.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/mark.js"></script>
+
+<script src="https://weizongchen.github.io/plugins/search/search.js"></script>
+
+<!-- Main Script -->
+
+<script src="https://weizongchen.github.io/js/script.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<div id="js-cookie-box" class="cookie-box cookie-box-hide">
+	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
+</div>
+<script>
+	(function ($) {
+		const cookieBox = document.getElementById('js-cookie-box');
+		const cookieButton = document.getElementById('js-cookie-button');
+		if (!Cookies.get('cookie-box')) {
+			cookieBox.classList.remove('cookie-box-hide');
+			cookieButton.onclick = function () {
+				Cookies.set('cookie-box', true, {
+					expires:  2 
+				});
+				cookieBox.classList.add('cookie-box-hide');
+			};
+		}
+	})(jQuery);
+</script>
+
+
+<style>
+.cookie-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: rgb(71, 71, 71);
+  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  color: #fdfdfd;
+}
+
+.cookie-box-hide {
+  display: none;
+}
+</style>
+</body>
+</html>

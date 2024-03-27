@@ -6,7 +6,25 @@
     <description>Recent content in 說明文件 on 暐宗&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 06 Nov 2023 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Mar 2024 23:24:00 +0800</lastBuildDate><atom:link href="https://weizongchen.github.io/categories/%E8%AA%AA%E6%98%8E%E6%96%87%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMware Workstation 17 Player安裝Ubuntu 22.04和Windows 11共用資料夾</title>
+      <link>https://weizongchen.github.io/blog/vmware_ubuntu_windows_shared_folders/</link>
+      <pubDate>Wed, 06 Mar 2024 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/vmware_ubuntu_windows_shared_folders/</guid>
+      <description>1.連續按兩下桌面的捷徑圖示，開啟VMware Player。 2.選擇Ubuntu 22.04虛擬機器，點選「Edit virtual machine settings」。 3.選擇「Options」的索引標籤。 4.選擇「Shared Folders」，點選「Always enabled」。 5.</description>
+    </item>
+    
+    <item>
+      <title>Keil 儲存在sram 中的 rawdata 數據到硬碟</title>
+      <link>https://weizongchen.github.io/blog/keil_save_rawdata/</link>
+      <pubDate>Tue, 05 Mar 2024 23:24:00 +0800</pubDate>
+      
+      <guid>https://weizongchen.github.io/blog/keil_save_rawdata/</guid>
+      <description>以下圖示操作 save D:\名稱 位置, 位置+大小 </description>
+    </item>
+    
     <item>
       <title>MA35D1 開啟 HM1055</title>
       <link>https://weizongchen.github.io/blog/ma35d1_hm1055/</link>
